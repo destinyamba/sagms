@@ -102,6 +102,9 @@ def index():
     return make_response("<h1>Hello, World! Destiny's making a flask app.</h1>", 200)
 
 
+# Artworks endpoints
+
+
 @app.route("/api/v1.0/artworks", methods=["GET"])
 def get_artworks():
     page_num, page_size = 1, 10
@@ -121,6 +124,30 @@ def get_artwork(artwork_id):
     if artwork_id not in artworks:
         return make_response(jsonify({"error": "Artwork not found"}), 404)
     return make_response(jsonify(artworks[artwork_id]), 200)
+
+
+@app.route("/api/v1.0/artworks/<string:artist_id>", methods=["POST"])
+def create_artwork(artist_id):
+    data = request.get_json()
+    next_id = str(uuid.uuid4())
+    new_artwork = {
+        "title": data.get("title", "title"),
+        "artist_id": artist_id,
+        "description": data.get("description", "description"),
+        "category": data.get("category", "category"),
+        "images": ["url1", "url2"],
+        "materials": data.get("materials", "materials"),
+        "dimensions": {
+            "height_cm": data.get("height_cm", "height_cm"),
+            "width_cm": data.get("width_cm", "width_cm"),
+        },
+        "provenance": data.get("provenance", "provenance"),
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": [],
+    }
+    artworks[next_id] = new_artwork
+    return make_response(jsonify({next_id: new_artwork}), 201)
 
 
 if __name__ == "__main__":
