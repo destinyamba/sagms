@@ -179,6 +179,19 @@ def update_artwork(artist_id, artwork_id):
     return make_response(jsonify({artwork_id: artworks[artwork_id]}), 200)
 
 
+@app.route(
+    "/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["DELETE"]
+)
+def delete_artwork(artist_id, artwork_id):
+    if artwork_id not in artworks:
+        return make_response(jsonify({"error": "Artwork not found"}), 404)
+    elif artist_id != artworks[artwork_id]["artist_id"]:
+        return make_response(jsonify({"error": "Unauthorized to delete artwork"}), 401)
+    else:
+        del artworks[artwork_id]
+        return make_response(jsonify({}), 200)
+
+
 if __name__ == "__main__":
     artworks = generate_artworks_dummy_data()
     app.run(debug=True)
