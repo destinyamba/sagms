@@ -6,8 +6,11 @@ instance/*
 !instance/.gitignore
 .webassets-cache
 .env
-Lib
-Scripts
+Lib/*
+!Lib/.gitignore
+Scripts/*
+!Scripts/.gitignore
+.idea/*
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
