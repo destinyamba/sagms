@@ -3,7 +3,7 @@ __pycache__/
 .env
 .vscode/
 .idea/*
-idea/
+.idea/
 .ide
 *.pyc
 *.pyo

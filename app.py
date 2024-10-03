@@ -150,6 +150,35 @@ def create_artwork(artist_id):
     return make_response(jsonify({next_id: new_artwork}), 201)
 
 
+@app.route("/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["PUT"])
+def update_artwork(artist_id, artwork_id):
+    data = request.get_json()
+    if artwork_id not in artworks:
+        return make_response(jsonify({"error": "Artwork not found"}), 404)
+    elif artist_id != artworks[artwork_id]["artist_id"]:
+        print("artist_id: ", artist_id)
+        print("artwork_id: ", artworks[artwork_id]["artist_id"])
+        return make_response(jsonify({"error": "Unauthorized to update artwork"}), 401)
+    else:
+        for field in data:
+            if field in [
+                "title",
+                "description",
+                "category",
+                "materials",
+                "height_cm",
+                "width_cm",
+                "provenance",
+            ]:
+                artworks[artwork_id][field] = data.get(
+                    field, artworks[artwork_id][field]
+                )
+            else:
+                return make_response(jsonify({"error": "Missing required fields"}), 400)
+
+    return make_response(jsonify({artwork_id: artworks[artwork_id]}), 200)
+
+
 if __name__ == "__main__":
     artworks = generate_artworks_dummy_data()
     app.run(debug=True)
