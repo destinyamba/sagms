@@ -116,6 +116,13 @@ def get_artworks():
     )
 
 
+@app.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
+def get_artwork(artwork_id):
+    if artwork_id not in artworks:
+        return make_response(jsonify({"error": "Artwork not found"}), 404)
+    return make_response(jsonify(artworks[artwork_id]), 200)
+
+
 if __name__ == "__main__":
     artworks = generate_artworks_dummy_data()
     app.run(debug=True)

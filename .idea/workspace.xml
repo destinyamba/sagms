@@ -7,7 +7,7 @@
     <list default="true" id="766e4918-ca98-4e52-b4ce-5ad704695ebb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +72,11 @@
     "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\coding\fullstack-development-661\sagms" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sagms" />
@@ -86,7 +91,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/app.py" />
+      <option name="SCRIPT_NAME" value="C:\coding\fullstack-development-661\sagms\app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
