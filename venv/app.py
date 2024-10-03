@@ -83,9 +83,10 @@ def generate_artworks_dummy_data():
 
         artwork_dict[id] = {
             "title": title,
+            "description": "This will be the description of the artwork",
             "artist_id": artist_id,
             "category": category,
-            "media": {"images": ["url1", "url2"]},
+            "images": ["url1", "url2"],
             "materials": materials,
             "dimensions": {"height_cm": height_cm, "width_cm": width_cm},
             "provenance": provenance,
