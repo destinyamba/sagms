@@ -155,6 +155,13 @@ def get_artwork(artwork_id):
 def create_artwork(artist_id):
     data = request.get_json()
     next_id = str(uuid.uuid4())
+    # Validate required fields
+    required_fields = ["title", "description", "category", "materials"]
+    for field in required_fields:
+        if field not in data or not data[field]:
+            return make_response(
+                jsonify({"error": f"Missing required field: {field}"}), 400
+            )
     new_artwork = {
         "title": data.get("title", "title"),
         "artist_id": artist_id,
