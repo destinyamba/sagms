@@ -1,5 +1,3 @@
-import uuid
-
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -46,7 +44,6 @@ def get_artwork(artwork_id):
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artist_id>", methods=["POST"])
 def create_artwork(artist_id):
     data = request.get_json()
-    next_id = str(uuid.uuid4())
     new_artwork = {
         "title": data.get("title", "title"),
         "artist_id": artist_id,
