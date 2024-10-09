@@ -44,18 +44,80 @@ def get_artwork(artwork_id):
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artist_id>", methods=["POST"])
 def create_artwork(artist_id):
     data = request.get_json()
+
+    if not data:
+        return make_response(jsonify({"error": "No input data provided"}), 400)
+
+    if not isinstance(data.get("title"), str):
+        return make_response(
+            jsonify({"error": "Invalid data type for title, expected string"}), 400
+        )
+    if not isinstance(data.get("description"), str):
+        return make_response(
+            jsonify({"error": "Invalid data type for description, expected string"}),
+            400,
+        )
+    if not isinstance(data.get("category"), str):
+        return make_response(
+            jsonify({"error": "Invalid data type for category, expected string"}), 400
+        )
+
+    materials = data.get("materials", [])
+    if not isinstance(materials, list) or not all(
+        isinstance(material, str) for material in materials
+    ):
+        return make_response(
+            jsonify(
+                {"error": "Invalid data type for materials, expected list of strings"}
+            ),
+            400,
+        )
+
+    if not isinstance(data.get("height_cm"), (int, float)) or data.get("height_cm") < 0:
+        return make_response(
+            jsonify(
+                {"error": "Invalid data type for height_cm, expected positive number"}
+            ),
+            400,
+        )
+    if not isinstance(data.get("width_cm"), (int, float)) or data.get("width_cm") < 0:
+        return make_response(
+            jsonify(
+                {"error": "Invalid data type for width_cm, expected positive number"}
+            ),
+            400,
+        )
+    if not isinstance(data.get("provenance"), str):
+        return make_response(
+            jsonify({"error": "Invalid data type for provenance, expected string"}), 400
+        )
+
+        # Type check for dimensions
+    try:
+        height_cm = float(data.get("height_cm"))
+        width_cm = float(data.get("width_cm"))
+        if height_cm <= 0 or width_cm <= 0:
+            raise ValueError
+    except (TypeError, ValueError):
+        return make_response(
+            jsonify(
+                {"error": "Invalid data type for dimensions, expected positive numbers"}
+            ),
+            400,
+        )
+
     new_artwork = {
-        "title": data.get("title", "title"),
+        "title": data.get("title", "title").strip(),
         "artist_id": artist_id,
-        "description": data.get("description", "description"),
-        "category": data.get("category", "category"),
+        "description": data.get("description", "description").strip(),
+        "category": data.get("category", "category").strip(),
         "images": data.get("images", []),
         "materials": data.get("materials", "materials"),
         "dimensions": {
             "height_cm": data.get("height_cm", None),
             "width_cm": data.get("width_cm", None),
         },
-        "provenance": data.get("provenance", "provenance"),
+        "provenance": data.get("provenance", "provenance").strip(),
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": [],
