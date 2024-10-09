@@ -1,5 +1,6 @@
 import random
 import uuid
+from crypt import methods
 
 from bson import ObjectId
 from flask import Flask, make_response, jsonify, request
@@ -287,6 +288,34 @@ def delete_user(user_id):
     else:
         del users[user_id]
         return make_response(jsonify({}), 200)
+
+
+# Exhibition endpoint
+exhibitions = []
+
+
+@app.route("/api/v1.0/exhibitions/<string:curator_id", methods=["POST"])
+def create_exhibitions(curator_id):
+    # check curator collection if it exists.
+    # if not is_curator(curator_id):
+    #     return make_response(
+    #         jsonify({"error": "Forbidden: Only curators can create exhibitions"}), 403
+    #     )
+
+    data = request.get_json()
+    next_id = str(uuid.uuid4())
+    new_exhibition = {
+        "title": data.get("title", "title"),
+        "curator_id": data.get("curator_id", "curator_id"),
+        "description": data.get("description", "description"),
+        "location": data.get("location", "location"),
+        "start_date": data.get("start_date", "2023-12-01T00:00:00"),
+        "end_date": data.get("end_date", "2023-12-01T00:00:00"),
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01",
+    }
+    exhibitions[next_id] = new_exhibition
+    return make_response(jsonify({next_id: new_exhibition}), 201)
 
 
 if __name__ == "__main__":
