@@ -1,125 +1,16 @@
-import random
 import uuid
 
-from bson import ObjectId
 from flask import Flask, make_response, jsonify, request
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
-
-artworks = {}
-artists = {}
-users = {}
-exhibition = {}
-reviews = {}
-
-
-def generate_artworks_dummy_data():
-    titles = [
-        "The Last Supper",
-        "The Persistence of Memory",
-        "The Creation of Adam",
-        "The Fall of Man",
-    ]
-
-    categories = [
-        "Painting",
-        "Sculpture",
-        "Photograph",
-        "Print",
-        "Design",
-        "Film",
-        "Performance Art",
-        "Installation",
-    ]
-
-    medium = [
-        "Acrylic",
-        "Oil",
-        "Watercolor",
-        "Gouache",
-        "Charcoal",
-        "Wood",
-        "Metal",
-        "Stone",
-        "Clay",
-        "Leather",
-        "Glass",
-        "Plastic",
-        "Ceramic",
-        "Textile",
-        "Sapphire",
-        "Emerald",
-    ]
-
-    material = [
-        "Oil Paint",
-        "Acrylic Paint",
-        "Watercolor Paint",
-        "Gouache Paint",
-        "Charcoal",
-        "Wood",
-        "Metal",
-        "Stone",
-    ]
-
-    provenances = [
-        "Acquired from XYZ Auction House",
-        "Purchased from ABC Gallery",
-        "Donated by the local community",
-    ]
-
-    artwork_dict = {}
-
-    for i in range(100):
-        id = str(uuid.uuid4())
-        artist_id = str(uuid.uuid4())
-        title = titles[random.randint(0, len(titles) - 1)]
-        category = categories[random.randint(0, len(categories) - 1)]
-        height_cm = random.randint(100, 1000)
-        width_cm = random.randint(100, 1000)
-        provenance = provenances[random.randint(0, len(provenances) - 1)]
-        materials = random.sample(material, random.randint(2, min(3, len(material))))
-
-        artwork_dict[id] = {
-            "title": title,
-            "description": "This will be the description of the artwork",
-            "artist_id": artist_id,
-            "category": category,
-            "images": ["url1", "url2"],
-            "materials": materials,
-            "dimensions": {"height_cm": height_cm, "width_cm": width_cm},
-            "provenance": provenance,
-            "created_at": "2013-12-01T00:00:00",
-            "updated_at": "2013-12-01T00:00:00",
-            "reviews": [],
-        }
-    return artwork_dict
-
-
-def generate_users_dummy_data():
-
-    user_dict = {}
-
-    roles = ["VISITOR", "CURATOR", "ADMIN"]
-
-    for i in range(10):
-        id = str(uuid.uuid4())
-        username = "user" + str(i)
-        email = f"{username}@{username}.com"
-        password = "password"
-        role = roles[random.randint(0, len(roles) - 1)]
-        created_at = "2023-12-01T00:00:00"
-
-        user_dict[id] = {
-            "username": username,
-            "email": email,
-            "password": password,
-            "role": role,
-            "created_at": created_at,
-            "updated_at": created_at,
-        }
-    return user_dict
+client = MongoClient(
+    "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
+)
+db = client["smart-art-gallery"]
+artworks = db.artworks
+users = db.users
 
 
 @app.route("/", methods=["GET"])
@@ -138,10 +29,14 @@ def get_artworks():
     if request.args.get("ps"):
         page_size = int(request.args.get("ps"))
     page_start = page_size * (page_num - 1)
-    artworks_list = [{k: v} for k, v in artworks.items()]
-    return make_response(
-        jsonify(artworks_list[page_start : page_start + page_size]), 200
-    )
+
+    data_to_return = []
+    for artwork in artworks.find().skip(page_start).limit(page_size):
+        artwork["_id"] = str(artwork["_id"])
+        for review in artwork["reviews"]:
+            review["_id"] = str(review["_id"])
+        data_to_return.append(artwork)
+    return make_response(jsonify(data_to_return), 200)
 
 
 @app.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
@@ -290,6 +185,4 @@ def delete_user(user_id):
 
 
 if __name__ == "__main__":
-    artworks = generate_artworks_dummy_data()
-    users = generate_users_dummy_data()
     app.run(debug=True)
