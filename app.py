@@ -1,3 +1,5 @@
+import json
+import os
 import random
 import uuid
 
@@ -69,11 +71,30 @@ def generate_artworks_dummy_data():
         "Donated by the local community",
     ]
 
-    artwork_dict = {}
+    artwork_list = []
+
+    artist_ids = [
+        "6706a33aa75522a709ddbd0c",
+        "6706a33aa75522a709ddbd0d",
+        "6706a33aa75522a709ddbd0e",
+        "6706a33aa75522a709ddbd0f",
+        "6706a33aa75522a709ddbd10",
+        "6706a33aa75522a709ddbd11",
+        "6706a33aa75522a709ddbd12",
+        "6706a33aa75522a709ddbd13",
+        "6706a33aa75522a709ddbd14",
+        "6706a33aa75522a709ddbd15",
+    ]
+
+    image_directory = "sagms-images"
+    image_files = [
+        f
+        for f in os.listdir(image_directory)
+        if os.path.isfile(os.path.join(image_directory, f))
+    ]
 
     for i in range(100):
-        id = str(uuid.uuid4())
-        artist_id = str(uuid.uuid4())
+        selected_artist_id = random.choice(artist_ids)
         title = titles[random.randint(0, len(titles) - 1)]
         category = categories[random.randint(0, len(categories) - 1)]
         height_cm = random.randint(100, 1000)
@@ -81,12 +102,14 @@ def generate_artworks_dummy_data():
         provenance = provenances[random.randint(0, len(provenances) - 1)]
         materials = random.sample(material, random.randint(2, min(3, len(material))))
 
-        artwork_dict[id] = {
+        image_path = os.path.join(image_directory, random.choice(image_files))
+
+        artwork = {
             "title": title,
             "description": "This will be the description of the artwork",
-            "artist_id": artist_id,
+            "artist_id": selected_artist_id,
             "category": category,
-            "images": ["url1", "url2"],
+            "images": [image_path],
             "materials": materials,
             "dimensions": {"height_cm": height_cm, "width_cm": width_cm},
             "provenance": provenance,
@@ -94,7 +117,10 @@ def generate_artworks_dummy_data():
             "updated_at": "2013-12-01T00:00:00",
             "reviews": [],
         }
-    return artwork_dict
+        artwork_list.append(artwork)
+    with open("artworks.json", "w") as f:
+        json.dump(artwork_list, f, indent=4)
+    return artwork_list
 
 
 def generate_users_dummy_data():
@@ -122,174 +148,43 @@ def generate_users_dummy_data():
     return user_dict
 
 
-@app.route("/", methods=["GET"])
-def index():
-    return make_response("<h1>Hello, World! Destiny's making a flask app.</h1>", 200)
+def generate_artists_dummy_data():
+    artist_list = []
 
+    names = [
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Leonardo da Vinci",
+        "Claude Monet",
+        "Frida Kahlo",
+        "Georgia O'Keeffe",
+        "Salvador Dalí",
+        "Banksy",
+        "Andy Warhol",
+        "Yayoi Kusama",
+    ]
 
-# Artworks endpoints
+    for i in range(10):
+        name = names[random.randint(0, len(names) - 1)]
+        biography = "This is the biography of artist"
+        created_at = "2023-12-01T00:00:00"
+        updated_at = "2023-12-01T00:00:00"
 
-
-@app.route("/api/v1.0/artworks", methods=["GET"])
-def get_artworks():
-    page_num, page_size = 1, 10
-    if request.args.get("pn"):
-        page_num = int(request.args.get("pn"))
-    if request.args.get("ps"):
-        page_size = int(request.args.get("ps"))
-    page_start = page_size * (page_num - 1)
-    artworks_list = [{k: v} for k, v in artworks.items()]
-    return make_response(
-        jsonify(artworks_list[page_start : page_start + page_size]), 200
-    )
-
-
-@app.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
-def get_artwork(artwork_id):
-    if artwork_id not in artworks:
-        return make_response(jsonify({"error": "Artwork not found"}), 404)
-    return make_response(jsonify(artworks[artwork_id]), 200)
-
-
-@app.route("/api/v1.0/artworks/<string:artist_id>", methods=["POST"])
-def create_artwork(artist_id):
-    data = request.get_json()
-    next_id = str(uuid.uuid4())
-    new_artwork = {
-        "title": data.get("title", "title"),
-        "artist_id": artist_id,
-        "description": data.get("description", "description"),
-        "category": data.get("category", "category"),
-        "images": ["url1", "url2"],
-        "materials": data.get("materials", "materials"),
-        "dimensions": {
-            "height_cm": data.get("height_cm", "height_cm"),
-            "width_cm": data.get("width_cm", "width_cm"),
-        },
-        "provenance": data.get("provenance", "provenance"),
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": [],
-    }
-    artworks[next_id] = new_artwork
-    return make_response(jsonify({next_id: new_artwork}), 201)
-
-
-@app.route("/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["PUT"])
-def update_artwork(artist_id, artwork_id):
-    data = request.get_json()
-    if artwork_id not in artworks:
-        return make_response(jsonify({"error": "Artwork not found"}), 404)
-    elif artist_id != artworks[artwork_id]["artist_id"]:
-        print("artist_id: ", artist_id)
-        print("artwork_id: ", artworks[artwork_id]["artist_id"])
-        return make_response(jsonify({"error": "Unauthorized to update artwork"}), 401)
-    else:
-        for field in data:
-            if field in [
-                "title",
-                "description",
-                "category",
-                "materials",
-                "height_cm",
-                "width_cm",
-                "provenance",
-            ]:
-                artworks[artwork_id][field] = data.get(
-                    field, artworks[artwork_id][field]
-                )
-            else:
-                return make_response(jsonify({"error": "Missing required fields"}), 400)
-
-    return make_response(jsonify({artwork_id: artworks[artwork_id]}), 200)
-
-
-@app.route(
-    "/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["DELETE"]
-)
-def delete_artwork(artist_id, artwork_id):
-    if artwork_id not in artworks:
-        return make_response(jsonify({"error": "Artwork not found"}), 404)
-    elif artist_id != artworks[artwork_id]["artist_id"]:
-        return make_response(jsonify({"error": "Unauthorized to delete artwork"}), 401)
-    else:
-        del artworks[artwork_id]
-        return make_response(jsonify({}), 200)
-
-
-# User endpoints
-
-# Only and ADMIN can create users.
-# All users including artists can comment and review artworks and exhibitions.
-
-
-@app.route("/api/v1.0/users", methods=["GET"])
-def get_users():
-    page_num, page_size = 1, 10
-    if request.args.get("pn"):
-        page_num = int(request.args.get("pn"))
-    if request.args.get("ps"):
-        page_size = int(request.args.get("ps"))
-    page_start = page_size * (page_num - 1)
-    users_list = [{k: v} for k, v in users.items()]
-    return make_response(jsonify(users_list[page_start : page_start + page_size]), 200)
-
-
-@app.route("/api/v1.0/users/<string:user_id>", methods=["GET"])
-def get_user(user_id):
-    if user_id not in users:
-        return make_response(jsonify({"error": "User not found"}), 404)
-    return make_response(jsonify(users[user_id]), 200)
-
-
-@app.route("/api/v1.0/users/<string:user_id>", methods=["POST"])
-def create_user(user_id):
-    if users[user_id]["role"] != "ADMIN":
-        return make_response(jsonify({"error": "Unauthorized to update user"}), 401)
-    else:
-        data = request.get_json()
-        next_id = str(uuid.uuid4())
-        new_user = {
-            "username": data.get("username", "username"),
-            "email": data.get("email", "email"),
-            "password": data.get("password", "password"),
-            "role": data.get("role", "role"),
-            "created_at": "2023-12-01T00:00:00",
-            "updated_at": "2023-12-01T00:00:00",
+        artist = {
+            "name": name,
+            "biography": biography,
+            "created_at": created_at,
+            "updated_at": updated_at,
         }
-        users[next_id] = new_user
-        return make_response(jsonify({next_id: new_user}), 201)
+        artist_list.append(artist)
+    with open("artists.json", "w") as f:
+        json.dump(artist_list, f, indent=4)
 
-
-@app.route("/api/v1.0/users/<string:user_id>", methods=["PUT"])
-def update_user(user_id):
-    data = request.get_json()
-    if user_id not in users:
-        return make_response(jsonify({"error": "User not found"}), 404)
-    elif users[user_id]["role"] != "ADMIN":
-        return make_response(jsonify({"error": "Unauthorized to update user"}), 401)
-    else:
-        for field in data:
-            if field in ["username", "email", "password", "role"]:
-                users[user_id][field] = data.get(field, users[user_id][field])
-            else:
-                return make_response(jsonify({"error": "Missing required fields"}), 400)
-
-    return make_response(jsonify({user_id: users[user_id]}), 200)
-
-
-@app.route("/api/v1.0/users/<string:user_id>", methods=["DELETE"])
-def delete_user(user_id):
-    if user_id not in users:
-        return make_response(jsonify({"error": "User not found"}), 404)
-    elif users[user_id]["role"] != "ADMIN":
-        return make_response(jsonify({"error": "Unauthorized to delete user"}), 401)
-    else:
-        del users[user_id]
-        return make_response(jsonify({}), 200)
+    return artist_list
 
 
 if __name__ == "__main__":
     artworks = generate_artworks_dummy_data()
     users = generate_users_dummy_data()
+    artists = generate_artists_dummy_data()
     app.run(debug=True)
