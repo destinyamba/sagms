@@ -170,3 +170,29 @@ def delete_artwork(artist_id, artwork_id):
     else:
         artworks.delete_one({"_id": ObjectId(artwork_id)})
         return make_response(jsonify({}), 200)
+
+
+@artwork_blueprint.route(
+    "/api/v1.0/artworks/related/<string:artist_id>", methods=["GET"]
+)
+def get_related_artworks(artist_id):
+    page_num, page_size = 1, 10
+    if request.args.get("pn"):
+        page_num = int(request.args.get("pn"))
+    if request.args.get("ps"):
+        page_size = int(request.args.get("ps"))
+    page_start = page_size * (page_num - 1)
+
+    data_to_return = []
+
+    artworks_cursor = (
+        artworks.find({"artist_id": artist_id}).skip(page_start).limit(page_size)
+    )
+
+    for artwork in artworks_cursor:
+        artwork["_id"] = str(artwork["_id"])
+        for review in artwork.get("reviews", []):
+            review["_id"] = str(review["_id"])
+        data_to_return.append(artwork)
+
+    return make_response(jsonify(data_to_return), 200)
