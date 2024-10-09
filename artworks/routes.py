@@ -9,6 +9,7 @@ client = MongoClient(
 )
 db = client["smart-art-gallery"]
 artworks = db.artworks
+artists = db.artists
 
 
 @artwork_blueprint.route("/api/v1.0/artworks", methods=["GET"])
@@ -45,73 +46,65 @@ def get_artwork(artwork_id):
 def create_artwork(artist_id):
     data = request.get_json()
 
+    # check that artist_id is found in artist collection.
+    artist = artists.find_one({"_id": ObjectId(artist_id)})
+    if artist is None:
+        return make_response(jsonify({"error": "Artist not found"}), 404)
+
+    data["artist_id"] = artist_id
+
     if not data:
         return make_response(jsonify({"error": "No input data provided"}), 400)
 
-    if not isinstance(data.get("title"), str):
-        return make_response(
-            jsonify({"error": "Invalid data type for title, expected string"}), 400
-        )
-    if not isinstance(data.get("description"), str):
-        return make_response(
-            jsonify({"error": "Invalid data type for description, expected string"}),
-            400,
-        )
-    if not isinstance(data.get("category"), str):
-        return make_response(
-            jsonify({"error": "Invalid data type for category, expected string"}), 400
-        )
-
-    materials = data.get("materials", [])
-    if not isinstance(materials, list) or not all(
-        isinstance(material, str) for material in materials
-    ):
-        return make_response(
-            jsonify(
-                {"error": "Invalid data type for materials, expected list of strings"}
-            ),
-            400,
-        )
-
-    if not isinstance(data.get("height_cm"), (int, float)) or data.get("height_cm") < 0:
-        return make_response(
-            jsonify(
-                {"error": "Invalid data type for height_cm, expected positive number"}
-            ),
-            400,
-        )
-    if not isinstance(data.get("width_cm"), (int, float)) or data.get("width_cm") < 0:
-        return make_response(
-            jsonify(
-                {"error": "Invalid data type for width_cm, expected positive number"}
-            ),
-            400,
-        )
-    if not isinstance(data.get("provenance"), str):
-        return make_response(
-            jsonify({"error": "Invalid data type for provenance, expected string"}), 400
-        )
-
-        # Type check for dimensions
-    try:
-        height_cm = float(data.get("height_cm"))
-        width_cm = float(data.get("width_cm"))
-        if height_cm <= 0 or width_cm <= 0:
-            raise ValueError
-    except (TypeError, ValueError):
-        return make_response(
-            jsonify(
-                {"error": "Invalid data type for dimensions, expected positive numbers"}
-            ),
-            400,
-        )
+    required_fields = [
+        "title",
+        "description",
+        "category",
+        "materials",
+        "height_cm",
+        "width_cm",
+        "provenance",
+    ]
+    for field in required_fields:
+        if field in ["title", "description", "category", "provenance"]:
+            if not isinstance(data.get(field), str):
+                return make_response(
+                    jsonify(
+                        {"error": f"Invalid data type for {field}, expected string"}
+                    ),
+                    400,
+                )
+        elif field == "materials":
+            materials = data.get(field, [])
+            if not isinstance(materials, list) or not all(
+                isinstance(m, str) for m in materials
+            ):
+                return make_response(
+                    jsonify(
+                        {
+                            "error": "Invalid data type for materials, expected list of strings"
+                        }
+                    ),
+                    400,
+                )
+        elif field in ["height_cm", "width_cm"]:
+            value = data.get(field)
+            if not isinstance(value, (int, float)) or value <= 0:
+                return make_response(
+                    jsonify(
+                        {
+                            "error": f"Invalid data type for {field}, expected positive number"
+                        }
+                    ),
+                    400,
+                )
 
     new_artwork = {
         "title": data.get("title", "title").strip(),
         "artist_id": artist_id,
         "description": data.get("description", "description").strip(),
         "category": data.get("category", "category").strip(),
-        "images": data.get("images", []),
+        "images": [],
         "materials": data.get("materials", "materials"),
         "dimensions": {
             "height_cm": data.get("height_cm", None),

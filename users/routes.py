@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -33,21 +34,17 @@ def get_user(user_id):
 
 @user_blueprint.route("/api/v1.0/users/<string:user_id>", methods=["POST"])
 def create_user(user_id):
-    if users[user_id]["role"] != "ADMIN":
-        return make_response(jsonify({"error": "Unauthorized to update user"}), 401)
-    else:
-        data = request.get_json()
-        next_id = str(uuid.uuid4())
-        new_user = {
-            "username": data.get("username", "username"),
-            "email": data.get("email", "email"),
-            "password": data.get("password", "password"),
-            "role": data.get("role", "role"),
-            "created_at": "2023-12-01T00:00:00",
-            "updated_at": "2023-12-01T00:00:00",
-        }
-        users[next_id] = new_user
-        return make_response(jsonify({next_id: new_user}), 201)
+    data = request.get_json()
+    next_id = str(uuid.uuid4())
+    new_user = {
+        "username": data.get("username", "username"),
+        "email": data.get("email", "email"),
+        "password": data.get("password", "password"),
+        "created_at": datetime.now(),
+        "updated_at": datetime.now(),
+    }
+    users[next_id] = new_user
+    return make_response(jsonify({next_id: new_user}), 201)
 
 
 @user_blueprint.route("/api/v1.0/users/<string:user_id>", methods=["PUT"])
@@ -55,8 +52,6 @@ def update_user(user_id):
     data = request.get_json()
     if user_id not in users:
         return make_response(jsonify({"error": "User not found"}), 404)
-    elif users[user_id]["role"] != "ADMIN":
-        return make_response(jsonify({"error": "Unauthorized to update user"}), 401)
     else:
         for field in data:
             if field in ["username", "email", "password", "role"]:
@@ -71,8 +66,6 @@ def update_user(user_id):
 def delete_user(user_id):
     if user_id not in users:
         return make_response(jsonify({"error": "User not found"}), 404)
-    elif users[user_id]["role"] != "ADMIN":
-        return make_response(jsonify({"error": "Unauthorized to delete user"}), 401)
     else:
         del users[user_id]
         return make_response(jsonify({}), 200)
