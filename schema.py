@@ -70,6 +70,15 @@
 #  nationality: String
 # });
 
+# User Schema
+# {
+# name: { type: String, required: true  },
+# email: { type: String, required: true },
+# password: { type: String, required: true  },
+# role: { type: ARTIST | CURATOR | VISITOR | ADMIN, required: true },
+# biography: { type: String, required: false },
+# }
+
 # Artwork Schema
 # const ArtworkSchema = new Schema({
 #   title: { type: String, required: true },
