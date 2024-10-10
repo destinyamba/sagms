@@ -64,9 +64,10 @@ def create_artwork(artist_id):
         "height_cm",
         "width_cm",
         "provenance",
+        "images",
     ]
     for field in required_fields:
-        if field in ["title", "description", "category", "provenance"]:
+        if field in ["title", "description", "category", "provenance", "images"]:
             if not isinstance(data.get(field), str):
                 return make_response(
                     jsonify(
@@ -104,7 +105,7 @@ def create_artwork(artist_id):
         "artist_id": artist_id,
         "description": data.get("description", "description").strip(),
         "category": data.get("category", "category").strip(),
-        "images": [],
+        "images": data.get("images", "images").strip(),
         "materials": data.get("materials", "materials"),
         "dimensions": {
             "height_cm": data.get("height_cm", None),
