@@ -135,7 +135,14 @@ def update_artwork(artist_id, artwork_id):
     # Fields that can be updated.
     update_fields = {
         key: data[key]
-        for key in ["title", "description", "category", "materials", "provenance"]
+        for key in [
+            "title",
+            "description",
+            "category",
+            "materials",
+            "provenance",
+            "images",
+        ]
         if key in data
     }
 
