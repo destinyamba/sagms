@@ -10,9 +10,7 @@ app = Flask(__name__)
 
 
 artworks = {}
-artists = {}
 users = {}
-exhibition = {}
 reviews = {}
 
 
@@ -244,43 +242,8 @@ def generate_users_dummy_data():
     return user_list
 
 
-def generate_artists_dummy_data():
-    artist_list = []
-
-    names = [
-        "Vincent van Gogh",
-        "Pablo Picasso",
-        "Leonardo da Vinci",
-        "Claude Monet",
-        "Frida Kahlo",
-        "Georgia O'Keeffe",
-        "Salvador Dalí",
-        "Banksy",
-        "Andy Warhol",
-        "Yayoi Kusama",
-    ]
-
-    for i in range(10):
-        name = names[random.randint(0, len(names) - 1)]
-        biography = "This is the biography of artist"
-        created_at = "2023-12-01T00:00:00"
-        updated_at = "2023-12-01T00:00:00"
-
-        artist = {
-            "name": name,
-            "biography": biography,
-            "created_at": created_at,
-            "updated_at": updated_at,
-        }
-        artist_list.append(artist)
-    with open("artists.json", "w") as f:
-        json.dump(artist_list, f, indent=4)
-
-    return artist_list
-
 
 if __name__ == "__main__":
     artworks = generate_artworks_dummy_data()
     users = generate_users_dummy_data()
-    artists = generate_artists_dummy_data()
     app.run(debug=True)
