@@ -9,7 +9,7 @@ client = MongoClient(
 )
 db = client["smart-art-gallery"]
 artworks = db.artworks
-artists = db.artists
+users = db.users
 
 
 @artwork_blueprint.route("/api/v1.0/artworks", methods=["GET"])
@@ -46,10 +46,21 @@ def get_artwork(artwork_id):
 def create_artwork(artist_id):
     data = request.get_json()
 
-    # check that artist_id is found in artist collection.
-    artist = artists.find_one({"_id": ObjectId(artist_id)})
+    # check that artist_id is found in users collection and the role is ARTIST.
+    artist = users.find_one({"_id": ObjectId(artist_id)})
+    print("user: ", str(artist["role"]))
     if artist is None:
         return make_response(jsonify({"error": "Artist not found"}), 404)
+    if str(artist["role"]) != "ARTIST":
+        return make_response(
+            jsonify(
+                {
+                    "error": str(artist["role"])
+                    + " user not authorised to create artwork"
+                }
+            ),
+            403,
+        )
 
     data["artist_id"] = artist_id
 
