@@ -188,19 +188,45 @@ def generate_artworks_dummy_data():
 
 def generate_users_dummy_data():
 
-    user_dict = {}
+    user_list = []
 
-    roles = ["VISITOR", "CURATOR", "ADMIN"]
+    roles = ["ARTIST", "VISITOR", "CURATOR", "ADMIN", "ARTIST", "ARTIST"]
+    names = [
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Leonardo da Vinci",
+        "Claude Monet",
+        "Frida Kahlo",
+        "Georgia O'Keeffe",
+        "Salvador Dalí",
+        "Banksy",
+        "Andy Warhol",
+        "Yayoi Kusama",
+        "Nova Ryn",
+        "Samantha Williams",
+        "Wassily Kandinsky",
+        "Vera Rubin",
+        "Amelia Earhart",
+        "Rene Magritte",
+        "Aiden Vos",
+        "Lira Hale",
+        "Kai Valen",
+        "Suri Neven",
+        "Orion Kade",
+        "Esra Nyx",
+        "Zephra Quinn",
+        "Mira Skye",
+        "Lennox Rae",
+    ]
 
-    for i in range(10):
-        id = str(uuid.uuid4())
-        username = "user" + str(i)
+    for i in range(20):
+        username = names[random.randint(0, len(names) - 1)]
         email = f"{username}@{username}.com"
         password = "password"
         role = roles[random.randint(0, len(roles) - 1)]
         created_at = "2023-12-01T00:00:00"
 
-        user_dict[id] = {
+        user = {
             "username": username,
             "email": email,
             "password": password,
@@ -208,7 +234,12 @@ def generate_users_dummy_data():
             "created_at": created_at,
             "updated_at": created_at,
         }
-    return user_dict
+        if user["role"] == "ARTIST":
+            user["biography"] = "This is the biography of artist."
+        user_list.append(user)
+    with open("users.json", "w") as f:
+        json.dump(user_list, f, indent=4)
+    return user_list
 
 
 def generate_artists_dummy_data():

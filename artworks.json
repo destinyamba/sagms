@@ -1,126 +1,20 @@
 [
     {
-        "title": "The Creation of Adam",
+        "title": "The Persistence of Memory",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
-        "category": "Sculpture",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Print",
         "images": [
-            "https://drive.google.com/file/d/1mx3ohxfC9uy1eFyW5ovybo_QSXajzoIM/view?usp=drive_link"
+            "https://drive.google.com/file/d/1EBdbz2YDmjmZOxu9rQd2Xt50v4vLOLGr/view?usp=drive_link"
         ],
         "materials": [
             "Gouache Paint",
-            "Oil Paint",
+            "Wood",
             "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 371,
-            "width_cm": 886
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Performance Art",
-        "images": [
-            "https://drive.google.com/file/d/1BQQmrB0rpXzqY58KU_mg5dfr1zGyoyA2/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 993,
-            "width_cm": 706
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Sculpture",
-        "images": [
-            "https://drive.google.com/file/d/1iz7SgvHy4TUDuTAUyM9LcHp82M_C9Rcf/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 794,
-            "width_cm": 833
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Sculpture",
-        "images": [
-            "https://drive.google.com/file/d/1dVzzDecEHXXay6VO7b-46UBJx7dsuaVE/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 478,
-            "width_cm": 782
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Acrylic Paint"
-        ],
-        "dimensions": {
-            "height_cm": 910,
-            "width_cm": 627
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/1GexXPESnGfG7l6V3PhaJzy8qwYtV-ONU/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 436,
-            "width_cm": 538
+            "height_cm": 303,
+            "width_cm": 522
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -131,19 +25,42 @@
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Installation",
+        "category": "Film",
         "images": [
-            "https://drive.google.com/file/d/1XDQ8TmddSHjmYlvOp4FH3Y2wuedbIRSi/view?usp=drive_link"
+            "https://drive.google.com/file/d/1mmWy5KiIvnmI8b4vDSVYiZ1ifHBjJ-ME/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
+            "Watercolor Paint",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 364,
+            "width_cm": 404
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1TrsxbIVBpdblx1qOcah1WslZQSH5EHSN/view?usp=drive_link"
         ],
         "materials": [
             "Wood",
+            "Acrylic Paint",
             "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 781,
-            "width_cm": 181
+            "height_cm": 928,
+            "width_cm": 994
         },
-        "provenance": "Purchased from ABC Gallery",
+        "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -151,125 +68,190 @@
     {
         "title": "The Persistence of Memory",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/1Kk92SuUWpSWLJOKyDTmSd6PQnKcrLPKU/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Acrylic Paint",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 714,
-            "width_cm": 628
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
+        "artist_id": "6706a33aa75522a709ddbd12",
         "category": "Film",
         "images": [
-            "https://drive.google.com/file/d/1OBt4xqbYCweAygY8qIXvC1YwHn2SwcpA/view?usp=drive_link"
+            "https://drive.google.com/file/d/16vaF6t9w8JS2ZeO7h8iN3juAnriCXpEq/view?usp=drive_link"
         ],
         "materials": [
-            "Oil Paint",
-            "Acrylic Paint",
-            "Watercolor Paint"
-        ],
-        "dimensions": {
-            "height_cm": 558,
-            "width_cm": 126
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1Uoflfzy0Et3HTf_yzclQ-fuo34hLPjTW/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 525,
-            "width_cm": 246
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1T3vHmRAvEcGMWEN_rvTO7oFhdrwc50gn/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Oil Paint",
+            "Wood",
+            "Metal",
             "Gouache Paint"
         ],
         "dimensions": {
-            "height_cm": 536,
-            "width_cm": 954
+            "height_cm": 735,
+            "width_cm": 206
         },
-        "provenance": "Purchased from ABC Gallery",
+        "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
     },
     {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/125HG6KjdfgcO3r3mzedN_kXrDS3q9EoC/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 294,
-            "width_cm": 170
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
+        "title": "The Last Supper",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd11",
         "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1XDQ8TmddSHjmYlvOp4FH3Y2wuedbIRSi/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 523,
+            "width_cm": 911
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Performance Art",
         "images": [
             "https://drive.google.com/file/d/1h2tcrm_ZBu2KR_naI1bLvdVBvR22OaKl/view?usp=drive_link"
         ],
         "materials": [
-            "Watercolor Paint",
+            "Metal",
+            "Oil Paint",
             "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 324,
+            "height_cm": 784,
+            "width_cm": 686
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Film",
+        "images": [
+            "https://drive.google.com/file/d/1cgDPj50c95rdSaBS7eJBhiYQAS1TZh5o/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Charcoal",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 543,
+            "width_cm": 446
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Painting",
+        "images": [
+            "https://drive.google.com/file/d/18p_Fo16UunAsZd7_CVbctk2EzZF7o_a7/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Watercolor Paint",
+            "Stone"
+        ],
+        "dimensions": {
+            "height_cm": 646,
+            "width_cm": 970
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1oEP6mRjWH1ZAQgJhyxP0BG2gPYxQay6W/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 671,
+            "width_cm": 309
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1WbCKV00QKMnBJ_qCVrTGD8g51XiBZGTP/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 668,
+            "width_cm": 328
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1rEPXLq1encet_GYL0ANCcB5JhehCWEbi/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Charcoal"
+        ],
+        "dimensions": {
+            "height_cm": 957,
+            "width_cm": 637
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Wood",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 758,
             "width_cm": 152
         },
         "provenance": "Acquired from XYZ Auction House",
@@ -278,173 +260,21 @@
         "reviews": []
     },
     {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/1jFocZvJBqBDzsqs6eY6FDpR5wxEPAwei/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Watercolor Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 632,
-            "width_cm": 129
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0f",
-        "category": "Print",
-        "images": [
-            "https://drive.google.com/file/d/16vaF6t9w8JS2ZeO7h8iN3juAnriCXpEq/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Oil Paint",
-            "Wood"
-        ],
-        "dimensions": {
-            "height_cm": 981,
-            "width_cm": 327
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
+        "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd15",
         "category": "Photograph",
         "images": [
-            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Acrylic Paint"
-        ],
-        "dimensions": {
-            "height_cm": 453,
-            "width_cm": 577
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/1e06c7FJ84A2XN1_fml85hh4pBmNqqFsD/view?usp=drive_link"
+            "https://drive.google.com/file/d/18p_Fo16UunAsZd7_CVbctk2EzZF7o_a7/view?usp=drive_link"
         ],
         "materials": [
             "Metal",
-            "Oil Paint",
-            "Acrylic Paint"
-        ],
-        "dimensions": {
-            "height_cm": 895,
-            "width_cm": 395
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 109,
-            "width_cm": 842
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/16vaF6t9w8JS2ZeO7h8iN3juAnriCXpEq/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Acrylic Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 393,
-            "width_cm": 400
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Sculpture",
-        "images": [
-            "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Acrylic Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 749,
-            "width_cm": 278
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Design",
-        "images": [
-            "https://drive.google.com/file/d/1775Yvoc_FCFVBX-TAMO4WjyU_Uhr75ur/view?usp=drive_link"
-        ],
-        "materials": [
             "Wood",
-            "Metal",
             "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 905,
-            "width_cm": 571
+            "height_cm": 278,
+            "width_cm": 786
         },
         "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
@@ -455,233 +285,20 @@
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Design",
-        "images": [
-            "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
-        ],
-        "materials": [
-            "Oil Paint",
-            "Wood"
-        ],
-        "dimensions": {
-            "height_cm": 540,
-            "width_cm": 289
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 348,
-            "width_cm": 748
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Sculpture",
-        "images": [
-            "https://drive.google.com/file/d/11mHZoeZ-daiAGCPjdA2fMHIgYuHipFI_/view?usp=drive_link"
-        ],
-        "materials": [
-            "Metal",
-            "Watercolor Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 163,
-            "width_cm": 340
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1oEP6mRjWH1ZAQgJhyxP0BG2gPYxQay6W/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Wood",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 566,
-            "width_cm": 125
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/1CzJjSlFprYJzMffl5QbBjWwyHHcFH22e/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 480,
-            "width_cm": 845
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/170mLnkPwhvU1p8EKBCNVya9Yta8QFPMI/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 893,
-            "width_cm": 659
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/18b7r_Tvhkfg48KDm4VmEdlcGHQtSDdBp/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 145,
-            "width_cm": 355
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Performance Art",
-        "images": [
-            "https://drive.google.com/file/d/1GnKnerPJy7elN2nefjoIr5_L67bbVWjT/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Oil Paint",
-            "Watercolor Paint"
-        ],
-        "dimensions": {
-            "height_cm": 618,
-            "width_cm": 939
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Design",
-        "images": [
-            "https://drive.google.com/file/d/1WJdX8YUMyYXfgrKZheGAq1ij2cAmJs2S/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Watercolor Paint"
-        ],
-        "dimensions": {
-            "height_cm": 532,
-            "width_cm": 399
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
         "category": "Painting",
         "images": [
             "https://drive.google.com/file/d/1Kk92SuUWpSWLJOKyDTmSd6PQnKcrLPKU/view?usp=drive_link"
         ],
         "materials": [
-            "Charcoal",
             "Stone",
-            "Watercolor Paint"
+            "Oil Paint",
+            "Gouache Paint"
         ],
         "dimensions": {
-            "height_cm": 110,
-            "width_cm": 444
+            "height_cm": 752,
+            "width_cm": 599
         },
         "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1Uoflfzy0Et3HTf_yzclQ-fuo34hLPjTW/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Watercolor Paint"
-        ],
-        "dimensions": {
-            "height_cm": 834,
-            "width_cm": 191
-        },
-        "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -689,61 +306,18 @@
     {
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1iz7SgvHy4TUDuTAUyM9LcHp82M_C9Rcf/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Stone",
-            "Wood"
-        ],
-        "dimensions": {
-            "height_cm": 396,
-            "width_cm": 921
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd12",
+        "artist_id": "6706a33aa75522a709ddbd0c",
         "category": "Film",
         "images": [
-            "https://drive.google.com/file/d/1775Yvoc_FCFVBX-TAMO4WjyU_Uhr75ur/view?usp=drive_link"
+            "https://drive.google.com/file/d/125HG6KjdfgcO3r3mzedN_kXrDS3q9EoC/view?usp=drive_link"
         ],
         "materials": [
             "Wood",
-            "Acrylic Paint"
+            "Oil Paint"
         ],
         "dimensions": {
-            "height_cm": 987,
-            "width_cm": 506
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Performance Art",
-        "images": [
-            "https://drive.google.com/file/d/1lmHAou940tmCBMrWPv4-iwREXxRGkFTd/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Watercolor Paint"
-        ],
-        "dimensions": {
-            "height_cm": 625,
-            "width_cm": 358
+            "height_cm": 634,
+            "width_cm": 100
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -754,19 +328,19 @@
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Performance Art",
+        "category": "Film",
         "images": [
             "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
         ],
         "materials": [
-            "Stone",
-            "Metal"
+            "Gouache Paint",
+            "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 206,
-            "width_cm": 616
+            "height_cm": 818,
+            "width_cm": 895
         },
-        "provenance": "Donated by the local community",
+        "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -775,62 +349,20 @@
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Print",
-        "images": [
-            "https://drive.google.com/file/d/1rIo36LTDsF11Pe91-tz2qVcdmZbEC_ta/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint",
-            "Charcoal"
-        ],
-        "dimensions": {
-            "height_cm": 938,
-            "width_cm": 773
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
         "category": "Painting",
         "images": [
-            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 964,
-            "width_cm": 327
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd12",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/157r9Z6UEVd8IePNpF3b_kYBi8H7LyFOx/view?usp=drive_link"
+            "https://drive.google.com/file/d/1mmWy5KiIvnmI8b4vDSVYiZ1ifHBjJ-ME/view?usp=drive_link"
         ],
         "materials": [
             "Stone",
-            "Charcoal"
+            "Wood",
+            "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 187,
-            "width_cm": 553
+            "height_cm": 181,
+            "width_cm": 430
         },
-        "provenance": "Purchased from ABC Gallery",
+        "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -838,18 +370,18 @@
     {
         "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
+        "artist_id": "6706a33aa75522a709ddbd12",
         "category": "Print",
         "images": [
-            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
+            "https://drive.google.com/file/d/1rEPXLq1encet_GYL0ANCcB5JhehCWEbi/view?usp=drive_link"
         ],
         "materials": [
-            "Watercolor Paint",
-            "Acrylic Paint"
+            "Oil Paint",
+            "Metal"
         ],
         "dimensions": {
-            "height_cm": 730,
-            "width_cm": 713
+            "height_cm": 581,
+            "width_cm": 383
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -857,33 +389,12 @@
         "reviews": []
     },
     {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1h2tcrm_ZBu2KR_naI1bLvdVBvR22OaKl/view?usp=drive_link"
-        ],
-        "materials": [
-            "Wood",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 844,
-            "width_cm": 915
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
-        "category": "Photograph",
+        "artist_id": "6706a33aa75522a709ddbd0e",
+        "category": "Film",
         "images": [
-            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
+            "https://drive.google.com/file/d/1bvK72jUDv68Jy9Xl5QlhoLMi0NVSHZPy/view?usp=drive_link"
         ],
         "materials": [
             "Gouache Paint",
@@ -891,8 +402,8 @@
             "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 988,
-            "width_cm": 160
+            "height_cm": 130,
+            "width_cm": 273
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -900,20 +411,21 @@
         "reviews": []
     },
     {
-        "title": "The Fall of Man",
+        "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Film",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Sculpture",
         "images": [
-            "https://drive.google.com/file/d/1775Yvoc_FCFVBX-TAMO4WjyU_Uhr75ur/view?usp=drive_link"
+            "https://drive.google.com/file/d/11HP64_qHl_217pI0ZSPKd-NhbV4L5I5y/view?usp=drive_link"
         ],
         "materials": [
-            "Charcoal",
-            "Metal"
+            "Metal",
+            "Oil Paint",
+            "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 885,
-            "width_cm": 927
+            "height_cm": 113,
+            "width_cm": 554
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -926,38 +438,18 @@
         "artist_id": "6706a33aa75522a709ddbd14",
         "category": "Photograph",
         "images": [
-            "https://drive.google.com/file/d/1SyMHngtkdy9Il9xiF1ucXZ_9gxrftoj2/view?usp=drive_link"
+            "https://drive.google.com/file/d/1fvllZ0FvYGdyMBmRlWVn1jDMm9_WU7XB/view?usp=drive_link"
         ],
         "materials": [
-            "Watercolor Paint",
-            "Wood"
+            "Stone",
+            "Gouache Paint",
+            "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 843,
-            "width_cm": 812
+            "height_cm": 324,
+            "width_cm": 655
         },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1bvK72jUDv68Jy9Xl5QlhoLMi0NVSHZPy/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 150,
-            "width_cm": 208
-        },
-        "provenance": "Acquired from XYZ Auction House",
+        "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -966,17 +458,18 @@
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Sculpture",
+        "category": "Installation",
         "images": [
-            "https://drive.google.com/file/d/1cgDPj50c95rdSaBS7eJBhiYQAS1TZh5o/view?usp=drive_link"
+            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
         ],
         "materials": [
             "Oil Paint",
-            "Gouache Paint"
+            "Stone",
+            "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 444,
-            "width_cm": 412
+            "height_cm": 601,
+            "width_cm": 575
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -984,20 +477,21 @@
         "reviews": []
     },
     {
-        "title": "The Creation of Adam",
+        "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Photograph",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Sculpture",
         "images": [
-            "https://drive.google.com/file/d/1T3vHmRAvEcGMWEN_rvTO7oFhdrwc50gn/view?usp=drive_link"
+            "https://drive.google.com/file/d/18p_Fo16UunAsZd7_CVbctk2EzZF7o_a7/view?usp=drive_link"
         ],
         "materials": [
-            "Watercolor Paint",
-            "Charcoal"
+            "Charcoal",
+            "Gouache Paint",
+            "Metal"
         ],
         "dimensions": {
-            "height_cm": 505,
-            "width_cm": 708
+            "height_cm": 580,
+            "width_cm": 137
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -1007,40 +501,18 @@
     {
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Film",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Sculpture",
         "images": [
             "https://drive.google.com/file/d/1T3vHmRAvEcGMWEN_rvTO7oFhdrwc50gn/view?usp=drive_link"
         ],
         "materials": [
-            "Watercolor Paint",
-            "Gouache Paint",
-            "Charcoal"
+            "Metal",
+            "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 730,
-            "width_cm": 534
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd12",
-        "category": "Print",
-        "images": [
-            "https://drive.google.com/file/d/1eF4k7PfNEe_hshe_xZxALmDlS7ftad8H/view?usp=drive_link"
-        ],
-        "materials": [
-            "Oil Paint",
-            "Acrylic Paint"
-        ],
-        "dimensions": {
-            "height_cm": 786,
-            "width_cm": 803
+            "height_cm": 594,
+            "width_cm": 106
         },
         "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
@@ -1048,19 +520,127 @@
         "reviews": []
     },
     {
-        "title": "The Persistence of Memory",
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 652,
+            "width_cm": 178
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Painting",
+        "images": [
+            "https://drive.google.com/file/d/1rEPXLq1encet_GYL0ANCcB5JhehCWEbi/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 799,
+            "width_cm": 877
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Charcoal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 726,
+            "width_cm": 661
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1dVzzDecEHXXay6VO7b-46UBJx7dsuaVE/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 608,
+            "width_cm": 119
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd0d",
         "category": "Print",
         "images": [
-            "https://drive.google.com/file/d/1WJdX8YUMyYXfgrKZheGAq1ij2cAmJs2S/view?usp=drive_link"
+            "https://drive.google.com/file/d/1CzJjSlFprYJzMffl5QbBjWwyHHcFH22e/view?usp=drive_link"
         ],
         "materials": [
-            "Acrylic Paint",
-            "Watercolor Paint"
+            "Oil Paint",
+            "Gouache Paint",
+            "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 769,
+            "height_cm": 459,
+            "width_cm": 327
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
+        ],
+        "materials": [
+            "Stone",
+            "Gouache Paint",
+            "Charcoal"
+        ],
+        "dimensions": {
+            "height_cm": 345,
             "width_cm": 760
         },
         "provenance": "Purchased from ABC Gallery",
@@ -1071,61 +651,18 @@
     {
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1CzJjSlFprYJzMffl5QbBjWwyHHcFH22e/view?usp=drive_link"
-        ],
-        "materials": [
-            "Wood",
-            "Oil Paint",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 369,
-            "width_cm": 312
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1eF4k7PfNEe_hshe_xZxALmDlS7ftad8H/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Acrylic Paint"
-        ],
-        "dimensions": {
-            "height_cm": 650,
-            "width_cm": 829
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
+        "artist_id": "6706a33aa75522a709ddbd12",
         "category": "Sculpture",
         "images": [
-            "https://drive.google.com/file/d/191MYE2a-wTgU2ZqPjwjhQiJgr-VgFKfc/view?usp=drive_link"
+            "https://drive.google.com/file/d/1Uoflfzy0Et3HTf_yzclQ-fuo34hLPjTW/view?usp=drive_link"
         ],
         "materials": [
-            "Metal",
-            "Oil Paint"
+            "Acrylic Paint",
+            "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 297,
-            "width_cm": 193
+            "height_cm": 357,
+            "width_cm": 358
         },
         "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
@@ -1135,18 +672,127 @@
     {
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0f",
-        "category": "Print",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Sculpture",
         "images": [
-            "https://drive.google.com/file/d/11m8QynjC2_g1HyMVUMnKbMnyp0lgegEA/view?usp=drive_link"
+            "https://drive.google.com/file/d/16vaF6t9w8JS2ZeO7h8iN3juAnriCXpEq/view?usp=drive_link"
         ],
         "materials": [
-            "Charcoal",
+            "Acrylic Paint",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 383,
+            "width_cm": 441
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1mx3ohxfC9uy1eFyW5ovybo_QSXajzoIM/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
+            "Stone",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 475,
+            "width_cm": 829
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1Kk92SuUWpSWLJOKyDTmSd6PQnKcrLPKU/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Stone",
+            "Charcoal"
+        ],
+        "dimensions": {
+            "height_cm": 627,
+            "width_cm": 692
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/10Gy-v3nXt68i66y3ISRZ3q_ZSXnq6qPr/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Metal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 255,
+            "width_cm": 973
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Film",
+        "images": [
+            "https://drive.google.com/file/d/1OBt4xqbYCweAygY8qIXvC1YwHn2SwcpA/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Acrylic Paint",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 194,
+            "width_cm": 693
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
             "Metal"
         ],
         "dimensions": {
-            "height_cm": 740,
-            "width_cm": 414
+            "height_cm": 377,
+            "width_cm": 297
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1157,17 +803,147 @@
         "title": "The Persistence of Memory",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Painting",
+        "category": "Print",
         "images": [
-            "https://drive.google.com/file/d/10Gy-v3nXt68i66y3ISRZ3q_ZSXnq6qPr/view?usp=drive_link"
+            "https://drive.google.com/file/d/11HP64_qHl_217pI0ZSPKd-NhbV4L5I5y/view?usp=drive_link"
         ],
         "materials": [
-            "Wood",
+            "Charcoal",
+            "Metal",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 392,
+            "width_cm": 155
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Print",
+        "images": [
+            "https://drive.google.com/file/d/1rIo36LTDsF11Pe91-tz2qVcdmZbEC_ta/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
             "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 170,
-            "width_cm": 969
+            "height_cm": 430,
+            "width_cm": 191
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Performance Art",
+        "images": [
+            "https://drive.google.com/file/d/1mmWy5KiIvnmI8b4vDSVYiZ1ifHBjJ-ME/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Charcoal",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 123,
+            "width_cm": 437
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Charcoal"
+        ],
+        "dimensions": {
+            "height_cm": 745,
+            "width_cm": 102
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1oEP6mRjWH1ZAQgJhyxP0BG2gPYxQay6W/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 194,
+            "width_cm": 667
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd13",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1sUYdoZQkPXKbte-MlHPuxjq5tsbgoShj/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Watercolor Paint",
+            "Metal"
+        ],
+        "dimensions": {
+            "height_cm": 931,
+            "width_cm": 653
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Wood",
+            "Stone"
+        ],
+        "dimensions": {
+            "height_cm": 325,
+            "width_cm": 817
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1175,21 +951,41 @@
         "reviews": []
     },
     {
-        "title": "The Fall of Man",
+        "title": "The Persistence of Memory",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Design",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Photograph",
         "images": [
-            "https://drive.google.com/file/d/1XY5kSm4N8lnjmKp5ZJj_4iOo_3E17D8n/view?usp=drive_link"
+            "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 784,
+            "width_cm": 523
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0e",
+        "category": "Print",
+        "images": [
+            "https://drive.google.com/file/d/1Nh1DTonNu61u7mznFfAE7vLrZBDkDxQI/view?usp=drive_link"
         ],
         "materials": [
             "Wood",
-            "Stone",
-            "Watercolor Paint"
+            "Stone"
         ],
         "dimensions": {
-            "height_cm": 768,
-            "width_cm": 782
+            "height_cm": 182,
+            "width_cm": 281
         },
         "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
@@ -1200,18 +996,146 @@
         "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Installation",
+        "category": "Print",
         "images": [
-            "https://drive.google.com/file/d/1m9HeofqCpxbwF5pXMSkfXo2hzN5Yq9Rk/view?usp=drive_link"
+            "https://drive.google.com/file/d/1mmWy5KiIvnmI8b4vDSVYiZ1ifHBjJ-ME/view?usp=drive_link"
         ],
         "materials": [
-            "Acrylic Paint",
-            "Charcoal",
-            "Stone"
+            "Gouache Paint",
+            "Watercolor Paint",
+            "Wood"
         ],
         "dimensions": {
-            "height_cm": 229,
-            "width_cm": 1000
+            "height_cm": 482,
+            "width_cm": 256
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 178,
+            "width_cm": 393
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1sUYdoZQkPXKbte-MlHPuxjq5tsbgoShj/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 277,
+            "width_cm": 327
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0e",
+        "category": "Painting",
+        "images": [
+            "https://drive.google.com/file/d/18p_Fo16UunAsZd7_CVbctk2EzZF7o_a7/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Charcoal",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 124,
+            "width_cm": 197
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Print",
+        "images": [
+            "https://drive.google.com/file/d/16oNNs9g7kOS90-XdHQbg6K3Y5CPfLTD8/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 562,
+            "width_cm": 417
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Painting",
+        "images": [
+            "https://drive.google.com/file/d/1h2tcrm_ZBu2KR_naI1bLvdVBvR22OaKl/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Charcoal",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 948,
+            "width_cm": 897
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/125HG6KjdfgcO3r3mzedN_kXrDS3q9EoC/view?usp=drive_link"
+        ],
+        "materials": [
+            "Stone",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 322,
+            "width_cm": 350
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1221,60 +1145,18 @@
     {
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1G42OLBzdf1Uu8nS0LB2RkAptbuNw0Zbn/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 945,
-            "width_cm": 481
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
+        "artist_id": "6706a33aa75522a709ddbd10",
         "category": "Sculpture",
         "images": [
-            "https://drive.google.com/file/d/1Kk92SuUWpSWLJOKyDTmSd6PQnKcrLPKU/view?usp=drive_link"
+            "https://drive.google.com/file/d/1775Yvoc_FCFVBX-TAMO4WjyU_Uhr75ur/view?usp=drive_link"
         ],
         "materials": [
-            "Metal",
-            "Gouache Paint"
+            "Wood",
+            "Stone"
         ],
         "dimensions": {
-            "height_cm": 958,
-            "width_cm": 861
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/1mx3ohxfC9uy1eFyW5ovybo_QSXajzoIM/view?usp=drive_link"
-        ],
-        "materials": [
-            "Oil Paint",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 885,
-            "width_cm": 480
+            "height_cm": 474,
+            "width_cm": 549
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1282,64 +1164,21 @@
         "reviews": []
     },
     {
-        "title": "The Last Supper",
+        "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Photograph",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Sculpture",
         "images": [
-            "https://drive.google.com/file/d/157r9Z6UEVd8IePNpF3b_kYBi8H7LyFOx/view?usp=drive_link"
+            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
         ],
         "materials": [
-            "Metal",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 888,
-            "width_cm": 587
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Design",
-        "images": [
-            "https://drive.google.com/file/d/1oEP6mRjWH1ZAQgJhyxP0BG2gPYxQay6W/view?usp=drive_link"
-        ],
-        "materials": [
-            "Metal",
-            "Oil Paint",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 835,
-            "width_cm": 652
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/11mHZoeZ-daiAGCPjdA2fMHIgYuHipFI_/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
+            "Wood",
             "Gouache Paint",
             "Acrylic Paint"
         ],
         "dimensions": {
-            "height_cm": 493,
-            "width_cm": 378
+            "height_cm": 332,
+            "width_cm": 973
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -1347,20 +1186,84 @@
         "reviews": []
     },
     {
-        "title": "The Persistence of Memory",
+        "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0f",
-        "category": "Film",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Photograph",
         "images": [
-            "https://drive.google.com/file/d/16U-H-1bViU6GPkPgKwLkj3aBqGviZ6NH/view?usp=drive_link"
+            "https://drive.google.com/file/d/1mx3ohxfC9uy1eFyW5ovybo_QSXajzoIM/view?usp=drive_link"
         ],
         "materials": [
-            "Charcoal",
-            "Stone",
-            "Acrylic Paint"
+            "Acrylic Paint",
+            "Metal"
         ],
         "dimensions": {
-            "height_cm": 833,
+            "height_cm": 284,
+            "width_cm": 542
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1Kk92SuUWpSWLJOKyDTmSd6PQnKcrLPKU/view?usp=drive_link"
+        ],
+        "materials": [
+            "Stone",
+            "Charcoal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 769,
+            "width_cm": 553
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/1sUYdoZQkPXKbte-MlHPuxjq5tsbgoShj/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Gouache Paint",
+            "Stone"
+        ],
+        "dimensions": {
+            "height_cm": 704,
+            "width_cm": 364
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Performance Art",
+        "images": [
+            "https://drive.google.com/file/d/1m9HeofqCpxbwF5pXMSkfXo2hzN5Yq9Rk/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 476,
             "width_cm": 640
         },
         "provenance": "Purchased from ABC Gallery",
@@ -1371,20 +1274,21 @@
     {
         "title": "The Persistence of Memory",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
+        "artist_id": "6706a33aa75522a709ddbd12",
         "category": "Film",
         "images": [
-            "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
+            "https://drive.google.com/file/d/10Fi5s0DAD4f7HIwOTpxEVO01wKba4-l-/view?usp=drive_link"
         ],
         "materials": [
-            "Wood",
-            "Acrylic Paint"
+            "Acrylic Paint",
+            "Oil Paint",
+            "Gouache Paint"
         ],
         "dimensions": {
-            "height_cm": 759,
-            "width_cm": 603
+            "height_cm": 588,
+            "width_cm": 261
         },
-        "provenance": "Donated by the local community",
+        "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -1392,146 +1296,62 @@
     {
         "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/1cgDPj50c95rdSaBS7eJBhiYQAS1TZh5o/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 583,
-            "width_cm": 529
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1fvllZ0FvYGdyMBmRlWVn1jDMm9_WU7XB/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 637,
-            "width_cm": 908
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1GexXPESnGfG7l6V3PhaJzy8qwYtV-ONU/view?usp=drive_link"
-        ],
-        "materials": [
-            "Wood",
-            "Stone",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 988,
-            "width_cm": 146
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1OBt4xqbYCweAygY8qIXvC1YwHn2SwcpA/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Wood"
-        ],
-        "dimensions": {
-            "height_cm": 166,
-            "width_cm": 585
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Sculpture",
-        "images": [
-            "https://drive.google.com/file/d/18p_Fo16UunAsZd7_CVbctk2EzZF7o_a7/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 915,
-            "width_cm": 927
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Painting",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Print",
         "images": [
             "https://drive.google.com/file/d/1G42OLBzdf1Uu8nS0LB2RkAptbuNw0Zbn/view?usp=drive_link"
         ],
         "materials": [
-            "Stone",
-            "Gouache Paint",
-            "Acrylic Paint"
+            "Wood",
+            "Metal",
+            "Oil Paint"
         ],
         "dimensions": {
-            "height_cm": 556,
-            "width_cm": 958
+            "height_cm": 589,
+            "width_cm": 393
         },
-        "provenance": "Acquired from XYZ Auction House",
+        "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
     },
     {
-        "title": "The Fall of Man",
+        "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Print",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Installation",
         "images": [
-            "https://drive.google.com/file/d/1XDQ8TmddSHjmYlvOp4FH3Y2wuedbIRSi/view?usp=drive_link"
+            "https://drive.google.com/file/d/16oNNs9g7kOS90-XdHQbg6K3Y5CPfLTD8/view?usp=drive_link"
         ],
         "materials": [
-            "Charcoal",
-            "Metal"
+            "Acrylic Paint",
+            "Stone",
+            "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 610,
-            "width_cm": 877
+            "height_cm": 243,
+            "width_cm": 594
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Film",
+        "images": [
+            "https://drive.google.com/file/d/1T3vHmRAvEcGMWEN_rvTO7oFhdrwc50gn/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 853,
+            "width_cm": 571
         },
         "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
@@ -1542,17 +1362,38 @@
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Print",
+        "category": "Film",
         "images": [
-            "https://drive.google.com/file/d/1dVzzDecEHXXay6VO7b-46UBJx7dsuaVE/view?usp=drive_link"
+            "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 707,
+            "width_cm": 575
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1lmHAou940tmCBMrWPv4-iwREXxRGkFTd/view?usp=drive_link"
         ],
         "materials": [
             "Wood",
-            "Watercolor Paint"
+            "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 817,
-            "width_cm": 588
+            "height_cm": 569,
+            "width_cm": 649
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1562,19 +1403,39 @@
     {
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Design",
+        "artist_id": "6706a33aa75522a709ddbd13",
+        "category": "Painting",
         "images": [
-            "https://drive.google.com/file/d/170mLnkPwhvU1p8EKBCNVya9Yta8QFPMI/view?usp=drive_link"
+            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
         ],
         "materials": [
-            "Acrylic Paint",
-            "Charcoal",
-            "Wood"
+            "Stone",
+            "Gouache Paint"
         ],
         "dimensions": {
-            "height_cm": 955,
-            "width_cm": 174
+            "height_cm": 750,
+            "width_cm": 738
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/1bvK72jUDv68Jy9Xl5QlhoLMi0NVSHZPy/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 219,
+            "width_cm": 515
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1582,21 +1443,128 @@
         "reviews": []
     },
     {
-        "title": "The Fall of Man",
+        "title": "The Last Supper",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd0f",
         "category": "Design",
         "images": [
-            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
+            "https://drive.google.com/file/d/1rIo36LTDsF11Pe91-tz2qVcdmZbEC_ta/view?usp=drive_link"
         ],
         "materials": [
-            "Metal",
-            "Oil Paint",
+            "Gouache Paint",
+            "Acrylic Paint",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 529,
+            "width_cm": 987
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/16vaF6t9w8JS2ZeO7h8iN3juAnriCXpEq/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Gouache Paint",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 741,
+            "width_cm": 387
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1dVzzDecEHXXay6VO7b-46UBJx7dsuaVE/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Stone",
             "Wood"
         ],
         "dimensions": {
-            "height_cm": 250,
-            "width_cm": 674
+            "height_cm": 735,
+            "width_cm": 118
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Stone"
+        ],
+        "dimensions": {
+            "height_cm": 319,
+            "width_cm": 938
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
+        ],
+        "materials": [
+            "Charcoal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 844,
+            "width_cm": 958
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1rIo36LTDsF11Pe91-tz2qVcdmZbEC_ta/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Stone"
+        ],
+        "dimensions": {
+            "height_cm": 344,
+            "width_cm": 602
         },
         "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
@@ -1606,20 +1574,128 @@
     {
         "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0d",
-        "category": "Film",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Design",
         "images": [
-            "https://drive.google.com/file/d/18b7r_Tvhkfg48KDm4VmEdlcGHQtSDdBp/view?usp=drive_link"
+            "https://drive.google.com/file/d/1XDQ8TmddSHjmYlvOp4FH3Y2wuedbIRSi/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Acrylic Paint",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 385,
+            "width_cm": 968
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0f",
+        "category": "Installation",
+        "images": [
+            "https://drive.google.com/file/d/11m8QynjC2_g1HyMVUMnKbMnyp0lgegEA/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 352,
+            "width_cm": 308
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/16vaF6t9w8JS2ZeO7h8iN3juAnriCXpEq/view?usp=drive_link"
+        ],
+        "materials": [
+            "Wood",
+            "Watercolor Paint",
+            "Charcoal"
+        ],
+        "dimensions": {
+            "height_cm": 430,
+            "width_cm": 812
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd12",
+        "category": "Performance Art",
+        "images": [
+            "https://drive.google.com/file/d/1iz7SgvHy4TUDuTAUyM9LcHp82M_C9Rcf/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Stone"
+        ],
+        "dimensions": {
+            "height_cm": 331,
+            "width_cm": 190
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0e",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/157r9Z6UEVd8IePNpF3b_kYBi8H7LyFOx/view?usp=drive_link"
         ],
         "materials": [
             "Acrylic Paint",
-            "Wood"
+            "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 182,
-            "width_cm": 547
+            "height_cm": 257,
+            "width_cm": 382
         },
-        "provenance": "Acquired from XYZ Auction House",
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Metal",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 443,
+            "width_cm": 522
+        },
+        "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -1630,15 +1706,103 @@
         "artist_id": "6706a33aa75522a709ddbd11",
         "category": "Design",
         "images": [
-            "https://drive.google.com/file/d/1G42OLBzdf1Uu8nS0LB2RkAptbuNw0Zbn/view?usp=drive_link"
+            "https://drive.google.com/file/d/1jFocZvJBqBDzsqs6eY6FDpR5wxEPAwei/view?usp=drive_link"
         ],
         "materials": [
-            "Charcoal",
-            "Wood"
+            "Metal",
+            "Stone",
+            "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 847,
-            "width_cm": 266
+            "height_cm": 628,
+            "width_cm": 462
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Photograph",
+        "images": [
+            "https://drive.google.com/file/d/16oNNs9g7kOS90-XdHQbg6K3Y5CPfLTD8/view?usp=drive_link"
+        ],
+        "materials": [
+            "Stone",
+            "Watercolor Paint",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 568,
+            "width_cm": 286
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1sUYdoZQkPXKbte-MlHPuxjq5tsbgoShj/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Acrylic Paint",
+            "Metal"
+        ],
+        "dimensions": {
+            "height_cm": 943,
+            "width_cm": 925
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Painting",
+        "images": [
+            "https://drive.google.com/file/d/157r9Z6UEVd8IePNpF3b_kYBi8H7LyFOx/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 235,
+            "width_cm": 655
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1lmHAou940tmCBMrWPv4-iwREXxRGkFTd/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Stone",
+            "Charcoal"
+        ],
+        "dimensions": {
+            "height_cm": 856,
+            "width_cm": 180
         },
         "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
@@ -1648,18 +1812,166 @@
     {
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd12",
-        "category": "Installation",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Design",
         "images": [
-            "https://drive.google.com/file/d/1P2fqAT9s0tupG6P73nAzA_NnAAUWFPzj/view?usp=drive_link"
+            "https://drive.google.com/file/d/10Gy-v3nXt68i66y3ISRZ3q_ZSXnq6qPr/view?usp=drive_link"
         ],
         "materials": [
-            "Watercolor Paint",
+            "Wood",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 627,
+            "width_cm": 556
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0c",
+        "category": "Film",
+        "images": [
+            "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 129,
+            "width_cm": 880
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Persistence of Memory",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/125HG6KjdfgcO3r3mzedN_kXrDS3q9EoC/view?usp=drive_link"
+        ],
+        "materials": [
+            "Acrylic Paint",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 697,
+            "width_cm": 124
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0e",
+        "category": "Print",
+        "images": [
+            "https://drive.google.com/file/d/1mmWy5KiIvnmI8b4vDSVYiZ1ifHBjJ-ME/view?usp=drive_link"
+        ],
+        "materials": [
+            "Metal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 162,
+            "width_cm": 450
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0f",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1jFocZvJBqBDzsqs6eY6FDpR5wxEPAwei/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
             "Oil Paint",
+            "Acrylic Paint"
+        ],
+        "dimensions": {
+            "height_cm": 316,
+            "width_cm": 140
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Last Supper",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Print",
+        "images": [
+            "https://drive.google.com/file/d/1fvllZ0FvYGdyMBmRlWVn1jDMm9_WU7XB/view?usp=drive_link"
+        ],
+        "materials": [
+            "Charcoal",
             "Stone"
         ],
         "dimensions": {
-            "height_cm": 412,
+            "height_cm": 596,
+            "width_cm": 123
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd10",
+        "category": "Painting",
+        "images": [
+            "https://drive.google.com/file/d/1775Yvoc_FCFVBX-TAMO4WjyU_Uhr75ur/view?usp=drive_link"
+        ],
+        "materials": [
+            "Gouache Paint",
+            "Oil Paint",
+            "Wood"
+        ],
+        "dimensions": {
+            "height_cm": 725,
+            "width_cm": 750
+        },
+        "provenance": "Purchased from ABC Gallery",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd0d",
+        "category": "Sculpture",
+        "images": [
+            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
+        ],
+        "materials": [
+            "Charcoal",
+            "Oil Paint"
+        ],
+        "dimensions": {
+            "height_cm": 812,
             "width_cm": 337
         },
         "provenance": "Donated by the local community",
@@ -1670,366 +1982,84 @@
     {
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Print",
-        "images": [
-            "https://drive.google.com/file/d/1m9HeofqCpxbwF5pXMSkfXo2hzN5Yq9Rk/view?usp=drive_link"
-        ],
-        "materials": [
-            "Gouache Paint",
-            "Oil Paint",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 335,
-            "width_cm": 874
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd11",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1WJdX8YUMyYXfgrKZheGAq1ij2cAmJs2S/view?usp=drive_link"
-        ],
-        "materials": [
-            "Wood",
-            "Acrylic Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 859,
-            "width_cm": 540
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
         "category": "Performance Art",
         "images": [
-            "https://drive.google.com/file/d/1rIo36LTDsF11Pe91-tz2qVcdmZbEC_ta/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Gouache Paint",
-            "Charcoal"
-        ],
-        "dimensions": {
-            "height_cm": 230,
-            "width_cm": 289
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Print",
-        "images": [
-            "https://drive.google.com/file/d/11mHZoeZ-daiAGCPjdA2fMHIgYuHipFI_/view?usp=drive_link"
-        ],
-        "materials": [
-            "Metal",
-            "Wood",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 851,
-            "width_cm": 563
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Performance Art",
-        "images": [
-            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
+            "https://drive.google.com/file/d/18meMcEmj6kCzLXN5SuP7wPKvp88ut-di/view?usp=drive_link"
         ],
         "materials": [
             "Stone",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 882,
-            "width_cm": 311
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0c",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/1vAqr0IjjlVuAItQsyr0y0aPbf2v6_iM-/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Wood"
-        ],
-        "dimensions": {
-            "height_cm": 113,
-            "width_cm": 759
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/1OBt4xqbYCweAygY8qIXvC1YwHn2SwcpA/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 351,
-            "width_cm": 289
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd13",
-        "category": "Film",
-        "images": [
-            "https://drive.google.com/file/d/1GexXPESnGfG7l6V3PhaJzy8qwYtV-ONU/view?usp=drive_link"
-        ],
-        "materials": [
-            "Wood",
-            "Metal",
-            "Gouache Paint"
-        ],
-        "dimensions": {
-            "height_cm": 285,
-            "width_cm": 789
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
             "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 681,
-            "width_cm": 470
+            "height_cm": 795,
+            "width_cm": 283
         },
-        "provenance": "Purchased from ABC Gallery",
+        "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
     },
     {
-        "title": "The Persistence of Memory",
+        "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Sculpture",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Installation",
         "images": [
-            "https://drive.google.com/file/d/1CIqgfVbvcWLGTVuowub-Tu0JUa_6jdje/view?usp=drive_link"
+            "https://drive.google.com/file/d/1SyMHngtkdy9Il9xiF1ucXZ_9gxrftoj2/view?usp=drive_link"
+        ],
+        "materials": [
+            "Oil Paint",
+            "Stone",
+            "Watercolor Paint"
+        ],
+        "dimensions": {
+            "height_cm": 728,
+            "width_cm": 532
+        },
+        "provenance": "Donated by the local community",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Creation of Adam",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Design",
+        "images": [
+            "https://drive.google.com/file/d/1T3vHmRAvEcGMWEN_rvTO7oFhdrwc50gn/view?usp=drive_link"
         ],
         "materials": [
             "Stone",
-            "Charcoal",
-            "Acrylic Paint"
+            "Oil Paint"
         ],
         "dimensions": {
-            "height_cm": 775,
-            "width_cm": 886
+            "height_cm": 938,
+            "width_cm": 411
         },
-        "provenance": "Purchased from ABC Gallery",
+        "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
     },
     {
-        "title": "The Creation of Adam",
+        "title": "The Last Supper",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1CzJjSlFprYJzMffl5QbBjWwyHHcFH22e/view?usp=drive_link"
-        ],
-        "materials": [
-            "Charcoal",
-            "Watercolor Paint",
-            "Acrylic Paint"
-        ],
-        "dimensions": {
-            "height_cm": 677,
-            "width_cm": 774
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0f",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/14GQ6on1xRj20C7VUeKKKDyHRpAUxN59L/view?usp=drive_link"
-        ],
-        "materials": [
-            "Acrylic Paint",
-            "Charcoal"
-        ],
-        "dimensions": {
-            "height_cm": 544,
-            "width_cm": 677
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Creation of Adam",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Installation",
+        "artist_id": "6706a33aa75522a709ddbd11",
+        "category": "Design",
         "images": [
             "https://drive.google.com/file/d/1_61MLzz3n2qsnLwWUhdljIMCXukvvLPu/view?usp=drive_link"
         ],
         "materials": [
-            "Wood",
-            "Oil Paint"
-        ],
-        "dimensions": {
-            "height_cm": 351,
-            "width_cm": 782
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Last Supper",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Installation",
-        "images": [
-            "https://drive.google.com/file/d/1cgDPj50c95rdSaBS7eJBhiYQAS1TZh5o/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Charcoal",
+            "Acrylic Paint",
             "Watercolor Paint"
         ],
         "dimensions": {
-            "height_cm": 870,
-            "width_cm": 759
+            "height_cm": 241,
+            "width_cm": 785
         },
         "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Performance Art",
-        "images": [
-            "https://drive.google.com/file/d/1WbCKV00QKMnBJ_qCVrTGD8g51XiBZGTP/view?usp=drive_link"
-        ],
-        "materials": [
-            "Stone",
-            "Charcoal"
-        ],
-        "dimensions": {
-            "height_cm": 210,
-            "width_cm": 426
-        },
-        "provenance": "Purchased from ABC Gallery",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd10",
-        "category": "Sculpture",
-        "images": [
-            "https://drive.google.com/file/d/1BQQmrB0rpXzqY58KU_mg5dfr1zGyoyA2/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Charcoal",
-            "Metal"
-        ],
-        "dimensions": {
-            "height_cm": 559,
-            "width_cm": 796
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/1oEP6mRjWH1ZAQgJhyxP0BG2gPYxQay6W/view?usp=drive_link"
-        ],
-        "materials": [
-            "Metal",
-            "Watercolor Paint",
-            "Wood"
-        ],
-        "dimensions": {
-            "height_cm": 367,
-            "width_cm": 318
-        },
-        "provenance": "Acquired from XYZ Auction House",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -2038,61 +2068,20 @@
         "title": "The Fall of Man",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd0e",
-        "category": "Installation",
+        "category": "Photograph",
         "images": [
-            "https://drive.google.com/file/d/1n6Txi8am86TY90Go7SWVfen9N8aQyhQA/view?usp=drive_link"
+            "https://drive.google.com/file/d/10Fi5s0DAD4f7HIwOTpxEVO01wKba4-l-/view?usp=drive_link"
         ],
         "materials": [
             "Metal",
-            "Charcoal"
-        ],
-        "dimensions": {
-            "height_cm": 834,
-            "width_cm": 709
-        },
-        "provenance": "Acquired from XYZ Auction House",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Fall of Man",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Photograph",
-        "images": [
-            "https://drive.google.com/file/d/18p_Fo16UunAsZd7_CVbctk2EzZF7o_a7/view?usp=drive_link"
-        ],
-        "materials": [
-            "Watercolor Paint",
-            "Stone"
-        ],
-        "dimensions": {
-            "height_cm": 534,
-            "width_cm": 594
-        },
-        "provenance": "Donated by the local community",
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
-        "reviews": []
-    },
-    {
-        "title": "The Persistence of Memory",
-        "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd0f",
-        "category": "Painting",
-        "images": [
-            "https://drive.google.com/file/d/1m9HeofqCpxbwF5pXMSkfXo2hzN5Yq9Rk/view?usp=drive_link"
-        ],
-        "materials": [
             "Stone",
             "Oil Paint"
         ],
         "dimensions": {
-            "height_cm": 381,
-            "width_cm": 593
+            "height_cm": 123,
+            "width_cm": 789
         },
-        "provenance": "Donated by the local community",
+        "provenance": "Purchased from ABC Gallery",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -2100,21 +2089,20 @@
     {
         "title": "The Creation of Adam",
         "description": "This will be the description of the artwork",
-        "artist_id": "6706a33aa75522a709ddbd14",
-        "category": "Installation",
+        "artist_id": "6706a33aa75522a709ddbd15",
+        "category": "Design",
         "images": [
-            "https://drive.google.com/file/d/1BQQmrB0rpXzqY58KU_mg5dfr1zGyoyA2/view?usp=drive_link"
+            "https://drive.google.com/file/d/1qkzRphm6XCSXltDKJw8QatlcxM9_3dNy/view?usp=drive_link"
         ],
         "materials": [
-            "Acrylic Paint",
-            "Charcoal",
-            "Gouache Paint"
+            "Oil Paint",
+            "Charcoal"
         ],
         "dimensions": {
-            "height_cm": 803,
-            "width_cm": 460
+            "height_cm": 702,
+            "width_cm": 206
         },
-        "provenance": "Acquired from XYZ Auction House",
+        "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",
         "updated_at": "2013-12-01T00:00:00",
         "reviews": []
@@ -2123,18 +2111,40 @@
         "title": "The Last Supper",
         "description": "This will be the description of the artwork",
         "artist_id": "6706a33aa75522a709ddbd15",
-        "category": "Print",
+        "category": "Photograph",
         "images": [
-            "https://drive.google.com/file/d/1eF4k7PfNEe_hshe_xZxALmDlS7ftad8H/view?usp=drive_link"
+            "https://drive.google.com/file/d/1T3vHmRAvEcGMWEN_rvTO7oFhdrwc50gn/view?usp=drive_link"
         ],
         "materials": [
             "Charcoal",
-            "Gouache Paint",
-            "Watercolor Paint"
+            "Watercolor Paint",
+            "Metal"
         ],
         "dimensions": {
-            "height_cm": 490,
-            "width_cm": 172
+            "height_cm": 680,
+            "width_cm": 510
+        },
+        "provenance": "Acquired from XYZ Auction House",
+        "created_at": "2013-12-01T00:00:00",
+        "updated_at": "2013-12-01T00:00:00",
+        "reviews": []
+    },
+    {
+        "title": "The Fall of Man",
+        "description": "This will be the description of the artwork",
+        "artist_id": "6706a33aa75522a709ddbd14",
+        "category": "Print",
+        "images": [
+            "https://drive.google.com/file/d/1G42OLBzdf1Uu8nS0LB2RkAptbuNw0Zbn/view?usp=drive_link"
+        ],
+        "materials": [
+            "Watercolor Paint",
+            "Oil Paint",
+            "Gouache Paint"
+        ],
+        "dimensions": {
+            "height_cm": 446,
+            "width_cm": 817
         },
         "provenance": "Donated by the local community",
         "created_at": "2013-12-01T00:00:00",

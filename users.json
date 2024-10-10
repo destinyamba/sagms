@@ -1,0 +1,174 @@
+[
+    {
+        "username": "Samantha Williams",
+        "email": "Samantha Williams@Samantha Williams.com",
+        "password": "password",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Aiden Vos",
+        "email": "Aiden Vos@Aiden Vos.com",
+        "password": "password",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Wassily Kandinsky",
+        "email": "Wassily Kandinsky@Wassily Kandinsky.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Esra Nyx",
+        "email": "Esra Nyx@Esra Nyx.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Vera Rubin",
+        "email": "Vera Rubin@Vera Rubin.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Vera Rubin",
+        "email": "Vera Rubin@Vera Rubin.com",
+        "password": "password",
+        "role": "VISITOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Kai Valen",
+        "email": "Kai Valen@Kai Valen.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Leonardo da Vinci",
+        "email": "Leonardo da Vinci@Leonardo da Vinci.com",
+        "password": "password",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Nova Ryn",
+        "email": "Nova Ryn@Nova Ryn.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Orion Kade",
+        "email": "Orion Kade@Orion Kade.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Andy Warhol",
+        "email": "Andy Warhol@Andy Warhol.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Pablo Picasso",
+        "email": "Pablo Picasso@Pablo Picasso.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Vincent van Gogh",
+        "email": "Vincent van Gogh@Vincent van Gogh.com",
+        "password": "password",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Amelia Earhart",
+        "email": "Amelia Earhart@Amelia Earhart.com",
+        "password": "password",
+        "role": "CURATOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Vincent van Gogh",
+        "email": "Vincent van Gogh@Vincent van Gogh.com",
+        "password": "password",
+        "role": "VISITOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Mira Skye",
+        "email": "Mira Skye@Mira Skye.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Esra Nyx",
+        "email": "Esra Nyx@Esra Nyx.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Suri Neven",
+        "email": "Suri Neven@Suri Neven.com",
+        "password": "password",
+        "role": "VISITOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Leonardo da Vinci",
+        "email": "Leonardo da Vinci@Leonardo da Vinci.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Esra Nyx",
+        "email": "Esra Nyx@Esra Nyx.com",
+        "password": "password",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    }
+]
