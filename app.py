@@ -74,16 +74,18 @@ def generate_artworks_dummy_data():
     artwork_list = []
 
     artist_ids = [
-        "6706a33aa75522a709ddbd0c",
-        "6706a33aa75522a709ddbd0d",
-        "6706a33aa75522a709ddbd0e",
-        "6706a33aa75522a709ddbd0f",
-        "6706a33aa75522a709ddbd10",
-        "6706a33aa75522a709ddbd11",
-        "6706a33aa75522a709ddbd12",
-        "6706a33aa75522a709ddbd13",
-        "6706a33aa75522a709ddbd14",
-        "6706a33aa75522a709ddbd15",
+        "6707c74033dcc9b721c502c6",
+        "6707c74033dcc9b721c502c7",
+        "6707c74033dcc9b721c502c8",
+        "6707c74033dcc9b721c502ca",
+        "6707c74033dcc9b721c502cc",
+        "6707c74033dcc9b721c502cd",
+        "6707c74033dcc9b721c502ce",
+        "6707c74033dcc9b721c502cf",
+        "6707c74033dcc9b721c502d3",
+        "6707c74033dcc9b721c502d4",
+        "6707c74033dcc9b721c502d6",
+        "6707c74033dcc9b721c502d7",
     ]
 
     # all_image_links = [

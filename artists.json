@@ -1,12 +1,42 @@
 [
     {
-        "name": "Claude Monet",
+        "name": "Vincent van Gogh",
+        "biography": "This is the biography of artist",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "name": "Frida Kahlo",
         "biography": "This is the biography of artist",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00"
     },
     {
         "name": "Yayoi Kusama",
+        "biography": "This is the biography of artist",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "name": "Claude Monet",
+        "biography": "This is the biography of artist",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "name": "Leonardo da Vinci",
+        "biography": "This is the biography of artist",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "name": "Frida Kahlo",
+        "biography": "This is the biography of artist",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "name": "Claude Monet",
         "biography": "This is the biography of artist",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00"
@@ -18,43 +48,13 @@
         "updated_at": "2023-12-01T00:00:00"
     },
     {
-        "name": "Claude Monet",
+        "name": "Vincent van Gogh",
         "biography": "This is the biography of artist",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00"
     },
     {
-        "name": "Claude Monet",
-        "biography": "This is the biography of artist",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "name": "Pablo Picasso",
-        "biography": "This is the biography of artist",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "name": "Claude Monet",
-        "biography": "This is the biography of artist",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "name": "Banksy",
-        "biography": "This is the biography of artist",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "name": "Yayoi Kusama",
-        "biography": "This is the biography of artist",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "name": "Pablo Picasso",
+        "name": "Vincent van Gogh",
         "biography": "This is the biography of artist",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00"
