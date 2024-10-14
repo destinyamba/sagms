@@ -1,3 +1,5 @@
+import datetime
+
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -48,7 +50,6 @@ def create_artwork(artist_id):
 
     # check that artist_id is found in users collection and the role is ARTIST.
     artist = users.find_one({"_id": ObjectId(artist_id)})
-    print("user: ", str(artist["role"]))
     if artist is None:
         return make_response(jsonify({"error": "Artist not found"}), 404)
     if str(artist["role"]) != "ARTIST":
@@ -123,8 +124,8 @@ def create_artwork(artist_id):
             "width_cm": data.get("width_cm", None),
         },
         "provenance": data.get("provenance", "provenance").strip(),
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
+        "created_at": datetime.datetime.now(),
+        "updated_at": datetime.datetime.now(),
         "reviews": [],
     }
     artwork = artworks.insert_one(new_artwork)
