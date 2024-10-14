@@ -1,3 +1,5 @@
+import datetime
+
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -18,19 +20,34 @@ users = db.users
 def create_exhibition(curator_id):
     data = request.get_json()
 
-    # found curator id in users db.
-    # if not found, return not found.
-    # if found but not curator role, return unauthorized.
+    curator = users.find_one({"_id": ObjectId(curator_id)})
+    if curator is None:
+        return make_response(jsonify({"error": "Curator not found"}), 404)
+    if str(curator["role"]) != "CURATOR":
+        return make_response(
+            jsonify(
+                {
+                    "error": str(curator["role"])
+                    + " user not authorised to create artwork"
+                }
+            ),
+            403,
+        )
+
+    data["curator_id"] = curator_id
+
+    if not data:
+        return make_response(jsonify({"error": "No input data provided"}), 400)
 
     new_exhibition = {
         "curator_id": curator_id,
         "title": data.get("title", "title").strip(),
         "description": data.get("description", "description").strip(),
         "provenance": data.get("provenance", "provenance").strip(),
-        "artworks": [],  # list of artwork ids.
+        "artworks": data.get("artworks", "artworks"),  # list of artwork ids.
         "reviews": [],
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
+        "created_at": datetime.datetime.now(),
+        "updated_at": datetime.datetime.now(),
     }
 
     exhibition = exhibitions.insert_one(new_exhibition)
@@ -40,7 +57,7 @@ def create_exhibition(curator_id):
 
 # get all exhibitions.
 @exhibition_blueprint.route(
-    "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>",
+    "/api/v1.0/exhibitions/",
     methods=["GET"],
 )
 def get_exhibitions():
@@ -62,10 +79,10 @@ def get_exhibitions():
 
 # get an exhibition.
 @exhibition_blueprint.route(
-    "/api/v1.0/exhibitions/<string:curator_id>", methods=["GET"]
+    "/api/v1.0/exhibitions/<string:exhibition_id>", methods=["GET"]
 )
-def get_artwork(curator_id):
-    exhibition = exhibitions.find_one({"_id": ObjectId(curator_id)})
+def get_exhibition(exhibition_id):
+    exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     if exhibition is not None:
         exhibition["_id"] = str(exhibition["_id"])
         for review in exhibition.get("reviews", []):
@@ -77,7 +94,7 @@ def get_artwork(curator_id):
 
 # update an exhibition.
 @exhibition_blueprint.route(
-    "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>"
+    "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>", methods=["PUT"]
 )
 def update_exhibition(curator_id, exhibition_id):
     data = request.get_json()

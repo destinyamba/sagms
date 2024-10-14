@@ -1,3 +1,5 @@
+import datetime
+
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -122,8 +124,8 @@ def create_artwork(artist_id):
             "width_cm": data.get("width_cm", None),
         },
         "provenance": data.get("provenance", "provenance").strip(),
-        "created_at": "2013-12-01T00:00:00",
-        "updated_at": "2013-12-01T00:00:00",
+        "created_at": datetime.datetime.now(),
+        "updated_at": datetime.datetime.now(),
         "reviews": [],
     }
     artwork = artworks.insert_one(new_artwork)
