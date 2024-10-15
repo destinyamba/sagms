@@ -168,3 +168,47 @@ def get_related_exhibitions_by_curator(curator_id):
         data_to_return.append(exhibition)
 
     return make_response(jsonify(data_to_return), 200)
+
+
+@exhibition_blueprint.route("/api/v1.0/exhibitions/top-rated", methods=["GET"])
+def get_top_5_exhibitions_with_most_reviews():
+    pipeline = [
+        {"$unwind": "$reviews"},
+        {"$group": {"_id": "$_id", "review_count": {"$sum": 1}}},
+        {"$sort": {"review_count": -1}},
+        {"$limit": 5},
+        {
+            "$lookup": {
+                "from": "exhibitions",
+                "localField": "_id",
+                "foreignField": "_id",
+                "as": "exhibition",
+            }
+        },
+        {"$unwind": "$exhibition"},
+        {
+            "$project": {
+                "_id": 0,
+                "exhibition_id": "$_id",
+                "title": "$exhibition.title",
+                "review_count": 1,
+            }
+        },
+    ]
+    result = exhibitions.aggregate(pipeline)
+    return list(result)
+
+
+@exhibition_blueprint.route("/api/v1.0/exhibitions/most-recent", methods=["GET"])
+def get_exhibitions_created_in_last_30_days():
+    pipeline = [
+        {
+            "$match": {
+                "created_at": {
+                    "$gte": datetime.datetime.now() - datetime.timedelta(days=30)
+                }
+            }
+        }
+    ]
+    result = exhibitions.aggregate(pipeline)
+    return list(result)

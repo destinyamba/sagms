@@ -4,6 +4,8 @@ from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
 
+from artworks.models import Dimensions
+
 artwork_blueprint = Blueprint("artwork", __name__)
 
 client = MongoClient(
@@ -206,6 +208,96 @@ def get_related_artworks(artist_id):
         artwork["_id"] = str(artwork["_id"])
         for review in artwork.get("reviews", []):
             review["_id"] = str(review["_id"])
+        data_to_return.append(artwork)
+
+    return make_response(jsonify(data_to_return), 200)
+
+
+@artwork_blueprint.route("/api/v1.0/artworks/top-rated", methods=["GET"])
+def filter_by_top_rating():
+    pipeline = [
+        {"$unwind": "$reviews"},
+        {
+            "$group": {
+                "_id": "$_id",
+                "title": {"$first": "$title"},
+                "average_rating": {"$avg": "$reviews.rating"},
+            }
+        },
+        {"$sort": {"average_rating": -1}},
+        {"$limit": 12},
+    ]
+    top_artworks = list(artworks.aggregate(pipeline))
+    for artwork in top_artworks:
+        artwork["_id"] = str(artwork["_id"])
+    return make_response(jsonify(top_artworks), 200)
+
+
+@artwork_blueprint.route("/api/v1.0/artworks/filter/dimensions", methods=["GET"])
+def filter_by_artwork_dimensions():
+    min_height = request.args.get("min_height", type=float, default=None)
+    max_height = request.args.get("max_height", type=float, default=None)
+    min_width = request.args.get("min_width", type=float, default=None)
+    max_width = request.args.get("max_width", type=float, default=None)
+
+    # Check if any of the dimensions are missing
+    if not all([min_height, max_height, min_width, max_width]):
+        return make_response(
+            jsonify(
+                {
+                    "error": "All dimensions (min_height, max_height, min_width, max_width) are required"
+                }
+            ),
+            400,
+        )
+
+    pipeline = [
+        {
+            "$match": {
+                "dimensions.height_cm": {
+                    "$gte": min_height,
+                    "$lte": max_height,
+                }
+            }
+        },
+        {
+            "$match": {
+                "dimensions.width_cm": {
+                    "$gte": min_width,
+                    "$lte": max_width,
+                }
+            }
+        },
+        {
+            "$project": {
+                "_id": 1,
+                "title": 1,
+                "dimensions": 1,
+            }
+        },
+    ]
+
+    specific_dimensions_artworks = list(artworks.aggregate(pipeline))
+
+    for artwork in specific_dimensions_artworks:
+        artwork["_id"] = str(artwork["_id"])
+
+    return make_response(jsonify(specific_dimensions_artworks), 200)
+
+
+@artwork_blueprint.route("/api/v1.0/artworks/search", methods=["GET"])
+def search_artworks_by_title():
+    title = request.args.get("title", "").strip().lower()
+
+    if not title:
+        return make_response(jsonify({"error": "Title parameter is required"}), 400)
+
+    # Search for artworks by title
+    artworks_cursor = artworks.find({"title": {"$regex": title, "$options": "i"}})
+
+    data_to_return = []
+    for artwork in artworks_cursor:
+        artwork["_id"] = str(artwork["_id"])
         data_to_return.append(artwork)
 
     return make_response(jsonify(data_to_return), 200)
