@@ -24,21 +24,17 @@ def get_artworks():
     page_start = page_size * (page_num - 1)
 
     data_to_return = []
-    for artwork in artworks.find().skip(page_start).limit(page_size):
+    for artwork in artworks.find({}, {"reviews": 0}).skip(page_start).limit(page_size):
         artwork["_id"] = str(artwork["_id"])
-        for review in artwork.get("reviews", []):
-            review["_id"] = str(review["_id"])
         data_to_return.append(artwork)
     return make_response(jsonify(data_to_return), 200)
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
 def get_artwork(artwork_id):
-    artwork = artworks.find_one({"_id": ObjectId(artwork_id)})
+    artwork = artworks.find_one({"_id": ObjectId(artwork_id)}, {"reviews": 0})
     if artwork is not None:
         artwork["_id"] = str(artwork["_id"])
-        for review in artwork.get("reviews", []):
-            review["_id"] = str(review["_id"])
         return make_response(jsonify(artwork), 200)
     else:
         return make_response(jsonify({"error": "Artwork not found"}), 404)
