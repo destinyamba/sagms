@@ -209,3 +209,121 @@ def get_related_artworks(artist_id):
         data_to_return.append(artwork)
 
     return make_response(jsonify(data_to_return), 200)
+
+
+@artwork_blueprint.route("/api/v1.0/artworks/average_rating", methods=["GET"])
+def get_average_ratings():
+    try:
+        page_num = int(request.args.get("pn", 1))
+        page_size = int(request.args.get("ps", 12))
+        pipeline = [
+            {
+                "$unwind": {
+                    "path": "$reviews",
+                    "preserveNullAndEmptyArrays": True,
+                }
+            },
+            {
+                "$group": {
+                    "_id": "$_id",
+                    "average_rating": {
+                        "$avg": {
+                            "$ifNull": [
+                                "$reviews.rating",
+                                0,
+                            ]
+                        }
+                    },
+                }
+            },
+            {
+                "$project": {
+                    "_id": 1,
+                    "average_rating": {
+                        "$cond": {
+                            "if": {"$gt": ["$average_rating", 0]},
+                            "then": "$average_rating",
+                            "else": 0.0,
+                        }
+                    },
+                }
+            },
+            {"$skip": (page_num - 1) * page_size},
+            {"$limit": page_size},
+        ]
+        average_ratings = list(artworks.aggregate(pipeline))
+        for artwork in average_ratings:
+            artwork["_id"] = str(artwork["_id"])
+        return make_response(jsonify(average_ratings), 200)
+    except Exception as e:
+        return make_response(jsonify({"error": str(e)}), 500)
+
+
+@artwork_blueprint.route("/api/v1.0/artworks/filter/dimensions", methods=["GET"])
+def filter_by_artwork_dimensions():
+    try:
+        height_range = request.json.get("height_range", {})
+        width_range = request.json.get("width_range", {})
+        min_height = height_range.get("min", None)
+        max_height = height_range.get("max", None)
+        min_width = width_range.get("min", None)
+        max_width = width_range.get("max", None)
+        match_criteria = {}
+
+        if min_height is not None or max_height is not None:
+            match_criteria["dimensions.height_cm"] = {}
+            if min_height is not None:
+                match_criteria["dimensions.height_cm"]["$gte"] = min_height
+            if max_height is not None:
+                match_criteria["dimensions.height_cm"]["$lte"] = max_height
+
+        if min_width is not None or max_width is not None:
+            match_criteria["dimensions.width_cm"] = {}
+            if min_width is not None:
+                match_criteria["dimensions.width_cm"]["$gte"] = min_width
+            if max_width is not None:
+                match_criteria["dimensions.width_cm"]["$lte"] = max_width
+
+        pipeline = [
+            {"$match": match_criteria},
+            {
+                "$project": {
+                    "_id": 1,
+                    "artist_id": 1,
+                    "title": 1,
+                    "description": 1,
+                    "dimensions": 1,
+                    "created_at": 1,
+                    "updated_at": 1,
+                    "images": 1,
+                    "materials": 1,
+                    "provenance": 1,
+                }
+            },
+        ]
+        filtered_artworks = list(artworks.aggregate(pipeline))
+
+        for artwork in filtered_artworks:
+            artwork["_id"] = str(artwork["_id"])
+
+        return make_response(jsonify(filtered_artworks), 200)
+
+    except Exception as e:
+        return make_response(jsonify({"Unable to filter by dimensions.": str(e)}), 500)
+
+
+@artwork_blueprint.route("/api/v1.0/artworks/search", methods=["GET"])
+def search_artworks_by_title():
+    title = request.args.get("title", "").strip().lower()
+    if not title:
+        return make_response(jsonify({"error": "Title parameter is required"}), 400)
+
+    artworks_cursor = artworks.find(
+        {"title": {"$regex": title, "$options": "i"}}, {"reviews": 0}
+    )
+    data_to_return = []
+    for artwork in artworks_cursor:
+        artwork["_id"] = str(artwork["_id"])
+        data_to_return.append(artwork)
+
+    return make_response(jsonify(data_to_return), 200)
