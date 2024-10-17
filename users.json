@@ -1,155 +1,16 @@
 [
     {
-        "username": "Zephra Quinn",
-        "email": "Zephra Quinn@Zephra Quinn.com",
-        "password": "password",
-        "role": "ARTIST",
+        "username": "Lennox Rae",
+        "email": "Lennox Rae@Lennox Rae.com",
+        "password": "$2b$12$cD.XFIsHd3c3Zk8OlSFLjuxGloCQay43lBPvOCI5p0vsImNhpXwdS",
+        "role": "CURATOR",
         "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Aiden Vos",
-        "email": "Aiden Vos@Aiden Vos.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
+        "updated_at": "2023-12-01T00:00:00"
     },
     {
         "username": "Amelia Earhart",
         "email": "Amelia Earhart@Amelia Earhart.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Orion Kade",
-        "email": "Orion Kade@Orion Kade.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Mira Skye",
-        "email": "Mira Skye@Mira Skye.com",
-        "password": "password",
-        "role": "CURATOR",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "username": "Nova Ryn",
-        "email": "Nova Ryn@Nova Ryn.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Vera Rubin",
-        "email": "Vera Rubin@Vera Rubin.com",
-        "password": "password",
-        "role": "CURATOR",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "username": "Claude Monet",
-        "email": "Claude Monet@Claude Monet.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Esra Nyx",
-        "email": "Esra Nyx@Esra Nyx.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Nova Ryn",
-        "email": "Nova Ryn@Nova Ryn.com",
-        "password": "password",
-        "role": "CURATOR",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "username": "Lennox Rae",
-        "email": "Lennox Rae@Lennox Rae.com",
-        "password": "password",
-        "role": "ADMIN",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "username": "Lira Hale",
-        "email": "Lira Hale@Lira Hale.com",
-        "password": "password",
-        "role": "VISITOR",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "username": "Esra Nyx",
-        "email": "Esra Nyx@Esra Nyx.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Vera Rubin",
-        "email": "Vera Rubin@Vera Rubin.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Lira Hale",
-        "email": "Lira Hale@Lira Hale.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Georgia O'Keeffe",
-        "email": "Georgia O'Keeffe@Georgia O'Keeffe.com",
-        "password": "password",
-        "role": "VISITOR",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00"
-    },
-    {
-        "username": "Yayoi Kusama",
-        "email": "Yayoi Kusama@Yayoi Kusama.com",
-        "password": "password",
-        "role": "ARTIST",
-        "created_at": "2023-12-01T00:00:00",
-        "updated_at": "2023-12-01T00:00:00",
-        "biography": "This is the biography of artist."
-    },
-    {
-        "username": "Aiden Vos",
-        "email": "Aiden Vos@Aiden Vos.com",
-        "password": "password",
+        "password": "$2b$12$CDDQHh0k9tf54aBx7kGYSubRCBsFOCsht.z.FE8cNNn18yt0wMVp.",
         "role": "ADMIN",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00"
@@ -157,18 +18,111 @@
     {
         "username": "Suri Neven",
         "email": "Suri Neven@Suri Neven.com",
-        "password": "password",
+        "password": "$2b$12$MAaKqxYPKQqKcbp5ErGft.UNNlVdLL5rOSYlpOLFHuSntxTdp7E1C",
         "role": "ARTIST",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00",
         "biography": "This is the biography of artist."
     },
     {
-        "username": "Georgia O'Keeffe",
-        "email": "Georgia O'Keeffe@Georgia O'Keeffe.com",
-        "password": "password",
+        "username": "Esra Nyx",
+        "email": "Esra Nyx@Esra Nyx.com",
+        "password": "$2b$12$VNZZqq2hfR7v2ostKnu6L.lOWG9Q7gFhmreaAKp3ap17rojI9K.sa",
         "role": "CURATOR",
         "created_at": "2023-12-01T00:00:00",
         "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Frida Kahlo",
+        "email": "Frida Kahlo@Frida Kahlo.com",
+        "password": "$2b$12$CBWD0FHDgkgruceawVul3e5DEDKbErUYH7yNwBVtXj9PbpkhGTDSG",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Lennox Rae",
+        "email": "Lennox Rae@Lennox Rae.com",
+        "password": "$2b$12$qp/P71Ttme22hPVelXyEmO/lG/N15W1dwdgL2r/1ZaW2WOdYyYpHC",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Vincent van Gogh",
+        "email": "Vincent van Gogh@Vincent van Gogh.com",
+        "password": "$2b$12$3Vumk6WKH8fbecPgso05G.QYgo5ym3BWxJAchus7I.k2TlGwg6k1i",
+        "role": "CURATOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Georgia O'Keeffe",
+        "email": "Georgia O'Keeffe@Georgia O'Keeffe.com",
+        "password": "$2b$12$ByG2.8NEoy2LzrGYurWI.OKMvhta81Uq/u9e2uW3xHwQF1Azro3EG",
+        "role": "CURATOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Nova Ryn",
+        "email": "Nova Ryn@Nova Ryn.com",
+        "password": "$2b$12$SCYLrU6q5UhxlYnuRt.JDeh1N.PUXYpypmjyarx.cNIJqSgK4h4EW",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Pablo Picasso",
+        "email": "Pablo Picasso@Pablo Picasso.com",
+        "password": "$2b$12$oCxxs8fTyFvVCiJ0k1qGYeeBOD9RjYBs7Gb394nAXxSh6YBAgXLga",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Yayoi Kusama",
+        "email": "Yayoi Kusama@Yayoi Kusama.com",
+        "password": "$2b$12$YW9vejKHBZSRXnNPSoVWzeBg.eIwouSGyio0b4OpKmxvepdaVXE5q",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Aiden Vos",
+        "email": "Aiden Vos@Aiden Vos.com",
+        "password": "$2b$12$Fseg4jQC9FMDlvC8DVm9E.ULr1s/YkmLCBTTVPcavND1b7h1zesoC",
+        "role": "CURATOR",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Lira Hale",
+        "email": "Lira Hale@Lira Hale.com",
+        "password": "$2b$12$VJjMfu74dvcuTIEGRkYthO1dLDO/tdWBWVgOp2Cqr3ZmMbh2OPwVq",
+        "role": "ADMIN",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00"
+    },
+    {
+        "username": "Rene Magritte",
+        "email": "Rene Magritte@Rene Magritte.com",
+        "password": "$2b$12$3cAe.SlOPTUXRyfEdXbEWOJ2TNJIMET9INubmt/5NnMrnx2YKxxoW",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
+    },
+    {
+        "username": "Rene Magritte",
+        "email": "Rene Magritte@Rene Magritte.com",
+        "password": "$2b$12$nfx8b3iW7hYBNvkNJng1HuzMRQOCdmnQQha3xfeViWFLHqx3rWA9u",
+        "role": "ARTIST",
+        "created_at": "2023-12-01T00:00:00",
+        "updated_at": "2023-12-01T00:00:00",
+        "biography": "This is the biography of artist."
     }
 ]

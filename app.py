@@ -2,6 +2,7 @@ import json
 import os
 import random
 import uuid
+import bcrypt
 
 from bson import ObjectId
 from flask import Flask, make_response, jsonify, request
@@ -20,17 +21,29 @@ def generate_artworks_dummy_data():
         "The Persistence of Memory",
         "The Creation of Adam",
         "The Fall of Man",
+        "Whispers of the Forgotten",
+        "Eclipse of Serenity",
+        "Echoes of the Eternal",
+        "Dreamscapes in Indigo",
+        "Fragments of Time",
+        "Luminescence of Solitude",
+        "Veil of the Infinite",
+        "Harmony of the Elements",
+        "Shadows of a Lost Horizon",
+        "Reflections of a Distant Memory",
     ]
 
     categories = [
-        "Painting",
-        "Sculpture",
-        "Photograph",
-        "Print",
-        "Design",
-        "Film",
-        "Performance Art",
-        "Installation",
+        "Abstract",
+        "Portraiture",
+        "Landscape",
+        "Still Life",
+        "Surrealism",
+        "Impressionism",
+        "Cubism",
+        "Expressionism",
+        "Minimalism",
+        "Pop Art",
     ]
 
     medium = [
@@ -72,18 +85,16 @@ def generate_artworks_dummy_data():
     artwork_list = []
 
     artist_ids = [
-        "6707c74033dcc9b721c502c6",
-        "6707c74033dcc9b721c502c7",
-        "6707c74033dcc9b721c502c8",
-        "6707c74033dcc9b721c502ca",
-        "6707c74033dcc9b721c502cc",
-        "6707c74033dcc9b721c502cd",
-        "6707c74033dcc9b721c502ce",
-        "6707c74033dcc9b721c502cf",
-        "6707c74033dcc9b721c502d3",
-        "6707c74033dcc9b721c502d4",
-        "6707c74033dcc9b721c502d6",
-        "6707c74033dcc9b721c502d7",
+        "671126abeaf172ac8eb0f942",
+        "671126abeaf172ac8eb0f944",
+        "671126abeaf172ac8eb0f946",
+        "671126abeaf172ac8eb0f948",
+        "671126abeaf172ac8eb0f94a",
+        "671126abeaf172ac8eb0f94b",
+        "671126abeaf172ac8eb0f94c",
+        "671126abeaf172ac8eb0f94d",
+        "671126abeaf172ac8eb0f94f",
+        "671126abeaf172ac8eb0f950",
     ]
 
     # all_image_links = [
@@ -219,21 +230,24 @@ def generate_users_dummy_data():
         "Lennox Rae",
     ]
 
-    for i in range(20):
+    for i in range(15):
         username = names[random.randint(0, len(names) - 1)]
         email = f"{username}@{username}.com"
         password = "password"
         role = roles[random.randint(0, len(roles) - 1)]
         created_at = "2023-12-01T00:00:00"
 
+        hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
         user = {
             "username": username,
             "email": email,
-            "password": password,
+            "password": hashed_password.decode("utf-8"),
             "role": role,
             "created_at": created_at,
             "updated_at": created_at,
         }
+        # user["password"] = bcrypt.hashpw(user["password"], bcrypt.gensalt())
         if user["role"] == "ARTIST":
             user["biography"] = "This is the biography of artist."
         user_list.append(user)
@@ -242,8 +256,7 @@ def generate_users_dummy_data():
     return user_list
 
 
-
 if __name__ == "__main__":
     artworks = generate_artworks_dummy_data()
-    users = generate_users_dummy_data()
+    # users = generate_users_dummy_data()
     app.run(debug=True)
