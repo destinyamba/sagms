@@ -10,7 +10,6 @@ app = Flask(__name__)
 client = MongoClient(
     "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
 )
-app.config["SECRET_KEY"] = "password"
 db = client["smart-art-gallery"]
 artworks = db.artworks
 users = db.users
