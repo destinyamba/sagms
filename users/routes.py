@@ -1,8 +1,12 @@
 import uuid
-from datetime import datetime
-
+import datetime
+import jwt
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
+from functools import wraps
+import globals
+
+from sqlalchemy.testing.suite.test_reflection import users
 
 user_blueprint = Blueprint("user", __name__)
 
@@ -10,7 +14,47 @@ client = MongoClient(
     "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
 )
 db = client["smart-art-gallery"]
-users = db.users
+# users = db.users
+
+
+def jwt_required(func):
+    @wraps(func)
+    def jwt_required_wrapper(*args, **kwargs):
+        token = None
+        if "x-access-token" in request.headers:
+            token = request.headers["x-access-token"]
+        if not token:
+            return make_response(jsonify({"message": "Token is missing"}), 401)
+        try:
+            data = jwt.decode(token, globals.SECRET_KEY, algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return make_response(jsonify({"message": "Token is expired"}), 401)
+        except jwt.InvalidTokenError:
+            return make_response(jsonify({"message": "Token is invalid"}), 401)
+        return func(*args, **kwargs)
+
+    return jwt_required_wrapper
+
+
+@user_blueprint.route("/api/v1.0/login", methods=["GET"])
+def login():
+    auth = request.authorization
+    if auth and auth.password == "password":
+        token = jwt.encode(
+            {
+                "user": auth.username,
+                "exp": datetime.datetime.now(datetime.UTC)
+                + datetime.timedelta(minutes=30),
+            },
+            globals.SECRET_KEY,
+            algorithm="HS256",
+        )
+        return make_response(jsonify({"token": token}), 200)
+    return make_response(
+        "Could not authenticate",
+        401,
+        {"WWW-Authenticate": 'Basic realm = "Login Required"'},
+    )
 
 
 @user_blueprint.route("/api/v1.0/users", methods=["GET"])

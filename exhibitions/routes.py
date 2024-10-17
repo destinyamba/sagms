@@ -4,6 +4,8 @@ from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
 
+from users.routes import jwt_required
+
 exhibition_blueprint = Blueprint("exhibition", __name__)
 
 client = MongoClient(
@@ -17,6 +19,7 @@ users = db.users
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:curator_id>", methods=["POST"]
 )
+@jwt_required
 def create_exhibition(curator_id):
     data = request.get_json()
 
@@ -81,6 +84,7 @@ def get_exhibitions():
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:exhibition_id>", methods=["GET"]
 )
+@jwt_required
 def get_exhibition(exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     if exhibition is not None:
@@ -96,6 +100,7 @@ def get_exhibition(exhibition_id):
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>", methods=["PUT"]
 )
+@jwt_required
 def update_exhibition(curator_id, exhibition_id):
     data = request.get_json()
 
@@ -131,6 +136,7 @@ def update_exhibition(curator_id, exhibition_id):
     "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>",
     methods=["DELETE"],
 )
+@jwt_required
 def delete_exhibition(curator_id, exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     if exhibition is None:
@@ -147,6 +153,7 @@ def delete_exhibition(curator_id, exhibition_id):
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/related/<string:curator_id>", methods=["GET"]
 )
+@jwt_required
 def get_related_exhibitions_by_curator(curator_id):
     page_num, page_size = 1, 10
     if request.args.get("pn"):
