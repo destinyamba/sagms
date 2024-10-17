@@ -13,6 +13,7 @@ client = MongoClient(
 )
 db = client["smart-art-gallery"]
 users = db.users
+blacklist = db.blacklist
 
 
 def jwt_required(func):
@@ -29,6 +30,9 @@ def jwt_required(func):
             return make_response(jsonify({"message": "Token is expired"}), 401)
         except jwt.InvalidTokenError:
             return make_response(jsonify({"message": "Token is invalid"}), 401)
+        bl_token = blacklist.find_one({"token": token})
+        if bl_token is not None:
+            return make_response(jsonify({"message": "Token has been cancelled"}), 401)
         return func(*args, **kwargs)
 
     return jwt_required_wrapper
@@ -47,6 +51,7 @@ def login():
                 token = jwt.encode(
                     {
                         "user": auth.username,
+                        "admin": user["role"] == "ADMIN",
                         "exp": datetime.datetime.now(datetime.UTC)
                         + datetime.timedelta(minutes=30),
                     },
@@ -63,3 +68,24 @@ def login():
         401,
         {"WWW-Authenticate": 'Basic realm = "Login Required"'},
     )
+
+
+def admin_required(func):
+    @wraps(func)
+    def admin_required_wrapper(*args, **kwargs):
+        token = request.headers["x-access-token"]
+        data = jwt.decode(token, globals.SECRET_KEY, algorithms="HS256")
+        if data["admin"]:
+            return func(*args, **kwargs)
+        else:
+            return make_response(jsonify({"message": "Admin privileges required"}), 403)
+
+    return admin_required_wrapper
+
+
+@user_blueprint.route("/api/v1.0/logout", methods=["GET"])
+@jwt_required
+def logout():
+    token = request.headers["x-access-token"]
+    blacklist.insert_one({"token": token})
+    return make_response(jsonify({"message": "Logged out"}), 200)

@@ -3,7 +3,7 @@ from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
 
-from users.routes import jwt_required
+from users.routes import jwt_required, admin_required
 
 review_blueprint = Blueprint("review", __name__)
 
@@ -109,6 +109,34 @@ def get_reviews_for_artwork(artwork_id):
         data_to_return.append(review)
 
     return make_response(jsonify(data_to_return), 200)
+
+
+@review_blueprint.route(
+    "/api/v1.0/reviews/artwork/<string:artwork_id>/<string:review_id>",
+    methods=["DELETE"],
+)
+@jwt_required
+@admin_required
+def delete_artwork_review(artwork_id, review_id):
+    artworks.update_one(
+        {"_id": ObjectId(artwork_id)},
+        {"$pull": {"reviews": {"_id": ObjectId(review_id)}}},
+    )
+    return make_response(jsonify({"message": "Review deleted successfully"}), 200)
+
+
+@review_blueprint.route(
+    "/api/v1.0/reviews/exhibition/<string:artwork_id>/<string:review_id>",
+    methods=["DELETE"],
+)
+@jwt_required
+@admin_required
+def delete_exhibition_review(exhibition_id, review_id):
+    exhibitions.update_one(
+        {"_id": ObjectId(exhibition_id)},
+        {"$pull": {"reviews": {"_id": ObjectId(review_id)}}},
+    )
+    return make_response(jsonify({"message": "Review deleted successfully"}), 200)
 
 
 @review_blueprint.route(
