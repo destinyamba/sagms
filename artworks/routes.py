@@ -4,6 +4,8 @@ from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
 
+from users.routes import jwt_required
+
 artwork_blueprint = Blueprint("artwork", __name__)
 
 client = MongoClient(
@@ -31,6 +33,7 @@ def get_artworks():
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
+@jwt_required
 def get_artwork(artwork_id):
     artwork = artworks.find_one({"_id": ObjectId(artwork_id)}, {"reviews": 0})
     if artwork is not None:
@@ -41,6 +44,7 @@ def get_artwork(artwork_id):
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artist_id>", methods=["POST"])
+@jwt_required
 def create_artwork(artist_id):
     data = request.get_json()
 
@@ -131,6 +135,7 @@ def create_artwork(artist_id):
 @artwork_blueprint.route(
     "/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["PUT"]
 )
+@jwt_required
 def update_artwork(artist_id, artwork_id):
     data = request.get_json()
 
@@ -170,6 +175,7 @@ def update_artwork(artist_id, artwork_id):
 @artwork_blueprint.route(
     "/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["DELETE"]
 )
+@jwt_required
 def delete_artwork(artist_id, artwork_id):
     artwork = artworks.find_one({"_id": ObjectId(artwork_id)})
     if artwork is None:
@@ -184,6 +190,7 @@ def delete_artwork(artist_id, artwork_id):
 @artwork_blueprint.route(
     "/api/v1.0/artworks/related/<string:artist_id>", methods=["GET"]
 )
+@jwt_required
 def get_related_artworks(artist_id):
     page_num, page_size = 1, 10
     if request.args.get("pn"):
@@ -208,6 +215,7 @@ def get_related_artworks(artist_id):
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/average_rating", methods=["GET"])
+@jwt_required
 def get_average_ratings():
     try:
         page_num = int(request.args.get("pn", 1))
@@ -256,6 +264,7 @@ def get_average_ratings():
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/filter/dimensions", methods=["GET"])
+@jwt_required
 def filter_by_artwork_dimensions():
     try:
         height_range = request.json.get("height_range", {})

@@ -1,8 +1,10 @@
-import uuid
-from datetime import datetime
-
+import datetime
+import bcrypt
+import jwt
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
+from functools import wraps
+import globals
 
 user_blueprint = Blueprint("user", __name__)
 
@@ -11,61 +13,79 @@ client = MongoClient(
 )
 db = client["smart-art-gallery"]
 users = db.users
+blacklist = db.blacklist
 
 
-@user_blueprint.route("/api/v1.0/users", methods=["GET"])
-def get_users():
-    page_num, page_size = 1, 10
-    if request.args.get("pn"):
-        page_num = int(request.args.get("pn"))
-    if request.args.get("ps"):
-        page_size = int(request.args.get("ps"))
-    page_start = page_size * (page_num - 1)
-    users_list = [{k: v} for k, v in users.items()]
-    return make_response(jsonify(users_list[page_start : page_start + page_size]), 200)
+def jwt_required(func):
+    @wraps(func)
+    def jwt_required_wrapper(*args, **kwargs):
+        token = None
+        if "x-access-token" in request.headers:
+            token = request.headers["x-access-token"]
+        if not token:
+            return make_response(jsonify({"message": "Token is missing"}), 401)
+        try:
+            data = jwt.decode(token, globals.SECRET_KEY, algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return make_response(jsonify({"message": "Token is expired"}), 401)
+        except jwt.InvalidTokenError:
+            return make_response(jsonify({"message": "Token is invalid"}), 401)
+        bl_token = blacklist.find_one({"token": token})
+        if bl_token is not None:
+            return make_response(jsonify({"message": "Token has been cancelled"}), 401)
+        return func(*args, **kwargs)
+
+    return jwt_required_wrapper
 
 
-@user_blueprint.route("/api/v1.0/users/<string:user_id>", methods=["GET"])
-def get_user(user_id):
-    if user_id not in users:
-        return make_response(jsonify({"error": "User not found"}), 404)
-    return make_response(jsonify(users[user_id]), 200)
+@user_blueprint.route("/api/v1.0/login", methods=["GET"])
+def login():
+    auth = request.authorization
+    if auth:
+        user = users.find_one({"username": auth.username})
+        if user is not None:
+            if bcrypt.checkpw(
+                bytes(auth.password, "UTF-8"), user["password"].encode("utf-8")
+            ):
 
-
-@user_blueprint.route("/api/v1.0/users/<string:user_id>", methods=["POST"])
-def create_user(user_id):
-    data = request.get_json()
-    next_id = str(uuid.uuid4())
-    new_user = {
-        "username": data.get("username", "username"),
-        "email": data.get("email", "email"),
-        "password": data.get("password", "password"),
-        "created_at": datetime.now(),
-        "updated_at": datetime.now(),
-    }
-    users[next_id] = new_user
-    return make_response(jsonify({next_id: new_user}), 201)
-
-
-@user_blueprint.route("/api/v1.0/users/<string:user_id>", methods=["PUT"])
-def update_user(user_id):
-    data = request.get_json()
-    if user_id not in users:
-        return make_response(jsonify({"error": "User not found"}), 404)
-    else:
-        for field in data:
-            if field in ["username", "email", "password", "role"]:
-                users[user_id][field] = data.get(field, users[user_id][field])
+                token = jwt.encode(
+                    {
+                        "user": auth.username,
+                        "admin": user["role"] == "ADMIN",
+                        "exp": datetime.datetime.now(datetime.UTC)
+                        + datetime.timedelta(minutes=30),
+                    },
+                    globals.SECRET_KEY,
+                    algorithm="HS256",
+                )
+                return make_response(jsonify({"token": token}), 200)
             else:
-                return make_response(jsonify({"error": "Missing required fields"}), 400)
+                return make_response(jsonify({"message": "Invalid password"}), 401)
+        else:
+            return make_response(jsonify({"message": "User not found"}), 401)
+    return make_response(
+        "Authentication required",
+        401,
+        {"WWW-Authenticate": 'Basic realm = "Login Required"'},
+    )
 
-    return make_response(jsonify({user_id: users[user_id]}), 200)
+
+def admin_required(func):
+    @wraps(func)
+    def admin_required_wrapper(*args, **kwargs):
+        token = request.headers["x-access-token"]
+        data = jwt.decode(token, globals.SECRET_KEY, algorithms="HS256")
+        if data["admin"]:
+            return func(*args, **kwargs)
+        else:
+            return make_response(jsonify({"message": "Admin privileges required"}), 403)
+
+    return admin_required_wrapper
 
 
-@user_blueprint.route("/api/v1.0/users/<string:user_id>", methods=["DELETE"])
-def delete_user(user_id):
-    if user_id not in users:
-        return make_response(jsonify({"error": "User not found"}), 404)
-    else:
-        del users[user_id]
-        return make_response(jsonify({}), 200)
+@user_blueprint.route("/api/v1.0/logout", methods=["GET"])
+@jwt_required
+def logout():
+    token = request.headers["x-access-token"]
+    blacklist.insert_one({"token": token})
+    return make_response(jsonify({"message": "Logged out"}), 200)

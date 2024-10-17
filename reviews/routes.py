@@ -1,8 +1,9 @@
 import datetime
-
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
+
+from users.routes import jwt_required, admin_required
 
 review_blueprint = Blueprint("review", __name__)
 
@@ -19,6 +20,7 @@ exhibitions = db.exhibitions
     "/api/v1.0/reviews/artwork/<string:reviewer_id>/<string:artwork_id>",
     methods=["POST"],
 )
+@jwt_required
 def create_artwork_review(reviewer_id, artwork_id):
     data = request.get_json()
 
@@ -52,6 +54,7 @@ def create_artwork_review(reviewer_id, artwork_id):
     "/api/v1.0/reviews/exhibition/<string:reviewer_id>/<string:exhibition_id>",
     methods=["POST"],
 )
+@jwt_required
 def create_exhibition_review(reviewer_id, exhibition_id):
     data = request.get_json()
 
@@ -84,6 +87,7 @@ def create_exhibition_review(reviewer_id, exhibition_id):
 @review_blueprint.route(
     "/api/v1.0/reviews/artwork/<string:artwork_id>", methods=["GET"]
 )
+@jwt_required
 def get_reviews_for_artwork(artwork_id):
     page_num, page_size = 1, 5
     if request.args.get("pn"):
@@ -108,8 +112,37 @@ def get_reviews_for_artwork(artwork_id):
 
 
 @review_blueprint.route(
+    "/api/v1.0/reviews/artwork/<string:artwork_id>/<string:review_id>",
+    methods=["DELETE"],
+)
+@jwt_required
+@admin_required
+def delete_artwork_review(artwork_id, review_id):
+    artworks.update_one(
+        {"_id": ObjectId(artwork_id)},
+        {"$pull": {"reviews": {"_id": ObjectId(review_id)}}},
+    )
+    return make_response(jsonify({"message": "Review deleted successfully"}), 200)
+
+
+@review_blueprint.route(
+    "/api/v1.0/reviews/exhibition/<string:artwork_id>/<string:review_id>",
+    methods=["DELETE"],
+)
+@jwt_required
+@admin_required
+def delete_exhibition_review(exhibition_id, review_id):
+    exhibitions.update_one(
+        {"_id": ObjectId(exhibition_id)},
+        {"$pull": {"reviews": {"_id": ObjectId(review_id)}}},
+    )
+    return make_response(jsonify({"message": "Review deleted successfully"}), 200)
+
+
+@review_blueprint.route(
     "/api/v1.0/reviews/exhibition/<string:exhibition_id>", methods=["GET"]
 )
+@jwt_required
 def get_reviews_for_exhibition(exhibition_id):
     page_num, page_size = 1, 5
     if request.args.get("pn"):
