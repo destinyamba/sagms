@@ -352,7 +352,8 @@ reviewer_ids = [
 def generate_random_review():
     """Generate a complete review object."""
     return {
-        "reviewer_id": random.choice(reviewer_ids),  # Generate a MongoDB-style ID
+        "_id": ObjectId(),
+        "reviewer_id": random.choice(reviewer_ids),
         "content": generate_review_content(),
         "rating": random.randint(2, 5),
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -412,6 +413,63 @@ def connect_to_mongodb(connection_string):
         return None
 
 
+def update_existing_reviews_with_ids(db_name, collection_name, connection_string):
+    """Update existing reviews to add ObjectId if missing."""
+    client = connect_to_mongodb(connection_string)
+    if not client:
+        return False
+
+    try:
+        db = client[db_name]
+        collection = db[collection_name]
+
+        # Find all artworks with reviews
+        artworks_with_reviews = collection.find({"reviews": {"$ne": []}})
+        bulk_operations = []
+
+        for artwork in artworks_with_reviews:
+            updated_reviews = []
+            needs_update = False
+
+            for review in artwork.get("reviews", []):
+                if "_id" not in review:
+                    needs_update = True
+                    review["_id"] = ObjectId()
+                updated_reviews.append(review)
+
+            if needs_update:
+                bulk_operations.append(
+                    UpdateOne(
+                        {"_id": artwork["_id"]},
+                        {
+                            "$set": {
+                                "reviews": updated_reviews,
+                                "updated_at": datetime.now(timezone.utc),
+                            }
+                        },
+                    )
+                )
+
+        if bulk_operations:
+            result = collection.bulk_write(bulk_operations)
+            print(
+                f"Successfully updated {result.modified_count} artworks with review IDs"
+            )
+        else:
+            print("No reviews needed updating")
+
+        return True
+
+    except OperationFailure as e:
+        print(f"MongoDB operation failed: {str(e)}")
+        return False
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return False
+    finally:
+        client.close()
+
+
 def add_reviews_to_artwork_mongodb(
     db_name, collection_name, connection_string, num_reviews_range=(0, 3)
 ):
@@ -464,12 +522,12 @@ def bulk_add_reviews_mongodb(
     db_name, collection_name, connection_string, num_reviews_range=(0, 3)
 ):
     """Add random reviews to artworks in MongoDB using bulk operations."""
-    bulkAddClient = connect_to_mongodb(connection_string)
-    if not bulkAddClient:
+    client = connect_to_mongodb(connection_string)
+    if not client:
         return False
 
     try:
-        db = bulkAddClient[db_name]
+        db = client[db_name]
         collection = db[collection_name]
 
         # Find all artworks with empty reviews array
@@ -509,7 +567,7 @@ def bulk_add_reviews_mongodb(
         print(f"An error occurred: {str(e)}")
         return False
     finally:
-        bulkAddClient.close()
+        client.close()
 
 
 if __name__ == "__main__":
@@ -524,10 +582,8 @@ if __name__ == "__main__":
     DB_NAME = "smart-art-gallery"
     COLLECTION_NAME = "artworks"
 
-    # Choose either regular or bulk update
-    # Regular update (processes one document at a time):
-    # add_reviews_to_artwork_mongodb(DB_NAME, COLLECTION_NAME, MONGO_CONNECTION_STRING)
+    update_existing_reviews_with_ids(DB_NAME, COLLECTION_NAME, MONGO_CONNECTION_STRING)
 
-    # Or use bulk operations (more efficient for large datasets):
+    # Then, add new reviews to artworks without any (these will automatically include ObjectIds)
     bulk_add_reviews_mongodb(DB_NAME, COLLECTION_NAME, MONGO_CONNECTION_STRING)
     app.run(debug=True)
