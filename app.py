@@ -2,13 +2,22 @@ import json
 import os
 import random
 import uuid
+from datetime import datetime, timezone
+
 import bcrypt
 
 from bson import ObjectId
 from flask import Flask, make_response, jsonify, request
+from pymongo import MongoClient, UpdateOne
+from pymongo.errors import OperationFailure
 
 app = Flask(__name__)
 
+client = MongoClient(
+    "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
+)
+db = client["smart-art-gallery"]
+artworks_collection = db.arworks
 
 artworks = {}
 users = {}
@@ -256,7 +265,269 @@ def generate_users_dummy_data():
     return user_list
 
 
+def generate_review():
+    review = {
+        "_id": ObjectId(),  # Automatically generate an ObjectId
+        "reviewer_id": str(ObjectId()),  # Mock reviewer_id as ObjectId in string format
+        "content": random.choice(
+            [
+                "I must say I appreciate the mood tones.",
+                "Great experience, would recommend!",
+                "The service could be better, but overall decent.",
+                "Really loved the ambiance and the staff were friendly.",
+                "A bit overpriced, but worth it for a treat!",
+                "Absolutely stunning! The colors and texture bring such depth to the piece.",
+                "A truly mesmerizing work, I could gaze at it for hours.",
+                "The artist's intention shines through, very thought-provoking.",
+                "The details in this piece are exquisite, a masterpiece.",
+                "Unique and refreshing. The composition is well-balanced.",
+                "An amazing artwork that captures the essence of human emotion.",
+                "Impressive use of medium, brings out the artist's skills.",
+                "A bold statement, the colors evoke strong emotions.",
+                "The artist's vision is clear and compelling.",
+                "Absolutely loved the abstract elements in this piece!",
+                "A solid addition to the exhibition, highly recommend viewing.",
+            ]
+        ),
+        "rating": random.randint(1, 5),  # Random rating from 1 to 5
+        "created_at": datetime.now(),  # Set the current UTC time
+    }
+    return review
+
+
+# Insert a number of reviews into the database
+def insert_reviews(num_reviews=10):
+    reviews = [generate_review() for _ in range(num_reviews)]
+    result = artworks_collection.insert_many(reviews)
+    print(f"Inserted {len(result.inserted_ids)} reviews.")
+
+
+# Call the function to insert generated reviews
+insert_reviews(5)  # Change the number to the desired amount
+
+
+def generate_review_content():
+    """Generate a realistic art review content."""
+    openings = [
+        "A fascinating piece that",
+        "This artwork beautifully",
+        "An intriguing composition that",
+        "A masterful creation that",
+        "The artist skillfully",
+    ]
+
+    descriptions = [
+        "captures the essence of modern expression",
+        "demonstrates exceptional technical skill",
+        "explores the boundaries of conventional art",
+        "conveys deep emotional resonance",
+        "showcases innovative use of materials",
+    ]
+
+    impressions = [
+        "leaving a lasting impression on the viewer",
+        "creating a powerful visual experience",
+        "drawing the audience into its narrative",
+        "challenging traditional perspectives",
+        "inspiring deep contemplation",
+    ]
+
+    review = f"{random.choice(openings)} {random.choice(descriptions)}, {random.choice(impressions)}."
+    return review
+
+
+reviewer_ids = [
+    "671126abeaf172ac8eb0f94e",
+    "671126abeaf172ac8eb0f942",
+    "671126abeaf172ac8eb0f943",
+    "671126abeaf172ac8eb0f944",
+    "671126abeaf172ac8eb0f947",
+    "671126abeaf172ac8eb0f946",
+    "671126abeaf172ac8eb0f945",
+    "671126abeaf172ac8eb0f94f",
+    "671126abeaf172ac8eb0f94b",
+]
+
+
+def generate_random_review():
+    """Generate a complete review object."""
+    return {
+        "reviewer_id": random.choice(reviewer_ids),  # Generate a MongoDB-style ID
+        "content": generate_review_content(),
+        "rating": random.randint(2, 5),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def add_reviews_to_artwork(artwork_data, num_reviews_range=(0, 3)):
+    """Add random number of reviews to artwork that has no reviews."""
+    modified_data = artwork_data.copy()
+
+    for artwork in modified_data:
+        if not artwork["reviews"]:  # Only add reviews if the artwork has none
+            num_reviews = random.randint(*num_reviews_range)
+            artwork["reviews"] = [generate_random_review() for _ in range(num_reviews)]
+
+    return modified_data
+
+
+def update_json_file(input_file, output_file):
+    """Read JSON file, add reviews, and save to new file."""
+    try:
+        # Read existing JSON data
+        with open(input_file, "r") as f:
+            data = json.load(f)
+
+        # Add reviews
+        modified_data = add_reviews_to_artwork(data)
+
+        # Save modified data
+        with open(output_file, "w") as f:
+            json.dump(modified_data, f, indent=2)
+
+        print(f"Successfully updated reviews and saved to {output_file}")
+
+    except FileNotFoundError:
+        print(f"Error: Could not find input file {input_file}")
+    except json.JSONDecodeError:
+        print(f"Error: Invalid JSON format in {input_file}")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+def connect_to_mongodb(connection_string):
+    """Establish connection to MongoDB."""
+    try:
+        client = MongoClient(connection_string)
+        # Test the connection
+        client.admin.command("ping")
+        return client
+    except ConnectionError:
+        print(
+            "Failed to connect to MongoDB. Please check your connection string and network connection."
+        )
+        return None
+    except Exception as e:
+        print(f"An error occurred while connecting to MongoDB: {str(e)}")
+        return None
+
+
+def add_reviews_to_artwork_mongodb(
+    db_name, collection_name, connection_string, num_reviews_range=(0, 3)
+):
+    """Add random reviews to artworks in MongoDB that have no reviews."""
+    client = connect_to_mongodb(connection_string)
+    if not client:
+        return False
+
+    try:
+        db = client[db_name]
+        collection = db[collection_name]
+
+        # Find all artworks with empty reviews array
+        artworks_without_reviews = collection.find({"reviews": {"$size": 0}})
+
+        # Update each artwork
+        updates = 0
+        for artwork in artworks_without_reviews:
+            num_reviews = random.randint(*num_reviews_range)
+            new_reviews = [generate_random_review() for _ in range(num_reviews)]
+
+            # Update the document
+            result = collection.update_one(
+                {"_id": artwork["_id"]},
+                {
+                    "$set": {
+                        "reviews": new_reviews,
+                        "updated_at": datetime.now(timezone.utc),
+                    }
+                },
+            )
+
+            if result.modified_count > 0:
+                updates += 1
+
+        print(f"Successfully added reviews to {updates} artworks")
+        return True
+
+    except OperationFailure as e:
+        print(f"MongoDB operation failed: {str(e)}")
+        return False
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return False
+    finally:
+        client.close()
+
+
+def bulk_add_reviews_mongodb(
+    db_name, collection_name, connection_string, num_reviews_range=(0, 3)
+):
+    """Add random reviews to artworks in MongoDB using bulk operations."""
+    bulkAddClient = connect_to_mongodb(connection_string)
+    if not bulkAddClient:
+        return False
+
+    try:
+        db = bulkAddClient[db_name]
+        collection = db[collection_name]
+
+        # Find all artworks with empty reviews array
+        bulk_operations = []
+        artworks_without_reviews = collection.find({"reviews": {"$size": 0}})
+
+        for artwork in artworks_without_reviews:
+            num_reviews = random.randint(*num_reviews_range)
+            new_reviews = [generate_random_review() for _ in range(num_reviews)]
+
+            # Prepare bulk update operation
+            bulk_operations.append(
+                UpdateOne(
+                    {"_id": artwork["_id"]},
+                    {
+                        "$set": {
+                            "reviews": new_reviews,
+                            "updated_at": datetime.now(timezone.utc),
+                        }
+                    },
+                )
+            )
+
+        # Execute bulk operations if any
+        if bulk_operations:
+            result = collection.bulk_write(bulk_operations)
+            print(f"Successfully updated {result.modified_count} artworks")
+        else:
+            print("No artworks found without reviews")
+
+        return True
+
+    except OperationFailure as e:
+        print(f"MongoDB operation failed: {str(e)}")
+        return False
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return False
+    finally:
+        bulkAddClient.close()
+
+
 if __name__ == "__main__":
-    artworks = generate_artworks_dummy_data()
+    # artworks = generate_artworks_dummy_data()
     # users = generate_users_dummy_data()
+    # input_file = "artworks.json"  # Your input JSON file
+    # output_file = "artworks.json"  # Where to save the modified data
+
+    # update_json_file(input_file, output_file)
+
+    MONGO_CONNECTION_STRING = "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"  # Replace with your connection string
+    DB_NAME = "smart-art-gallery"
+    COLLECTION_NAME = "artworks"
+
+    # Choose either regular or bulk update
+    # Regular update (processes one document at a time):
+    # add_reviews_to_artwork_mongodb(DB_NAME, COLLECTION_NAME, MONGO_CONNECTION_STRING)
+
+    # Or use bulk operations (more efficient for large datasets):
+    bulk_add_reviews_mongodb(DB_NAME, COLLECTION_NAME, MONGO_CONNECTION_STRING)
     app.run(debug=True)
