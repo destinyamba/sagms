@@ -2,18 +2,20 @@ import datetime
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
-
+import globals
 from users.routes import jwt_required, admin_required
 
 review_blueprint = Blueprint("review", __name__)
 
-client = MongoClient(
-    "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
-)
+client = MongoClient(globals.MONGO_URI)
 db = client["smart-art-gallery"]
 users = db.users
 artworks = db.artworks
 exhibitions = db.exhibitions
+
+"""
+   Adds reviews to artworks. All users can add reviews.
+"""
 
 
 @review_blueprint.route(
@@ -50,6 +52,11 @@ def create_artwork_review(reviewer_id, artwork_id):
     return make_response(jsonify(new_review), 201)
 
 
+"""
+    Adds reviews to exhibitions. All users can add reviews.
+"""
+
+
 @review_blueprint.route(
     "/api/v1.0/reviews/exhibition/<string:reviewer_id>/<string:exhibition_id>",
     methods=["POST"],
@@ -82,6 +89,11 @@ def create_exhibition_review(reviewer_id, exhibition_id):
     return make_response(jsonify(new_review), 201)
 
 
+"""
+    Retrieves reviews of an artwork.
+"""
+
+
 @review_blueprint.route(
     "/api/v1.0/reviews/artwork/<string:artwork_id>", methods=["GET"]
 )
@@ -109,6 +121,11 @@ def get_reviews_for_artwork(artwork_id):
     return make_response(jsonify(data_to_return), 200)
 
 
+"""
+    Removes reviews of an artwork. Only an admin can remove reviews.
+"""
+
+
 @review_blueprint.route(
     "/api/v1.0/reviews/artwork/<string:artwork_id>/<string:review_id>",
     methods=["DELETE"],
@@ -123,6 +140,11 @@ def delete_artwork_review(artwork_id, review_id):
     return make_response(jsonify({"message": "Review deleted successfully"}), 200)
 
 
+"""
+    Remove reviews of an exhibition. Only an admin can remove reviews.
+"""
+
+
 @review_blueprint.route(
     "/api/v1.0/reviews/exhibition/<string:artwork_id>/<string:review_id>",
     methods=["DELETE"],
@@ -135,6 +157,11 @@ def delete_exhibition_review(exhibition_id, review_id):
         {"$pull": {"reviews": {"_id": ObjectId(review_id)}}},
     )
     return make_response(jsonify({"message": "Review deleted successfully"}), 200)
+
+
+"""
+    Retrieve reviews of an exhibition.
+"""
 
 
 @review_blueprint.route(

@@ -1,19 +1,20 @@
 import datetime
-
+import globals
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
-
 from users.routes import jwt_required
 
 exhibition_blueprint = Blueprint("exhibition", __name__)
 
-client = MongoClient(
-    "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
-)
+client = MongoClient(globals.MONGO_URI)
 db = client["smart-art-gallery"]
 exhibitions = db.exhibitions
 users = db.users
+
+"""
+   Adds exhibitions. Only curators can create exhibitions.
+"""
 
 
 @exhibition_blueprint.route(
@@ -58,7 +59,11 @@ def create_exhibition(curator_id):
     return make_response(jsonify({"exhibition_id": str(exhibition.inserted_id)}), 201)
 
 
-# get all exhibitions.
+"""
+   Retrieve all existing exhibitions.
+"""
+
+
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/",
     methods=["GET"],
@@ -80,7 +85,11 @@ def get_exhibitions():
     return make_response(jsonify(data_to_return), 200)
 
 
-# get an exhibition.
+"""
+   Retrieves a specific exhibition.
+"""
+
+
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:exhibition_id>", methods=["GET"]
 )
@@ -96,7 +105,11 @@ def get_exhibition(exhibition_id):
         return make_response(jsonify({"error": "Exhibition not found"}), 404)
 
 
-# update an exhibition.
+"""
+   Edits exhibitions. Only the curator that created the exhibition can edit.
+"""
+
+
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>", methods=["PUT"]
 )
@@ -131,7 +144,11 @@ def update_exhibition(curator_id, exhibition_id):
     return make_response(jsonify(updated_exhibition), 200)
 
 
-# delete an exhibition.
+"""
+   Removes exhibitions. Only the curator that created the exhibition or an admin can delete exhibitions.
+"""
+
+
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>",
     methods=["DELETE"],
@@ -153,6 +170,11 @@ def delete_exhibition(curator_id, exhibition_id):
 
     exhibitions.delete_one({"_id": ObjectId(exhibition_id)})
     return make_response(jsonify({}), 200)
+
+
+"""
+   Retrieves all exhibitions created by a curator.
+"""
 
 
 @exhibition_blueprint.route(
@@ -182,6 +204,11 @@ def get_related_exhibitions_by_curator(curator_id):
     return make_response(jsonify(data_to_return), 200)
 
 
+"""
+   Retrieves the top 5 exhibitions with the most reviews.
+"""
+
+
 @exhibition_blueprint.route("/api/v1.0/exhibitions/top-rated", methods=["GET"])
 def get_top_5_exhibitions_with_most_reviews():
     pipeline = [
@@ -209,6 +236,11 @@ def get_top_5_exhibitions_with_most_reviews():
     ]
     result = exhibitions.aggregate(pipeline)
     return list(result)
+
+
+"""
+   Retrieves exhibitions created in the last 30 days.
+"""
 
 
 @exhibition_blueprint.route("/api/v1.0/exhibitions/most-recent", methods=["GET"])

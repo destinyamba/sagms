@@ -1,18 +1,15 @@
 import datetime
-
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from marshmallow import ValidationError
 from pymongo import MongoClient
-
+import globals
 from artworks.ArtworkSchema import ArtworkSchema
 from users.routes import jwt_required
 
 artwork_blueprint = Blueprint("artwork", __name__)
 
-client = MongoClient(
-    "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
-)
+client = MongoClient(globals.MONGO_URI)
 db = client["smart-art-gallery"]
 artworks = db.artworks
 users = db.users

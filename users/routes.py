@@ -8,12 +8,14 @@ import globals
 
 user_blueprint = Blueprint("user", __name__)
 
-client = MongoClient(
-    "mongodb+srv://Cluster18362:zm5bZcXvos6OfIBU@cluster18362.r9onf.mongodb.net/"
-)
+client = MongoClient(globals.MONGO_URI)
 db = client["smart-art-gallery"]
 users = db.users
 blacklist = db.blacklist
+
+"""
+    Decorator to implement jwt authorization to endpoints.
+"""
 
 
 def jwt_required(func):
@@ -36,6 +38,11 @@ def jwt_required(func):
         return func(*args, **kwargs)
 
     return jwt_required_wrapper
+
+
+"""
+    Introduces a user to the API.
+"""
 
 
 @user_blueprint.route("/api/v1.0/login", methods=["GET"])
@@ -70,6 +77,11 @@ def login():
     )
 
 
+"""
+    Decorator to restrict operations to non admins.
+"""
+
+
 def admin_required(func):
     @wraps(func)
     def admin_required_wrapper(*args, **kwargs):
@@ -81,6 +93,11 @@ def admin_required(func):
             return make_response(jsonify({"message": "Admin privileges required"}), 403)
 
     return admin_required_wrapper
+
+
+"""
+    Log out a user and expire JWT token.
+"""
 
 
 @user_blueprint.route("/api/v1.0/logout", methods=["GET"])
