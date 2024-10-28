@@ -2,8 +2,10 @@ import datetime
 
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
+from marshmallow import ValidationError
 from pymongo import MongoClient
 
+from artworks.ArtworkSchema import ArtworkSchema
 from users.routes import jwt_required
 
 artwork_blueprint = Blueprint("artwork", __name__)
@@ -15,9 +17,18 @@ db = client["smart-art-gallery"]
 artworks = db.artworks
 users = db.users
 
+"""
+    Recursively converts MongoDB ObjectId fields in a document to strings.
+
+    Args:
+        document: MongoDB document (dict or list) containing ObjectId fields
+
+    Returns:
+        Document with ObjectId fields converted to strings
+"""
+
 
 def convert_object_id_to_str(document):
-    # Recursively convert ObjectId fields in the document to strings
     if isinstance(document, dict):
         return {
             key: (
@@ -30,6 +41,18 @@ def convert_object_id_to_str(document):
     elif isinstance(document, list):
         return [convert_object_id_to_str(item) for item in document]
     return document
+
+
+"""
+    Retrieves a paginated list of all artworks.
+
+    Query Parameters:
+        pn (int): Page number (default: 1)
+        ps (int): Page size (default: 10)
+
+    Returns:
+        200: List of artworks without reviews
+"""
 
 
 @artwork_blueprint.route("/api/v1.0/artworks", methods=["GET"])
@@ -48,6 +71,18 @@ def get_artworks():
     return make_response(jsonify(data_to_return), 200)
 
 
+"""
+    Retrieves details of a specific artwork.
+
+    Args:
+        artwork_id (str): The ID of the artwork
+
+    Returns:
+        200: Artwork details without reviews
+        404: If artwork not found
+"""
+
+
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
 @jwt_required
 def get_artwork(artwork_id):
@@ -59,93 +94,86 @@ def get_artwork(artwork_id):
         return make_response(jsonify({"error": "Artwork not found"}), 404)
 
 
+"""
+    Creates a new artwork for a specific artist.
+
+    Args:
+        artist_id (str): The ID of the artist creating the artwork
+
+    Required JSON fields:
+        title (str): Artwork title
+        description (str): Artwork description
+        category (str): Artwork category
+        materials (list): List of materials used
+        height_cm (number): Height in centimeters
+        width_cm (number): Width in centimeters
+        provenance (str): Artwork provenance
+        images (str): Image URLs/references
+
+    Returns:
+        201: Created artwork ID
+        400: Invalid input data
+        403: Unauthorized artist
+        404: Artist not found
+"""
+
+
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artist_id>", methods=["POST"])
 @jwt_required
 def create_artwork(artist_id):
     data = request.get_json()
+    if not data:
+        return make_response(jsonify({"error": "No input data provided"}), 400)
 
-    # check that artist_id is found in users collection and the role is ARTIST.
     artist = users.find_one({"_id": ObjectId(artist_id)})
     if artist is None:
         return make_response(jsonify({"error": "Artist not found"}), 404)
     if str(artist["role"]) != "ARTIST":
-        return make_response(
-            jsonify(
-                {
-                    "error": str(artist["role"])
-                    + " user not authorised to create artwork"
-                }
-            ),
-            403,
-        )
+        return make_response(jsonify({"error": "Unauthorized role"}), 403)
 
-    data["artist_id"] = artist_id
-
-    if not data:
-        return make_response(jsonify({"error": "No input data provided"}), 400)
-
-    required_fields = [
-        "title",
-        "description",
-        "category",
-        "materials",
-        "height_cm",
-        "width_cm",
-        "provenance",
-        "images",
-    ]
-    for field in required_fields:
-        if field in ["title", "description", "category", "provenance", "images"]:
-            if not isinstance(data.get(field), str):
-                return make_response(
-                    jsonify(
-                        {"error": f"Invalid data type for {field}, expected string"}
-                    ),
-                    400,
-                )
-        elif field == "materials":
-            materials = data.get(field, [])
-            if not isinstance(materials, list) or not all(
-                isinstance(m, str) for m in materials
-            ):
-                return make_response(
-                    jsonify(
-                        {
-                            "error": "Invalid data type for materials, expected list of strings"
-                        }
-                    ),
-                    400,
-                )
-        elif field in ["height_cm", "width_cm"]:
-            value = data.get(field)
-            if not isinstance(value, (int, float)) or value <= 0:
-                return make_response(
-                    jsonify(
-                        {
-                            "error": f"Invalid data type for {field}, expected positive number"
-                        }
-                    ),
-                    400,
-                )
+    try:
+        validated_data = ArtworkSchema().load(data)
+    except ValidationError as err:
+        return make_response(jsonify({"error": err.messages}), 400)
 
     new_artwork = {
-        "title": data.get("title", "title").strip(),
+        **validated_data,
         "artist_id": artist_id,
-        "description": data.get("description", "description").strip(),
-        "category": data.get("category", "category").strip(),
-        "images": data.get("images", "images").strip(),
-        "materials": data.get("materials", "materials"),
         "dimensions": {
-            "height_cm": data.get("height_cm", None),
-            "width_cm": data.get("width_cm", None),
+            "height_cm": validated_data["height_cm"],
+            "width_cm": validated_data["width_cm"],
         },
-        "provenance": data.get("provenance", "provenance").strip(),
         "created_at": datetime.datetime.now(),
         "updated_at": datetime.datetime.now(),
         "reviews": [],
     }
+
     artwork = artworks.insert_one(new_artwork)
     return make_response(jsonify({"artwork_id": str(artwork.inserted_id)}), 201)
+
+
+"""
+    Updates an existing artwork.
+
+    Args:
+        artist_id (str): ID of the artist
+        artwork_id (str): ID of the artwork to update
+
+    Updatable JSON fields:
+        title (str, optional): New title
+        description (str, optional): New description
+        category (str, optional): New category
+        materials (list, optional): New materials list
+        height_cm (number, optional): New height
+        width_cm (number, optional): New width
+        provenance (str, optional): New provenance
+        images (str, optional): New images
+
+    Returns:
+        200: Updated artwork details
+        401: Unauthorized to update
+        404: Artwork not found
+"""
 
 
 @artwork_blueprint.route(
@@ -154,38 +182,36 @@ def create_artwork(artist_id):
 @jwt_required
 def update_artwork(artist_id, artwork_id):
     data = request.get_json()
-
     artwork = artworks.find_one({"_id": ObjectId(artwork_id)})
     if artwork is None:
         return make_response(jsonify({"error": "Artwork not found"}), 404)
-    elif artist_id != artwork["artist_id"]:
-        return make_response(jsonify({"error": "Unauthorized to update artwork"}), 401)
+    if artist_id != artwork["artist_id"]:
+        return make_response(jsonify({"error": "Unauthorized"}), 401)
 
-    # Fields that can be updated.
-    update_fields = {
-        key: data[key]
-        for key in [
-            "title",
-            "description",
-            "category",
-            "materials",
-            "provenance",
-            "images",
-        ]
-        if key in data
-    }
+    try:
+        validated_data = ArtworkSchema(partial=True).load(data)
+    except ValidationError as err:
+        return make_response(jsonify({"error": err.messages}), 400)
 
-    if "height_cm" in data or "width_cm" in data:
-        update_fields["dimensions"] = {
-            "height_cm": data.get("height_cm", artwork["dimensions"].get("height_cm")),
-            "width_cm": data.get("width_cm", artwork["dimensions"].get("width_cm")),
-        }
-
+    update_fields = {**validated_data, "updated_at": datetime.datetime.now()}
     artworks.update_one({"_id": ObjectId(artwork_id)}, {"$set": update_fields})
     updated_artwork = artworks.find_one({"_id": ObjectId(artwork_id)})
-    updated_artwork = convert_object_id_to_str(updated_artwork)
 
-    return make_response(jsonify(updated_artwork), 200)
+    return make_response(jsonify(convert_object_id_to_str(updated_artwork)), 200)
+
+
+"""
+    Deletes an artwork.
+
+    Args:
+        artist_id (str): ID of the artist
+        artwork_id (str): ID of the artwork to delete
+
+    Returns:
+        200: Empty response on successful deletion
+        401: Unauthorized to delete
+        404: Artwork not found
+"""
 
 
 @artwork_blueprint.route(
@@ -201,6 +227,22 @@ def delete_artwork(artist_id, artwork_id):
     else:
         artworks.delete_one({"_id": ObjectId(artwork_id)})
         return make_response(jsonify({}), 200)
+
+
+"""
+    Retrieves all artworks by a specific artist.
+
+    Args:
+        artist_id (str): ID of the artist
+
+    Query Parameters:
+        pn (int): Page number (default: 1)
+        ps (int): Page size (default: 10)
+
+    Returns:
+        200: List of artworks by the artist
+        Format: [{"_id": str, "title": str, ...}, ...]
+"""
 
 
 @artwork_blueprint.route(
@@ -228,6 +270,20 @@ def get_related_artworks(artist_id):
         data_to_return.append(artwork)
 
     return make_response(jsonify(data_to_return), 200)
+
+
+"""
+   Retrieves average ratings for all artworks.
+
+   Query Parameters:
+       pn (int): Page number (default: 1)
+       ps (int): Page size (default: 12)
+
+   Returns:
+       200: List of artwork IDs with their average ratings
+       500: Server error
+       Format: [{"_id": str, "average_rating": float}, ...]
+"""
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/average_rating", methods=["GET"])
@@ -276,6 +332,22 @@ def get_average_ratings():
         return make_response(jsonify(average_ratings), 200)
     except Exception as e:
         return make_response(jsonify({"error": str(e)}), 500)
+
+
+"""
+    Filters artworks by their dimensions.
+
+    Required JSON body:
+        height_range (dict, optional):
+            min (number, optional): Minimum height in cm
+            max (number, optional): Maximum height in cm
+        width_range (dict, optional):
+            min (number, optional): Minimum width in cm
+            max (number, optional): Maximum width in cm
+
+    Returns:
+        200: List of artworks matching dimension criteria
+"""
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/filter/dimensions", methods=["GET"])
@@ -329,6 +401,14 @@ def filter_by_artwork_dimensions():
 
     except Exception as e:
         return make_response(jsonify({"Unable to filter by dimensions.": str(e)}), 500)
+
+
+"""
+    Searches artworks by title.
+
+    Returns:
+        200: List of artworks matching dimension criteria
+"""
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/search", methods=["GET"])
