@@ -16,6 +16,22 @@ artworks = db.artworks
 users = db.users
 
 
+def convert_object_id_to_str(document):
+    # Recursively convert ObjectId fields in the document to strings
+    if isinstance(document, dict):
+        return {
+            key: (
+                str(value)
+                if isinstance(value, ObjectId)
+                else convert_object_id_to_str(value)
+            )
+            for key, value in document.items()
+        }
+    elif isinstance(document, list):
+        return [convert_object_id_to_str(item) for item in document]
+    return document
+
+
 @artwork_blueprint.route("/api/v1.0/artworks", methods=["GET"])
 def get_artworks():
     page_num, page_size = 1, 10
@@ -167,7 +183,7 @@ def update_artwork(artist_id, artwork_id):
 
     artworks.update_one({"_id": ObjectId(artwork_id)}, {"$set": update_fields})
     updated_artwork = artworks.find_one({"_id": ObjectId(artwork_id)})
-    updated_artwork["_id"] = str(updated_artwork["_id"])
+    updated_artwork = convert_object_id_to_str(updated_artwork)
 
     return make_response(jsonify(updated_artwork), 200)
 
@@ -215,7 +231,6 @@ def get_related_artworks(artist_id):
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/average_rating", methods=["GET"])
-@jwt_required
 def get_average_ratings():
     try:
         page_num = int(request.args.get("pn", 1))
@@ -233,7 +248,7 @@ def get_average_ratings():
                     "average_rating": {
                         "$avg": {
                             "$ifNull": [
-                                "$reviews.rating",
+                                {"$round": ["$reviews.rating", 1]},
                                 0,
                             ]
                         }
@@ -246,7 +261,7 @@ def get_average_ratings():
                     "average_rating": {
                         "$cond": {
                             "if": {"$gt": ["$average_rating", 0]},
-                            "then": "$average_rating",
+                            "then": {"$round": ["$average_rating", 1]},
                             "else": 0.0,
                         }
                     },
@@ -264,7 +279,6 @@ def get_average_ratings():
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/filter/dimensions", methods=["GET"])
-@jwt_required
 def filter_by_artwork_dimensions():
     try:
         height_range = request.json.get("height_range", {})

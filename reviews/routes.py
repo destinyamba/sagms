@@ -57,7 +57,6 @@ def create_artwork_review(reviewer_id, artwork_id):
 @jwt_required
 def create_exhibition_review(reviewer_id, exhibition_id):
     data = request.get_json()
-
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     reviewer = users.find_one({"_id": ObjectId(reviewer_id)})
 
@@ -77,7 +76,6 @@ def create_exhibition_review(reviewer_id, exhibition_id):
     exhibitions.update_one(
         {"_id": ObjectId(exhibition_id)}, {"$push": {"reviews": new_review}}
     )
-
     new_review["_id"] = str(new_review["_id"])
     new_review["created_at"] = new_review["created_at"].isoformat()
 

@@ -52,7 +52,7 @@ def login():
                     {
                         "user": auth.username,
                         "admin": user["role"] == "ADMIN",
-                        "exp": datetime.datetime.now(datetime.UTC)
+                        "exp": datetime.datetime.now(datetime.timezone.utc)
                         + datetime.timedelta(minutes=30),
                     },
                     globals.SECRET_KEY,
@@ -74,7 +74,7 @@ def admin_required(func):
     @wraps(func)
     def admin_required_wrapper(*args, **kwargs):
         token = request.headers["x-access-token"]
-        data = jwt.decode(token, globals.SECRET_KEY, algorithms="HS256")
+        data = jwt.decode(token, globals.SECRET_KEY, algorithms=["HS256"])
         if data["admin"]:
             return func(*args, **kwargs)
         else:

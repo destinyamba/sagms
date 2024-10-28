@@ -86,11 +86,11 @@ def get_exhibitions():
 )
 @jwt_required
 def get_exhibition(exhibition_id):
-    exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
+    exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)}, {"reviews": 0})
     if exhibition is not None:
         exhibition["_id"] = str(exhibition["_id"])
-        for review in exhibition.get("reviews", []):
-            review["_id"] = str(review["_id"])
+        # for review in exhibition.get("reviews", []):
+        #     review["_id"] = str(review["_id"])
         return make_response(jsonify(exhibition), 200)
     else:
         return make_response(jsonify({"error": "Exhibition not found"}), 404)
@@ -141,13 +141,18 @@ def delete_exhibition(curator_id, exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     if exhibition is None:
         return make_response(jsonify({"error": "Exhibition not found"}), 404)
-    elif curator_id != exhibition["curator_id"]:
+
+    user = users.find_one({"_id": ObjectId(exhibition["curator_id"])})
+    if user is None:
+        return make_response(jsonify({"error": "Curator not found"}), 404)
+
+    if str(user["role"]) not in ["CURATOR", "ADMIN"]:
         return make_response(
             jsonify({"error": "Unauthorized to delete exhibition"}), 401
         )
-    else:
-        exhibitions.delete_one({"_id": ObjectId(exhibition_id)})
-        return make_response(jsonify({}), 200)
+
+    exhibitions.delete_one({"_id": ObjectId(exhibition_id)})
+    return make_response(jsonify({}), 200)
 
 
 @exhibition_blueprint.route(
