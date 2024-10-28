@@ -65,11 +65,11 @@ def create_exhibition(curator_id):
 
 
 @exhibition_blueprint.route(
-    "/api/v1.0/exhibitions/",
+    "/api/v1.0/exhibitions",
     methods=["GET"],
 )
 def get_exhibitions():
-    page_num, page_size = 1, 10
+    page_num, page_size = 1, 12
     if request.args.get("pn"):
         page_num = int(request.args.get("pn"))
     if request.args.get("ps"):
@@ -77,7 +77,9 @@ def get_exhibitions():
     page_start = page_size * (page_num - 1)
 
     data_to_return = []
-    for exhibition in exhibitions.find().skip(page_start).limit(page_size):
+    for exhibition in (
+        exhibitions.find({}, {"reviews": 0}).skip(page_start).limit(page_size)
+    ):
         exhibition["_id"] = str(exhibition["_id"])
         for review in exhibition.get("reviews", []):
             review["_id"] = str(review["_id"])
