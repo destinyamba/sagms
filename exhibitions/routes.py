@@ -230,14 +230,14 @@ def get_top_5_exhibitions_with_most_reviews():
         {
             "$project": {
                 "_id": 0,
-                "exhibition_id": "$_id",
+                "exhibition_id": {"$toString": "$_id"},
                 "title": "$exhibition.title",
                 "review_count": 1,
             }
         },
     ]
-    result = exhibitions.aggregate(pipeline)
-    return list(result)
+    result = list(exhibitions.aggregate(pipeline))
+    return make_response(jsonify(result), 200)
 
 
 """
@@ -254,7 +254,8 @@ def get_exhibitions_created_in_last_30_days():
                     "$gte": datetime.datetime.now() - datetime.timedelta(days=30)
                 }
             }
-        }
+        },
+        {"$project": {"_id": {"$toString": "$_id"}, "title": 1, "created_at": 1}},
     ]
-    result = exhibitions.aggregate(pipeline)
-    return list(result)
+    result = list(exhibitions.aggregate(pipeline))
+    return make_response(jsonify(result), 200)
