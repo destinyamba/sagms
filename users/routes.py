@@ -95,6 +95,50 @@ def admin_required(func):
     return admin_required_wrapper
 
 
+@user_blueprint.route("/api/v1.0/register", methods=["POST"])
+@jwt_required
+@admin_required
+def register():
+    data = request.get_json()
+    email = data.get("email")
+    username = data.get("username")
+    password = data.get("password")
+    role = data.get("role")
+
+    if not username or not password or not role or not email:
+        return make_response(jsonify({"message": "Missing required fields"}), 400)
+
+    existing_user = users.find_one({"username": username})
+    if existing_user is not None:
+        return make_response(jsonify({"message": "Username already exists"}), 409)
+
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
+    if role == "ARTIST":
+        biography = data.get("biography")
+        if not biography:
+            return make_response(
+                jsonify({"message": "Biography is required for artists"}), 400
+            )
+        user = {
+            "username": username,
+            "password": hashed_password.decode("utf-8"),
+            "role": role,
+            "biography": biography,
+            "email": email,
+        }
+    else:
+        user = {
+            "username": username,
+            "password": hashed_password.decode("utf-8"),
+            "role": role,
+            "email": email,
+        }
+
+    users.insert_one(user)
+    return make_response(jsonify({"message": "User created successfully"}), 201)
+
+
 """
     Log out a user and expire JWT token.
 """
