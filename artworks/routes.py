@@ -404,7 +404,7 @@ def filter_by_artwork_dimensions():
     Searches artworks by title.
 
     Returns:
-        200: List of artworks matching dimension criteria
+        200: List of artworks matching search title.
 """
 
 
