@@ -1,0 +1,32 @@
+<h1 class="text-center mb-4">Artworks</h1>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2">
+    @for(artwork of artworks_list; track artwork._id) {
+    <div class="col">
+        <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="position-relative">
+                <img src="https://i.imgur.com/KTaJR1Pm.jpg" class="card-img-top" alt="Artwork Image"
+                    style="height: 250px; object-fit: cover;" />
+                <div class="card-img-overlay d-flex justify-content-end align-items-start p-2">
+                    <span class="badge bg-secondary opacity-75">{{ artwork.category }}</span>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h5 class="card-title text-truncate">{{ artwork.title }}</h5>
+                <p class="card-text text-muted" id="description-{{ artwork._id }}">
+                    {{ artwork.description.split(' ').slice(0, 20).join(' ') }}...
+                </p>
+                <hr class="text-muted">
+                <p class="mb-1 truncate-text"><strong>Materials:</strong>
+                    {{ artwork.materials.join(', ') }}
+                </p>
+                <p class="mb-1"><strong>Dimensions:</strong> {{ artwork.dimensions.height_cm }} x {{
+                    artwork.dimensions.width_cm }} cm</p>
+            </div>
+            <div class="card-footer bg-white border-0">
+                <small class="text-muted">{{ artwork.provenance }}</small>
+            </div>
+        </div>
+    </div>
+    }
+</div>

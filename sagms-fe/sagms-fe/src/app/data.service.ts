@@ -1,0 +1,267 @@
+const jsonData = [
+  {
+    _id: '67112847eaf172ac8eb0f952',
+    artist_id: '671126abeaf172ac8eb0f94d',
+    category: 'Cubism',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 168,
+      width_cm: 746,
+    },
+    images: [
+      'https://drive.google.com/file/d/1SyMHngtkdy9Il9xiF1ucXZ_9gxrftoj2/view?usp=drive_link',
+    ],
+    materials: ['Watercolor Paint', 'Oil Paint', 'Charcoal'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Luminescence of Solitude',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f953',
+    artist_id: '671126abeaf172ac8eb0f94c',
+    category: 'Portraiture',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 429,
+      width_cm: 272,
+    },
+    images: [
+      'https://drive.google.com/file/d/1bvK72jUDv68Jy9Xl5QlhoLMi0NVSHZPy/view?usp=drive_link',
+    ],
+    materials: ['Watercolor Paint', 'Acrylic Paint'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Luminescence of Solitude',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f952',
+    artist_id: '671126abeaf172ac8eb0f94d',
+    category: 'Cubism',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 168,
+      width_cm: 746,
+    },
+    images: [
+      'https://drive.google.com/file/d/1SyMHngtkdy9Il9xiF1ucXZ_9gxrftoj2/view?usp=drive_link',
+    ],
+    materials: ['Watercolor Paint', 'Oil Paint', 'Charcoal'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Luminescence of Solitude',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f952',
+    artist_id: '671126abeaf172ac8eb0f94d',
+    category: 'Cubism',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 168,
+      width_cm: 746,
+    },
+    images: [
+      'https://drive.google.com/file/d/1SyMHngtkdy9Il9xiF1ucXZ_9gxrftoj2/view?usp=drive_link',
+    ],
+    materials: ['Watercolor Paint', 'Oil Paint', 'Charcoal'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Luminescence of Solitude',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f953',
+    artist_id: '671126abeaf172ac8eb0f94c',
+    category: 'Portraiture',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 429,
+      width_cm: 272,
+    },
+    images: [
+      'https://drive.google.com/file/d/1bvK72jUDv68Jy9Xl5QlhoLMi0NVSHZPy/view?usp=drive_link',
+    ],
+    materials: ['Watercolor Paint', 'Acrylic Paint'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Luminescence of Solitude',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f954',
+    artist_id: '671126abeaf172ac8eb0f94f',
+    category: 'Portraiture',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 421,
+      width_cm: 970,
+    },
+    images: [
+      'https://drive.google.com/file/d/1vAqr0IjjlVuAItQsyr0y0aPbf2v6_iM-/view?usp=drive_link',
+    ],
+    materials: ['Wood', 'Stone', 'Metal'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'The Last Supper',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f955',
+    artist_id: '671126abeaf172ac8eb0f944',
+    category: 'Still Life',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 443,
+      width_cm: 985,
+    },
+    images: [
+      'https://drive.google.com/file/d/1775Yvoc_FCFVBX-TAMO4WjyU_Uhr75ur/view?usp=drive_link',
+    ],
+    materials: ['Acrylic Paint', 'Metal', 'Watercolor Paint'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'The Creation of Adam',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f956',
+    artist_id: '671126abeaf172ac8eb0f950',
+    category: 'Impressionism',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 229,
+      width_cm: 309,
+    },
+    images: [
+      'https://drive.google.com/file/d/11HP64_qHl_217pI0ZSPKd-NhbV4L5I5y/view?usp=drive_link',
+    ],
+    materials: ['Metal', 'Charcoal'],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Whispers of the Forgotten',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f957',
+    artist_id: '671126abeaf172ac8eb0f948',
+    category: 'Impressionism',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 897,
+      width_cm: 519,
+    },
+    images: [
+      'https://drive.google.com/file/d/1rIo36LTDsF11Pe91-tz2qVcdmZbEC_ta/view?usp=drive_link',
+    ],
+    materials: ['Watercolor Paint', 'Acrylic Paint'],
+    provenance: 'Donated by the local community',
+    title: 'The Last Supper',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f958',
+    artist_id: '671126abeaf172ac8eb0f944',
+    category: 'Surrealism',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 338,
+      width_cm: 845,
+    },
+    images: [
+      'https://drive.google.com/file/d/1Co0-NVHywU1KVGgAkveytL8Azo1QiKcr/view?usp=drive_link',
+    ],
+    materials: ['Oil Paint', 'Gouache Paint'],
+    provenance: 'Purchased from ABC Gallery',
+    title: 'The Fall of Man',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f959',
+    artist_id: '671126abeaf172ac8eb0f94c',
+    category: 'Still Life',
+    created_at: '2013-12-01T00:00:00',
+    description: 'This will be the description of the artwork',
+    dimensions: {
+      height_cm: 225,
+      width_cm: 749,
+    },
+    images: [
+      'https://drive.google.com/file/d/1XDQ8TmddSHjmYlvOp4FH3Y2wuedbIRSi/view?usp=drive_link',
+    ],
+    materials: ['Gouache Paint', 'Wood'],
+    provenance: 'Purchased from ABC Gallery',
+    title: 'Echoes of the Eternal',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f95a',
+    artist_id: '671126abeaf172ac8eb0f942',
+    category: 'Landscape',
+    created_at: '2013-12-01T00:00:00',
+    description:
+      'This will be the description of the artwork, This will be the description of the artwork, This will be the description of the artwork, This will be the description of the artwork, This will be the description of the artwork',
+    dimensions: {
+      height_cm: 247,
+      width_cm: 422,
+    },
+    images: [
+      'https://drive.google.com/file/d/1TrsxbIVBpdblx1qOcah1WslZQSH5EHSN/view?usp=drive_link',
+    ],
+    materials: [
+      'Stone',
+      'Metal',
+      'Metal',
+      'Watercolor Paint',
+      'Charcoal',
+      'Metal',
+      'Watercolor Paint',
+      'Charcoal',
+      'Metal',
+      'Watercolor Paint',
+      'Charcoal',
+    ],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'The Last Supper',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+  {
+    _id: '67112847eaf172ac8eb0f95b',
+    artist_id: '671126abeaf172ac8eb0f942',
+    category: 'Portraiture',
+    created_at: '2013-12-01T00:00:00',
+    description:
+      'This will be the description of the artwork, This will be the description of the artwork, This will be the description of the artwork, This will be the description of the artwork, This will be the description of the artwork',
+    dimensions: {
+      height_cm: 748,
+      width_cm: 215,
+    },
+    images: [
+      'https://drive.google.com/file/d/16oNNs9g7kOS90-XdHQbg6K3Y5CPfLTD8/view?usp=drive_link',
+    ],
+    materials: [
+      'Metal',
+      'Watercolor Paint',
+      'Charcoal',
+      'Metal',
+      'Watercolor Paint',
+      'Charcoal',
+      'Metal',
+      'Watercolor Paint',
+      'Charcoal',
+    ],
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Whispers of the Forgotten',
+    updated_at: 'Mon, 28 Oct 2024 20:38:12 GMT',
+  },
+];
+
+export class DataService {
+  pageSize: number = 3;
+  getArtworks() {
+    return jsonData;
+  }
+}

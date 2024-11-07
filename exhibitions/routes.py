@@ -100,8 +100,6 @@ def get_exhibition(exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)}, {"reviews": 0})
     if exhibition is not None:
         exhibition["_id"] = str(exhibition["_id"])
-        # for review in exhibition.get("reviews", []):
-        #     review["_id"] = str(review["_id"])
         return make_response(jsonify(exhibition), 200)
     else:
         return make_response(jsonify({"error": "Exhibition not found"}), 404)
