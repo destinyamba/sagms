@@ -1,9 +1,10 @@
-<h1 class="text-center mb-4">Artworks</h1>
+<h1 class="text-center mb-4" style="margin-top: 88px">Artworks</h1>
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2" style="margin-top: 70px">
     @for(artwork of artworks_list; track artwork._id) {
     <div class="col">
-        <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer"
+            [routerLink]="['/artworks', artwork._id]">
             <div class="position-relative">
                 <img src="{{artwork.images[0]}}" class="card-img-top" alt="Artwork Image"
                     style="height: 250px; object-fit: cover;" />

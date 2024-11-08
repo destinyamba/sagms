@@ -342,6 +342,310 @@ const jsonData = [
   },
 ];
 
+const exhibitionJsonData = [
+  {
+    _id: '6720086a4614f216533d0532',
+    artworks: [
+      '671f830ba6020d8fd80dd24c',
+      '671f7fe67774ba108013ab59',
+      '67112847eaf172ac8eb0f966',
+      '67112847eaf172ac8eb0f96f',
+      '67112847eaf172ac8eb0f958',
+      '67112847eaf172ac8eb0f994',
+      '67112847eaf172ac8eb0f993',
+      '67112847eaf172ac8eb0f985',
+      '671c0bb18745ac5b6ddc419a',
+      '67112847eaf172ac8eb0f987',
+      '67112847eaf172ac8eb0f997',
+      '67112847eaf172ac8eb0f977',
+      '67112847eaf172ac8eb0f984',
+      '67112847eaf172ac8eb0f99d',
+      '67112847eaf172ac8eb0f989',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'An assemblage of portraits that tell the stories of diverse cultures and identities.',
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'The Power of Color',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d0548',
+    artworks: [
+      '67112847eaf172ac8eb0f96d',
+      '67112847eaf172ac8eb0f984',
+      '671f8550670694083251c17d',
+      '67112847eaf172ac8eb0f988',
+      '67112847eaf172ac8eb0f962',
+      '67112847eaf172ac8eb0f991',
+      '67112847eaf172ac8eb0f9a2',
+      '67112847eaf172ac8eb0f98a',
+      '67112847eaf172ac8eb0f975',
+      '67112847eaf172ac8eb0f972',
+      '67112847eaf172ac8eb0f99b',
+      '67112847eaf172ac8eb0f98b',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'A showcase of artworks that evoke serenity and solitude through minimalist expressions.',
+    provenance: 'Donated by the local community',
+    title: 'Elements of the Mind',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d0562',
+    artworks: [
+      '67112847eaf172ac8eb0f98e',
+      '67112847eaf172ac8eb0f97f',
+      '67112847eaf172ac8eb0f980',
+      '671f820aa6020d8fd80dd243',
+      '67112847eaf172ac8eb0f961',
+      '67112847eaf172ac8eb0f976',
+      '67112847eaf172ac8eb0f971',
+      '671fa22c0891b7fb192f9cd8',
+      '671f802c7774ba108013ab5a',
+      '67112847eaf172ac8eb0f97a',
+      '67112847eaf172ac8eb0f989',
+      '67112847eaf172ac8eb0f985',
+      '67112847eaf172ac8eb0f9ad',
+      '67112847eaf172ac8eb0f969',
+      '671f8594670694083251c182',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'A collection of surreal landscapes that challenge the boundaries of reality and perception.',
+    provenance: 'Donated by the local community',
+    title: 'Journey Through Time',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d057e',
+    artworks: [
+      '671f802c7774ba108013ab5a',
+      '67112847eaf172ac8eb0f98f',
+      '67112847eaf172ac8eb0f999',
+      '67112847eaf172ac8eb0f989',
+      '67112847eaf172ac8eb0f975',
+      '67112847eaf172ac8eb0f991',
+      '67112847eaf172ac8eb0f969',
+      '67112847eaf172ac8eb0f970',
+      '671f8e174f7fbd76ed12983b',
+      '67112847eaf172ac8eb0f963',
+      '67112847eaf172ac8eb0f966',
+      '67112847eaf172ac8eb0f977',
+      '67112847eaf172ac8eb0f972',
+      '671c0bb18745ac5b6ddc419a',
+      '67112847eaf172ac8eb0f9b2',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'A celebration of the elements—earth, fire, water, air—in various artistic forms.',
+    provenance: 'Donated by the local community',
+    title: 'Shadows and Light',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d0592',
+    artworks: [
+      '67112847eaf172ac8eb0f97f',
+      '67112847eaf172ac8eb0f984',
+      '671f7fe67774ba108013ab59',
+      '67112847eaf172ac8eb0f9a3',
+      '67112847eaf172ac8eb0f970',
+      '67112847eaf172ac8eb0f99a',
+      '671f8554670694083251c17f',
+      '67112847eaf172ac8eb0f9a4',
+      '67112847eaf172ac8eb0f96c',
+      '671c0bb18745ac5b6ddc419a',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'An eclectic display of surreal and impressionist pieces, bringing dreamscapes to life.',
+    provenance: 'Purchased from ABC Gallery',
+    title: 'Reflections of Time',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d05b0',
+    artworks: [
+      '67112847eaf172ac8eb0f9a2',
+      '67112847eaf172ac8eb0f9ae',
+      '67112847eaf172ac8eb0f9a9',
+      '67112847eaf172ac8eb0f964',
+      '67112847eaf172ac8eb0f972',
+      '67112847eaf172ac8eb0f9ad',
+      '67112847eaf172ac8eb0f98b',
+      '67112847eaf172ac8eb0f9af',
+      '67112847eaf172ac8eb0f9a0',
+      '67112847eaf172ac8eb0f95a',
+      '67112847eaf172ac8eb0f978',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'A vibrant tribute to the power of colors and how they evoke emotions.',
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Shadows and Light',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d05cb',
+    artworks: [
+      '67112847eaf172ac8eb0f970',
+      '67112847eaf172ac8eb0f95e',
+      '671f8e174f7fbd76ed12983b',
+      '67112847eaf172ac8eb0f96f',
+      '67112847eaf172ac8eb0f991',
+      '67112847eaf172ac8eb0f9a3',
+      '67112847eaf172ac8eb0f990',
+      '671f75a2a373eaac33487bbe',
+      '67112847eaf172ac8eb0f98e',
+      '67112847eaf172ac8eb0f997',
+      '67112847eaf172ac8eb0f97b',
+      '671f8552670694083251c17e',
+      '67112847eaf172ac8eb0f964',
+      '67112847eaf172ac8eb0f98d',
+    ],
+    created_at: '2024-10-28T21:55:54.997745+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'An exploration of the dynamic interplay between shadows and light, creating vivid contrasts.',
+    provenance: 'Donated by the local community',
+    title: 'The Essence of Form',
+    updated_at: '2024-10-28T21:55:54.997745+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d05e6',
+    artworks: [
+      '67112847eaf172ac8eb0f972',
+      '67112847eaf172ac8eb0f969',
+      '67112847eaf172ac8eb0f97e',
+      '67112847eaf172ac8eb0f991',
+      '671f8248a6020d8fd80dd247',
+      '67112847eaf172ac8eb0f96f',
+      '67112847eaf172ac8eb0f9ae',
+      '67112847eaf172ac8eb0f9a8',
+      '67112847eaf172ac8eb0f99f',
+      '67112847eaf172ac8eb0f97b',
+      '67112847eaf172ac8eb0f96b',
+    ],
+    created_at: '2024-10-28T21:55:54.999243+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'An artistic dive into the essence of nature, capturing its raw beauty and organic forms.',
+    provenance: 'Purchased from ABC Gallery',
+    title: 'Dreamscapes Unbound',
+    updated_at: '2024-10-28T21:55:54.999243+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d05f9',
+    artworks: [
+      '67112847eaf172ac8eb0f986',
+      '67112847eaf172ac8eb0f954',
+      '67112847eaf172ac8eb0f976',
+      '671f7fe67774ba108013ab59',
+      '67112847eaf172ac8eb0f9a3',
+      '67112847eaf172ac8eb0f961',
+      '67112847eaf172ac8eb0f958',
+      '67112847eaf172ac8eb0f984',
+      '671f8301a6020d8fd80dd24b',
+      '67112847eaf172ac8eb0f9a1',
+      '671f8248a6020d8fd80dd247',
+    ],
+    created_at: '2024-10-28T21:55:54.999243+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'An assemblage of portraits that tell the stories of diverse cultures and identities.',
+    provenance: 'Donated by the local community',
+    title: 'Echoes of Nature',
+    updated_at: '2024-10-28T21:55:54.999243+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d060c',
+    artworks: [
+      '67112847eaf172ac8eb0f973',
+      '67112847eaf172ac8eb0f981',
+      '67112847eaf172ac8eb0f98a',
+      '67112847eaf172ac8eb0f979',
+      '67112847eaf172ac8eb0f974',
+      '67112847eaf172ac8eb0f991',
+      '67112847eaf172ac8eb0f9b5',
+      '67112847eaf172ac8eb0f96e',
+      '67112847eaf172ac8eb0f953',
+      '67112847eaf172ac8eb0f99e',
+      '67112847eaf172ac8eb0f957',
+      '67112847eaf172ac8eb0f98e',
+      '67112847eaf172ac8eb0f978',
+      '67112847eaf172ac8eb0f97c',
+      '67112847eaf172ac8eb0f982',
+    ],
+    created_at: '2024-10-28T21:55:54.999243+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'A vibrant tribute to the power of colors and how they evoke emotions.',
+    provenance: 'Donated by the local community',
+    title: 'Whispers of Silence',
+    updated_at: '2024-10-28T21:55:54.999243+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d0623',
+    artworks: [
+      '67112847eaf172ac8eb0f9a3',
+      '67112847eaf172ac8eb0f987',
+      '67112847eaf172ac8eb0f97a',
+      '67112847eaf172ac8eb0f980',
+      '67112847eaf172ac8eb0f966',
+      '67112847eaf172ac8eb0f9a0',
+      '67112847eaf172ac8eb0f952',
+      '67112847eaf172ac8eb0f98b',
+      '67112847eaf172ac8eb0f995',
+      '67112847eaf172ac8eb0f9b4',
+      '67112847eaf172ac8eb0f98f',
+      '67112847eaf172ac8eb0f982',
+      '67112847eaf172ac8eb0f974',
+      '67112847eaf172ac8eb0f97e',
+      '671f8248a6020d8fd80dd247',
+    ],
+    created_at: '2024-10-28T21:55:54.999243+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'An artistic dive into the essence of nature, capturing its raw beauty and organic forms.',
+    provenance: 'Acquired from XYZ Auction House',
+    title: 'Echoes of Nature',
+    updated_at: '2024-10-28T21:55:54.999243+00:00',
+  },
+  {
+    _id: '6720086a4614f216533d0646',
+    artworks: [
+      '671f8594670694083251c182',
+      '67112847eaf172ac8eb0f9a9',
+      '671f8550670694083251c17d',
+      '67112847eaf172ac8eb0f97b',
+      '67112847eaf172ac8eb0f99d',
+      '67112847eaf172ac8eb0f971',
+      '67112847eaf172ac8eb0f993',
+      '67112847eaf172ac8eb0f9ac',
+      '67112847eaf172ac8eb0f97c',
+      '67112847eaf172ac8eb0f969',
+      '67112847eaf172ac8eb0f992',
+      '67112847eaf172ac8eb0f967',
+      '67112847eaf172ac8eb0f961',
+    ],
+    created_at: '2024-10-28T21:55:54.999747+00:00',
+    curator_id: '671126abeaf172ac8eb0f947',
+    description:
+      'A celebration of the elements—earth, fire, water, air—in various artistic forms.',
+    provenance: 'Purchased from ABC Gallery',
+    title: 'Abstract Visions',
+    updated_at: '2024-10-28T21:55:54.999747+00:00',
+  },
+];
+
 export class DataService {
   pageSize: number = 12;
   getArtworks(page: number) {
@@ -350,7 +654,27 @@ export class DataService {
     return jsonData.slice(pageStart, pageEnd);
   }
 
+  getArtwork(id: any) {
+    let dataToReturn: any[] = [];
+    jsonData.forEach(function (artwork) {
+      if (artwork['_id'] == id) {
+        dataToReturn.push(artwork);
+      }
+    });
+    return dataToReturn;
+  }
+
   getTotalArtworks() {
     return jsonData.length;
+  }
+
+  getExhibitions(page: number) {
+    let pageStart = (page - 1) * this.pageSize;
+    let pageEnd = pageStart + this.pageSize;
+    return exhibitionJsonData.slice(pageStart, pageEnd);
+  }
+
+  getTotalExhibitions() {
+    return exhibitionJsonData.length;
   }
 }

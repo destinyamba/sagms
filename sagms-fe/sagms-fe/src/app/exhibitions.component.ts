@@ -1,38 +1,44 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule, ActivatedRoute } from '@angular/router';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { DataService } from './data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'artworks',
+  selector: 'exhibitions',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, CommonModule],
   providers: [DataService],
-  templateUrl: './artworks.component.html',
-  styleUrl: './artworks.component.css',
+  templateUrl: './exhibitions.component.html',
+  styleUrl: './exhibitions.component.css',
 })
-export class ArtworksComponent {
-  title = 'Artworks';
-  artworks_list: any;
+export class ExhibitionsComponent {
+  title = 'Exhibitions';
+  exhibitions_list: any;
   page: number = 1;
   totalPages: number = 0;
   pageNumbers: number[] = [];
 
-  constructor(
-    private dataService: DataService,
-    private route: ActivatedRoute
-  ) {}
+  images = [
+    'https://i.imgur.com/Od0WSWI.jpg',
+    'https://i.imgur.com/ZoKq66D.jpg',
+    'https://i.imgur.com/PU29L0p.jpg',
+  ];
+
+  @ViewChild('carouselExhibition', { static: false })
+  carouselElement!: ElementRef;
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     if (sessionStorage['page']) {
       this.page = Number(sessionStorage['page']);
     }
-    this.loadArtworks();
+    this.loadExhibitions();
   }
 
-  loadArtworks() {
-    this.artworks_list = this.dataService.getArtworks(this.page);
+  loadExhibitions() {
+    this.exhibitions_list = this.dataService.getExhibitions(this.page);
     this.totalPages = Math.ceil(
-      this.dataService.getTotalArtworks() / this.dataService.pageSize
+      this.dataService.getTotalExhibitions() / this.dataService.pageSize
     );
     this.generatePageNumbers();
   }
@@ -41,7 +47,7 @@ export class ArtworksComponent {
     if (this.page > 1) {
       this.page--;
       sessionStorage['page'] = this.page;
-      this.loadArtworks();
+      this.loadExhibitions();
     }
   }
 
@@ -49,13 +55,13 @@ export class ArtworksComponent {
     if (this.page < this.totalPages) {
       this.page++;
       sessionStorage['page'] = this.page;
-      this.loadArtworks();
+      this.loadExhibitions();
     }
   }
 
   goToPage(page: number) {
     this.page = page;
-    this.loadArtworks();
+    this.loadExhibitions();
   }
 
   generatePageNumbers() {
@@ -77,5 +83,23 @@ export class ArtworksComponent {
       { length: end - start + 1 },
       (_, i) => start + i
     );
+  }
+
+  trackByPage(index: number, page: number): number {
+    return page;
+  }
+
+  activeSlideIndex: number = 0;
+
+  prevSlide() {
+    this.carouselElement.nativeElement.previousElementSibling.click();
+  }
+
+  nextSlide() {
+    this.carouselElement.nativeElement.nextElementSibling.click();
+  }
+
+  onSlideChange(event: any) {
+    this.activeSlideIndex = event.activeId;
   }
 }
