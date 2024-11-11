@@ -12,7 +12,7 @@
         <h2>Recent Exhibitions</h2>
         <div class="exhibition-grid">
             <div *ngFor="let exhibition of recentExhibitions" class="exhibition-card">
-                <img [src]="artworkImage" [alt]="exhibition.title" class="exhibition-image">
+                <img [src]="exhibition.artworkImage" [alt]="exhibition.title" class="exhibition-image">
                 <div class="exhibition-details">
                     <h3>{{ exhibition.title }}</h3>
                     <p class="dates"> {{ exhibition.created_at | date:'mediumDate' }} </p>

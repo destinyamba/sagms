@@ -40,7 +40,7 @@ export class ExhibitionDetailComponent implements OnInit {
       // Check if exhibition is not null
       const artworkRequests = this.exhibition.artworks.map((artworkId) =>
         this.dataService.getArtworkById(artworkId).pipe(
-          map((artwork: Artwork) => artwork.images[0]) // Get the first image from the artwork
+          map((artwork: Artwork) => artwork.images) // Get the first image from the artwork
         )
       );
 

@@ -34,53 +34,66 @@ export class HomeComponent implements OnInit {
           // Map each exhibition to include its image by fetching additional details
           this.topExhibitions = data.map((exhibition) => ({
             ...exhibition,
-            image: ''  // Placeholder for the artwork image
+            image: '', // Placeholder for the artwork image
           }));
-  
+
           // Fetch detailed data for each exhibition to get the artwork image
           this.topExhibitions.forEach((exhibition, index) => {
-            this.dataService.getExhibitionById(exhibition.exhibition_id).subscribe(
-              (exhibitionData) => {
-                const firstArtworkId = exhibitionData.artworks[0];
-                this.dataService.getArtworkById(firstArtworkId).subscribe(
-                  (artworkData) => {
-                    this.topExhibitions[index].image = artworkData.images[0];
-                  },
-                  (error) => console.error(`Error fetching artwork for exhibition ${exhibition.exhibition_id}`, error)
-                );
-              },
-              (error) => console.error(`Error fetching details for exhibition ${exhibition.exhibition_id}`, error)
-            );
+            this.dataService
+              .getExhibitionById(exhibition.exhibition_id)
+              .subscribe(
+                (exhibitionData) => {
+                  const firstArtworkId = exhibitionData.artworks[0];
+                  this.dataService.getArtworkById(firstArtworkId).subscribe(
+                    (artworkData) => {
+                      this.topExhibitions[index].image = artworkData.images;
+                    },
+                    (error) =>
+                      console.error(
+                        `Error fetching artwork for exhibition ${exhibition.exhibition_id}`,
+                        error
+                      )
+                  );
+                },
+                (error) =>
+                  console.error(
+                    `Error fetching details for exhibition ${exhibition.exhibition_id}`,
+                    error
+                  )
+              );
           });
         }
       },
-      error: (error: any) => console.error('Error fetching top exhibitions', error),
+      error: (error: any) =>
+        console.error('Error fetching top exhibitions', error),
     });
   }
-  
 
   private loadMostRecentExhibitions() {
     this.dataService.getMostRecentExhibitions().subscribe({
       next: (exhibitions: any) => {
         if (exhibitions.length > 0) {
-          const recentExhibitionId = exhibitions[0]._id;
+          this.recentExhibitions = []; // Initialize as an empty array
 
-          // Fetch the full exhibition details by ID
-          this.dataService.getExhibitionById(recentExhibitionId).subscribe(
-            (exhibitionData) => {
-              this.recentExhibitions = [exhibitionData]; // Wrap in array
+          exhibitions.forEach((exhibition: any) => {
+            // Fetch the full exhibition details by ID
+            this.dataService.getExhibitionById(exhibition._id).subscribe(
+              (exhibitionData) => {
+                this.recentExhibitions.push(exhibitionData); // Add each exhibition to the array
+                console.log(this.recentExhibitions);
 
-              // Get the first artwork ID and fetch the artwork image
-              const firstArtworkId = exhibitionData.artworks[0];
-              this.dataService.getArtworkById(firstArtworkId).subscribe(
-                (artworkData) => {
-                  this.artworkImage = artworkData.images[0];
-                },
-                (error) => console.error('Error fetching artwork data', error)
-              );
-            },
-            (error) => console.error('Error fetching exhibition data', error)
-          );
+                // Get the first artwork ID and fetch the artwork image for each exhibition
+                const firstArtworkId = exhibitionData.artworks[0];
+                this.dataService.getArtworkById(firstArtworkId).subscribe(
+                  (artworkData) => {
+                    exhibitionData.artworkImage = artworkData.images; // Assign the image to each exhibition
+                  },
+                  (error) => console.error('Error fetching artwork data', error)
+                );
+              },
+              (error) => console.error('Error fetching exhibition data', error)
+            );
+          });
         }
       },
       error: (error: any) => console.error('Error fetching exhibitions', error),

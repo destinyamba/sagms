@@ -64,7 +64,7 @@ export class ExhibitionsComponent implements AfterViewInit {
         exhibition.artworks.map((artworkId: string) =>
           this.dataService.getArtworkById(artworkId).pipe(
             map((artwork: any) => {
-              const imageUrl = artwork.images[0];
+              const imageUrl = artwork.images;
               const cacheBustedImageUrl = `${imageUrl}?v=${Date.now()}`;
               return cacheBustedImageUrl;
             })

@@ -30,7 +30,7 @@ export class ArtworkDetailComponent implements OnInit {
         if (data) {
           this.artwork = data;
           this.artworkImageUrl =
-            data.images && data.images[0] ? data.images[0] : 'Image not found';
+            data.images && data.images ? data.images : 'Image not found';
         } else {
           console.error('Artwork not found for ID:', id);
         }

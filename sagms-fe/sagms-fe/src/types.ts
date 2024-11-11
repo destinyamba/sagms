@@ -3,7 +3,7 @@ export interface Artwork {
   _id: string;
   title: string;
   description: string;
-  images: string[];
+  images: string;
   created_at: string;
   updated_at: string;
 }
@@ -16,6 +16,7 @@ export interface Exhibition {
   artworks: string[];
   created_at: string;
   updated_at: string;
+  artworkImage?: string;
 }
 
 export interface TopExhibition {
