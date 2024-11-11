@@ -1,0 +1,36 @@
+/* Centering and spacing */
+.container {
+  max-width: 800px;
+}
+
+.text-center {
+  color: #333;
+}
+
+.display-4 {
+  font-weight: 700;
+}
+
+.card {
+  background-color: #fdfdfd;
+  border-radius: 12px;
+}
+
+.card h5,
+.card h6 {
+  color: #555;
+}
+
+.card p {
+  color: #444;
+  line-height: 1.7;
+}
+
+.img-fluid {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}

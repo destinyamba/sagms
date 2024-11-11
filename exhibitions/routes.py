@@ -12,6 +12,19 @@ db = client["smart-art-gallery"]
 exhibitions = db.exhibitions
 users = db.users
 
+
+def convert_objectid(data):
+    """Recursively convert ObjectId fields to strings in a dictionary."""
+    if isinstance(data, dict):
+        return {key: convert_objectid(value) for key, value in data.items()}
+    elif isinstance(data, list):
+        return [convert_objectid(element) for element in data]
+    elif isinstance(data, ObjectId):
+        return str(data)
+    else:
+        return data
+
+
 """
    Adds exhibitions. Only curators can create exhibitions.
 """
@@ -87,6 +100,15 @@ def get_exhibitions():
     return make_response(jsonify(data_to_return), 200)
 
 
+@exhibition_blueprint.route("/api/v1.0/totalExhibitions", methods=["GET"])
+def get_total_exhibitions():
+    data_to_return = []
+    for exhibition in exhibitions.find({}, {"reviews": 0}):
+        exhibition["_id"] = str(exhibition["_id"])
+        data_to_return.append(exhibition)
+    return make_response(jsonify(len(data_to_return)), 200)
+
+
 """
    Retrieves a specific exhibition.
 """
@@ -95,7 +117,7 @@ def get_exhibitions():
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:exhibition_id>", methods=["GET"]
 )
-@jwt_required
+# @jwt_required
 def get_exhibition(exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)}, {"reviews": 0})
     if exhibition is not None:
@@ -117,31 +139,38 @@ def get_exhibition(exhibition_id):
 def update_exhibition(curator_id, exhibition_id):
     data = request.get_json()
 
+    # Find the exhibition in the database
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     if exhibition is None:
-        return make_response(jsonify({"error": "Artwork not found"}), 404)
-    elif curator_id != exhibition["curator_id"]:
+        return make_response(jsonify({"error": "Exhibition not found"}), 404)
+
+    # Check if the curator_id matches
+    if curator_id != exhibition["curator_id"]:
         return make_response(
             jsonify({"error": "Unauthorized to update exhibition"}), 401
         )
 
-    # Fields that can be updated.
+    # Fields that can be updated
     update_fields = {
         key: data[key]
-        for key in [
-            "title",
-            "description",
-            "provenance",
-            "artworks",
-        ]
+        for key in ["title", "description", "provenance", "artworks"]
         if key in data
     }
 
+    # Update the exhibition in the database
     exhibitions.update_one({"_id": ObjectId(exhibition_id)}, {"$set": update_fields})
-    updated_exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
-    updated_exhibition["_id"] = str(updated_exhibition["_id"])
 
-    return make_response(jsonify(updated_exhibition), 200)
+    # Retrieve the updated exhibition from the database
+    updated_exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
+
+    if updated_exhibition:
+        # Convert ObjectIds to strings
+        updated_exhibition = convert_objectid(updated_exhibition)
+
+        # Return the updated exhibition as a JSON response
+        return make_response(jsonify(updated_exhibition), 200)
+    else:
+        return make_response(jsonify({"error": "Failed to update exhibition"}), 500)
 
 
 """

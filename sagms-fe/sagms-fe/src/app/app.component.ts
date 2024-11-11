@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ArtworksComponent } from './artworks.component';
-import { ExhibitionsComponent } from './exhibitions.component';
-import { NavComponent } from './nav.component';
+import { ArtworksComponent } from './artworks/artworks.component';
+import { ExhibitionsComponent } from './exhibitions/exhibitions.component';
+import { NavComponent } from './navigation/nav.component';
 
 @Component({
   selector: 'app-root',

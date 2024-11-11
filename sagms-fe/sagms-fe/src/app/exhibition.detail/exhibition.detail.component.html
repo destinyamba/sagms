@@ -1,0 +1,74 @@
+<h1 class="text-center mb-4" style="margin-top: 88px">Exhibition</h1>
+<div class="container my-5">
+    <!-- Hero Section with Main Image and Title -->
+    <div class="hero-section position-relative rounded shadow-lg overflow-hidden">
+        <img [src]="artworkImages" class="w-100 hero-image" alt="{{ exhibition?.title }}">
+        <div class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center text-white">
+            <h1 class="display-4 fw-bold">{{ exhibition?.title }}</h1>
+            <p class="lead mt-2">{{ exhibition?.provenance }}</p>
+        </div>
+    </div>
+
+    <!-- Exhibition Details Section -->
+    <div class="row mt-5">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            <h2 class="fw-bold">About the Exhibition</h2>
+            <p class="mt-3 text-muted">{{ exhibition?.description }}</p>
+            <hr>
+        </div>
+
+        <!-- Sidebar Information -->
+        <div class="col-lg-4 mt-5 mt-lg-0">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Exhibition Details</h5>
+                    <p class="card-text"><strong>Created:</strong> {{ exhibition?.created_at | date: 'longDate' }}</p>
+                    <p class="card-text"><strong>Provenance:</strong> {{ exhibition?.provenance }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Carousel -->
+    <div class="carousel-container my-5">
+        <h2 class="fw-bold mb-4">Gallery</h2>
+        <div id="carouselExhibitionImages" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div *ngFor="let image of artworkImages; let i = index" class="carousel-item" [class.active]="i === 0">
+                    <img [src]="image" class="d-block w-100 rounded shadow-lg" alt="Exhibition Image">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExhibitionImages"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExhibitionImages"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Related Exhibitions Section -->
+    <!-- <div class="related-exhibitions my-5">
+        <h2 class="fw-bold mb-4">Related Exhibitions</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div *ngFor="let relatedExhibition of relatedExhibitions" class="col">
+                <div class="card h-100 shadow-sm border-0 rounded overflow-hidden">
+                    <img [src]="relatedExhibition.image" class="card-img-top" alt="{{ relatedExhibition.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title text-truncate">{{ relatedExhibition.title }}</h5>
+                        <p class="card-text text-muted">{{ relatedExhibition.description | slice:0:100 }}...</p>
+                        <a [routerLink]="['/exhibitions', relatedExhibition.id]"
+                            class="stretched-link text-decoration-none text-primary fw-bold">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

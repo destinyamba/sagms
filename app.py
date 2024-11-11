@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from pymongo import MongoClient
 from artworks.routes import artwork_blueprint
 from exhibitions.routes import exhibition_blueprint
@@ -7,6 +8,7 @@ from users.routes import user_blueprint
 import globals
 
 app = Flask(__name__)
+CORS(app)
 
 client = MongoClient(globals.MONGO_URI)
 db = client["smart-art-gallery"]

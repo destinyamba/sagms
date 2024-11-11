@@ -1,0 +1,38 @@
+<div class="home-container" style="margin-top: 88px">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">Welcome to Smart Art Gallery</h1>
+            <p class="subtitle">Discover extraordinary exhibitions and artistic excellence</p>
+        </div>
+    </section>
+
+    <!-- Recent Exhibitions -->
+    <section class="exhibitions-section">
+        <h2>Recent Exhibitions</h2>
+        <div class="exhibition-grid">
+            <div *ngFor="let exhibition of recentExhibitions" class="exhibition-card">
+                <img [src]="artworkImage" [alt]="exhibition.title" class="exhibition-image">
+                <div class="exhibition-details">
+                    <h3>{{ exhibition.title }}</h3>
+                    <p class="dates"> {{ exhibition.created_at | date:'mediumDate' }} </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Exhibitions -->
+    <section class="top-exhibitions-section">
+        <h2>Top Rated Exhibitions</h2>
+        <div class="top-exhibitions-grid">
+            <div *ngFor="let exhibition of topExhibitions" class="top-exhibition-card">
+                <div class="ranking-badge">{{exhibition.review_count}} ★</div>
+                <img [src]="exhibition.image" [alt]="exhibition.title" class="exhibition-image">
+                <div class="exhibition-details">
+                    <h3>{{ exhibition?.title }}</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

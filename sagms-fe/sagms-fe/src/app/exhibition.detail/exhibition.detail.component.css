@@ -1,0 +1,46 @@
+.hero-section {
+  position: relative;
+  height: 400px;
+  background-color: #f8f9fa;
+}
+
+.hero-image {
+  object-fit: cover;
+  height: 100%;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-container .carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.related-exhibitions .card {
+  transition: transform 0.3s ease;
+}
+
+.related-exhibitions .card:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 300px;
+  }
+
+  .carousel-container .carousel-item img {
+    height: 300px;
+  }
+}

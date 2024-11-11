@@ -68,6 +68,15 @@ def get_artworks():
     return make_response(jsonify(data_to_return), 200)
 
 
+@artwork_blueprint.route("/api/v1.0/totalArtworks", methods=["GET"])
+def get_total_artworks():
+    data_to_return = []
+    for artwork in artworks.find({}, {"reviews": 0}):
+        artwork["_id"] = str(artwork["_id"])
+        data_to_return.append(artwork)
+    return make_response(jsonify(len(data_to_return)), 200)
+
+
 """
     Retrieves details of a specific artwork.
 
@@ -81,7 +90,7 @@ def get_artworks():
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
-@jwt_required
+# @jwt_required
 def get_artwork(artwork_id):
     artwork = artworks.find_one({"_id": ObjectId(artwork_id)}, {"reviews": 0})
     if artwork is not None:
@@ -320,8 +329,8 @@ def get_average_ratings():
                     },
                 }
             },
-            {"$skip": (page_num - 1) * page_size},
-            {"$limit": page_size},
+            # {"$skip": (page_num - 1) * page_size},
+            # {"$limit": page_size},
         ]
         average_ratings = list(artworks.aggregate(pipeline))
         for artwork in average_ratings:
