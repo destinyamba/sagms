@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { ReviewsResponse } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,31 @@ export class DataService {
     );
   }
 
+  searchArtworks(title: string, page: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/artworks/search?title=${title}&pn=${page}&ps=12`
+    );
+  }
+
+  filterArtworksByDimension(
+    heightRange: { min: number; max: number },
+    widthRange: { min: number; max: number },
+    page: number
+  ): Observable<any> {
+    const params = new HttpParams()
+      .set('ps', '12')
+      .set('pn', page.toString())
+      .set('height_min', heightRange.min.toString())
+      .set('height_max', heightRange.max.toString())
+      .set('width_min', widthRange.min.toString())
+      .set('width_max', widthRange.max.toString());
+
+    return this.http.get<any>(
+      `${this.apiUrl}/artworks/filter/dimensions?ps=12&pn=${page}`,
+      { params }
+    );
+  }
+
   // EXHIBITIONS
 
   getExhibitions(page: number) {
@@ -55,5 +81,27 @@ export class DataService {
 
   getTopRatedtExhibitions(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/exhibitions/top-rated`);
+  }
+
+  // ARTWORK REVIEWS
+
+  getArtworkReviews(
+    artwork_id: string,
+    page: number
+  ): Observable<ReviewsResponse> {
+    return this.http.get<ReviewsResponse>(
+      `${this.apiUrl}/reviews/artwork/${artwork_id}?ps=5&pn=${page}`
+    );
+  }
+
+  // EXHIBITION REVIEWS
+
+  getExhibitionReviews(
+    exhibition_id: string,
+    page: number
+  ): Observable<ReviewsResponse> {
+    return this.http.get<ReviewsResponse>(
+      `${this.apiUrl}/reviews/exhibition/${exhibition_id}?ps=5&pn=${page}`
+    );
   }
 }

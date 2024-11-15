@@ -15,6 +15,12 @@ import { Artwork, Exhibition } from '../../types';
 export class ExhibitionDetailComponent implements OnInit {
   exhibition: Exhibition | null = null;
   artworkImages: string[] = [];
+  reviews: any[] = [];
+  currentPage: number = 1;
+  pageSize: number = 5;
+  totalPages: number = 1;
+  totalReviews: number = 0;
+  pageNumbers: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +33,7 @@ export class ExhibitionDetailComponent implements OnInit {
       next: (exhibition) => {
         this.exhibition = exhibition;
         this.loadArtworkImages();
+        this.getExhibitionReviews(exhibitionId, this.currentPage);
       },
       error: (error) => {
         console.error('Error fetching exhibition details:', error);
@@ -53,6 +60,52 @@ export class ExhibitionDetailComponent implements OnInit {
           console.error('Error fetching artwork images:', error);
         },
       });
+    }
+  }
+
+  getExhibitionReviews(exhibitionId: string, page: number): void {
+    this.dataService.getExhibitionReviews(exhibitionId, page).subscribe({
+      next: (data) => {
+        this.reviews = data.reviews;
+        this.currentPage = data.page;
+        this.pageSize = data.pageSize;
+        this.totalPages = data.totalPages;
+        this.totalReviews = data.totalReviews;
+        this.pageNumbers = Array.from(
+          { length: this.totalPages },
+          (_, i) => i + 1
+        );
+      },
+      error: (error) =>
+        console.error('Error fetching exhibition reviews:', error),
+    });
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchPage();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.fetchPage();
+    }
+  }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.fetchPage();
+    }
+  }
+
+  fetchPage(): void {
+    const exhibitionId = this.route.snapshot.paramMap.get('id');
+    if (exhibitionId) {
+      this.getExhibitionReviews(exhibitionId, this.currentPage);
     }
   }
 }

@@ -13,6 +13,12 @@ import { CommonModule } from '@angular/common';
 export class ArtworkDetailComponent implements OnInit {
   artwork: any;
   artworkImageUrl: string = '';
+  reviews: any[] = [];
+  currentPage: number = 1;
+  pageSize: number = 5;
+  totalPages: number = 1;
+  totalReviews: number = 0;
+  pageNumbers: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +27,10 @@ export class ArtworkDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const artworkId = this.route.snapshot.paramMap.get('id');
-    this.getArtwork(artworkId!);
+    if (artworkId) {
+      this.getArtwork(artworkId!);
+      this.getArtworkReviews(artworkId, this.currentPage);
+    }
   }
 
   getArtwork(id: string): void {
@@ -37,5 +46,50 @@ export class ArtworkDetailComponent implements OnInit {
       },
       error: (error) => console.error('Error fetching artwork data:', error),
     });
+  }
+
+  getArtworkReviews(artworkId: string, page: number): void {
+    this.dataService.getArtworkReviews(artworkId, page).subscribe({
+      next: (data) => {
+        this.reviews = data.reviews;
+        this.currentPage = data.page;
+        this.pageSize = data.pageSize;
+        this.totalPages = data.totalPages;
+        this.totalReviews = data.totalReviews;
+        this.pageNumbers = Array.from(
+          { length: this.totalPages },
+          (_, i) => i + 1
+        );
+      },
+      error: (error) => console.error('Error fetching artwork reviews:', error),
+    });
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchPage();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.fetchPage();
+    }
+  }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.fetchPage();
+    }
+  }
+
+  fetchPage(): void {
+    const artworkId = this.route.snapshot.paramMap.get('id');
+    if (artworkId) {
+      this.getArtworkReviews(artworkId, this.currentPage);
+    }
   }
 }

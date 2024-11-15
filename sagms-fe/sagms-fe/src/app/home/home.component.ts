@@ -80,7 +80,6 @@ export class HomeComponent implements OnInit {
             this.dataService.getExhibitionById(exhibition._id).subscribe(
               (exhibitionData) => {
                 this.recentExhibitions.push(exhibitionData); // Add each exhibition to the array
-                console.log(this.recentExhibitions);
 
                 // Get the first artwork ID and fetch the artwork image for each exhibition
                 const firstArtworkId = exhibitionData.artworks[0];

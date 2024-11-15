@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../data.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DimensionRange, dimensionRanges } from '../../types';
 
 @Component({
   selector: 'artworks',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule],
+  imports: [RouterOutlet, RouterModule, CommonModule, FormsModule],
   providers: [DataService],
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.css',
@@ -18,6 +20,9 @@ export class ArtworksComponent {
   totalPages: number = 0;
   pageNumbers: number[] = [];
   pageSize: number = 12;
+  searchTerm: string = '';
+  selectedDimensionRange: DimensionRange | null = null;
+  dimensionRanges = dimensionRanges;
 
   constructor(private dataService: DataService) {}
 
@@ -29,26 +34,75 @@ export class ArtworksComponent {
   }
 
   loadArtworks() {
-    // Load artworks and their ratings
-    this.dataService.getArtworks(this.page).subscribe((artworks) => {
-      this.artworks_data = artworks;
+    const trimmedSearchTerm = this.searchTerm.trim();
 
-      // Get ratings and update artworks
-      this.dataService.getAvgArtworksRating(this.page).subscribe((ratings) => {
-        this.artworks_data = this.artworks_data.map(
-          (artwork: { _id: string }) => ({
-            ...artwork,
-            average_rating:
-              ratings.find((r) => r._id === artwork._id)?.average_rating || 0,
-          })
-        );
+    if (trimmedSearchTerm) {
+      this.handleSearchArtworks(trimmedSearchTerm);
+    } else if (this.selectedDimensionRange) {
+      this.handleDimensionFilter();
+    } else {
+      this.handleLoadAllArtworks();
+    }
+  }
+
+  onDimensionFilterChange() {
+    this.page = 1;
+    this.loadArtworks();
+  }
+
+  private handleDimensionFilter() {
+    if (!this.selectedDimensionRange) return;
+
+    const filterBody = {
+      height: {
+        min: this.selectedDimensionRange.height.min,
+        max: this.selectedDimensionRange.height.max,
+      },
+      width: {
+        min: this.selectedDimensionRange.width.min,
+        max: this.selectedDimensionRange.width.max,
+      },
+    };
+
+    this.dataService
+      .filterArtworksByDimension(filterBody.height, filterBody.width, this.page)
+      .subscribe((response) => {
+        this.artworks_data = response.artworks;
+        this.totalPages = response.totalPages;
+        this.updateWithRatings();
+        this.generatePageNumbers();
       });
-    });
+  }
 
-    // Get total pages
-    this.dataService.getTotalArtworks().subscribe((totalArtworks) => {
-      this.totalPages = Math.ceil(totalArtworks / 12);
+  private handleSearchArtworks(searchTerm: string) {
+    this.dataService
+      .searchArtworks(searchTerm, this.page)
+      .subscribe((response) => {
+        this.artworks_data = response.artworks;
+        this.totalPages = response.totalPages;
+        this.updateWithRatings();
+        this.generatePageNumbers();
+      });
+  }
+
+  private handleLoadAllArtworks() {
+    this.dataService.getArtworks(this.page).subscribe((response) => {
+      this.artworks_data = response.artworks;
+      this.totalPages = response.totalPages;
+      this.updateWithRatings();
       this.generatePageNumbers();
+    });
+  }
+
+  private updateWithRatings() {
+    this.dataService.getAvgArtworksRating(this.page).subscribe((ratings) => {
+      this.artworks_data = this.artworks_data.map(
+        (artwork: { _id: string }) => ({
+          ...artwork,
+          average_rating:
+            ratings.find((r) => r._id === artwork._id)?.average_rating || 0,
+        })
+      );
     });
   }
 

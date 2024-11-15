@@ -1,5 +1,23 @@
 <h1 class="text-center mb-4" style="margin-top: 88px">Artworks</h1>
 
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="loadArtworks()"
+        placeholder="Search artworks by title..." class="search-input" />
+    <button class="search-button" (click)="loadArtworks()">
+        <i class="search-icon fas fa-search"></i>
+    </button>
+</div>
+
+<div class="dimension-filter filters-box">
+    <select class="form-select" [(ngModel)]="selectedDimensionRange" (change)="onDimensionFilterChange()">
+        <option [ngValue]="null">Select Size</option>
+        <option *ngFor="let range of dimensionRanges" [ngValue]="range">
+            {{ range.label }}
+        </option>
+    </select>
+</div>
+
+
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2" style="margin-top: 70px">
     @for(artwork of artworks_data; track artwork._id) {
     <div class="col">

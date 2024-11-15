@@ -27,12 +27,59 @@
   object-fit: cover;
 }
 
-.related-exhibitions .card {
-  transition: transform 0.3s ease;
+.reviews {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
-.related-exhibitions .card:hover {
-  transform: translateY(-5px);
+.review-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-content {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: #ddd; /* Empty star color */
+  margin-right: 4px;
+}
+
+.star.filled {
+  color: #ffd700; /* Gold color for filled stars */
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.pagination-controls button {
+  padding: 8px 16px;
+  margin: 0 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.pagination-controls span {
+  font-size: 1rem;
+  margin: 0 8px;
 }
 
 @media (max-width: 768px) {
