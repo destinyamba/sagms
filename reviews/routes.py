@@ -1,4 +1,6 @@
 import datetime
+from math import ceil
+
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -97,7 +99,7 @@ def create_exhibition_review(reviewer_id, exhibition_id):
 @review_blueprint.route(
     "/api/v1.0/reviews/artwork/<string:artwork_id>", methods=["GET"]
 )
-@jwt_required
+# @jwt_required
 def get_reviews_for_artwork(artwork_id):
     page_num, page_size = 1, 5
     if request.args.get("pn"):
@@ -111,14 +113,26 @@ def get_reviews_for_artwork(artwork_id):
     if artwork is None:
         return make_response(jsonify({"error": "Artwork not found"}), 404)
 
+    # Get all reviews for the artwork
     reviews = artwork.get("reviews", [])
+    total_reviews = len(reviews)
+    total_pages = ceil(total_reviews / page_size)
+
     paginated_reviews = reviews[page_start : page_start + page_size]
     data_to_return = []
     for review in paginated_reviews:
         review["_id"] = str(review["_id"])
         data_to_return.append(review)
 
-    return make_response(jsonify(data_to_return), 200)
+    response = {
+        "reviews": data_to_return,
+        "page": page_num,
+        "pageSize": page_size,
+        "totalReviews": total_reviews,
+        "totalPages": total_pages,
+    }
+
+    return make_response(jsonify(response), 200)
 
 
 """
@@ -201,7 +215,7 @@ def delete_exhibition_review(exhibition_id, exhibition_review_id):
 @review_blueprint.route(
     "/api/v1.0/reviews/exhibition/<string:exhibition_id>", methods=["GET"]
 )
-@jwt_required
+# @jwt_required
 def get_reviews_for_exhibition(exhibition_id):
     page_num, page_size = 1, 5
     if request.args.get("pn"):
@@ -216,6 +230,9 @@ def get_reviews_for_exhibition(exhibition_id):
         return make_response(jsonify({"error": "Exhibition not found"}), 404)
 
     reviews = exhibition.get("reviews", [])
+    total_reviews = len(reviews)
+    total_pages = ceil(total_reviews / page_size)
+
     paginated_reviews = reviews[page_start : page_start + page_size]
     data_to_return = []
 
@@ -223,4 +240,12 @@ def get_reviews_for_exhibition(exhibition_id):
         review["_id"] = str(review["_id"])
         data_to_return.append(review)
 
-    return make_response(jsonify(data_to_return), 200)
+    response = {
+        "reviews": data_to_return,
+        "page": page_num,
+        "pageSize": page_size,
+        "totalReviews": total_reviews,
+        "totalPages": total_pages,
+    }
+
+    return make_response(jsonify(response), 200)

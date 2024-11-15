@@ -1,4 +1,6 @@
 import datetime
+from math import ceil
+
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from marshmallow import ValidationError
@@ -61,11 +63,23 @@ def get_artworks():
         page_size = int(request.args.get("ps"))
     page_start = page_size * (page_num - 1)
 
+    page_start = page_size * (page_num - 1)
+    total_artworks = artworks.count_documents({})  # Get total count of artworks
+    total_pages = ceil(total_artworks / page_size)  # Calculate total pages
+
     data_to_return = []
     for artwork in artworks.find({}, {"reviews": 0}).skip(page_start).limit(page_size):
         artwork["_id"] = str(artwork["_id"])
         data_to_return.append(artwork)
-    return make_response(jsonify(data_to_return), 200)
+
+    response = {
+        "artworks": data_to_return,
+        "page": page_num,
+        "pageSize": page_size,
+        "totalArtworks": total_artworks,
+        "totalPages": total_pages,
+    }
+    return make_response(jsonify(response), 200)
 
 
 @artwork_blueprint.route("/api/v1.0/totalArtworks", methods=["GET"])
@@ -358,13 +372,30 @@ def get_average_ratings():
 
 @artwork_blueprint.route("/api/v1.0/artworks/filter/dimensions", methods=["GET"])
 def filter_by_artwork_dimensions():
+    page_num = int(request.args.get("pn", 1))
+    page_size = int(request.args.get("ps", 12))
     try:
-        height_range = request.json.get("height_range", {})
-        width_range = request.json.get("width_range", {})
-        min_height = height_range.get("min", None)
-        max_height = height_range.get("max", None)
-        min_width = width_range.get("min", None)
-        max_width = width_range.get("max", None)
+        min_height = (
+            float(request.args.get("height_min"))
+            if request.args.get("height_min")
+            else None
+        )
+        max_height = (
+            float(request.args.get("height_max"))
+            if request.args.get("height_max")
+            else None
+        )
+        min_width = (
+            float(request.args.get("width_min"))
+            if request.args.get("width_min")
+            else None
+        )
+        max_width = (
+            float(request.args.get("width_max"))
+            if request.args.get("width_max")
+            else None
+        )
+
         match_criteria = {}
 
         if min_height is not None or max_height is not None:
@@ -380,6 +411,9 @@ def filter_by_artwork_dimensions():
                 match_criteria["dimensions.width_cm"]["$gte"] = min_width
             if max_width is not None:
                 match_criteria["dimensions.width_cm"]["$lte"] = max_width
+
+        total_artworks = artworks.count_documents(match_criteria)
+        total_pages = (total_artworks + page_size - 1) // page_size
 
         pipeline = [
             {"$match": match_criteria},
@@ -397,13 +431,24 @@ def filter_by_artwork_dimensions():
                     "provenance": 1,
                 }
             },
+            {"$skip": (page_num - 1) * page_size},
+            {"$limit": page_size},
         ]
+
         filtered_artworks = list(artworks.aggregate(pipeline))
 
         for artwork in filtered_artworks:
             artwork["_id"] = str(artwork["_id"])
 
-        return make_response(jsonify(filtered_artworks), 200)
+        response = {
+            "artworks": filtered_artworks,
+            "page": page_num,
+            "pageSize": page_size,
+            "totalArtworks": total_artworks,
+            "totalPages": total_pages,
+        }
+
+        return make_response(jsonify(response), 200)
 
     except Exception as e:
         return make_response(jsonify({"Unable to filter by dimensions.": str(e)}), 500)
@@ -420,15 +465,35 @@ def filter_by_artwork_dimensions():
 @artwork_blueprint.route("/api/v1.0/artworks/search", methods=["GET"])
 def search_artworks_by_title():
     title = request.args.get("title", "").strip().lower()
+    page_num = int(request.args.get("pn", 1))
+    page_size = int(request.args.get("ps", 12))
+
     if not title:
         return make_response(jsonify({"error": "Title parameter is required"}), 400)
 
-    artworks_cursor = artworks.find(
-        {"title": {"$regex": title, "$options": "i"}}, {"reviews": 0}
+    # Calculate the total number of artworks that match the search
+    total_artworks = artworks.count_documents(
+        {"title": {"$regex": title, "$options": "i"}}
     )
+    total_pages = (total_artworks + page_size - 1) // page_size
+
+    artworks_cursor = (
+        artworks.find({"title": {"$regex": title, "$options": "i"}}, {"reviews": 0})
+        .skip((page_num - 1) * page_size)
+        .limit(page_size)
+    )
+
     data_to_return = []
     for artwork in artworks_cursor:
         artwork["_id"] = str(artwork["_id"])
         data_to_return.append(artwork)
 
-    return make_response(jsonify(data_to_return), 200)
+    response = {
+        "artworks": data_to_return,
+        "page": page_num,
+        "pageSize": page_size,
+        "totalArtworks": total_artworks,
+        "totalPages": total_pages,
+    }
+
+    return make_response(jsonify(response), 200)
