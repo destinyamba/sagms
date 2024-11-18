@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { DataService } from '../data.service';
 import { CommonModule } from '@angular/common';
 import { forkJoin, map } from 'rxjs';
-import { Artwork, Exhibition } from '../../types';
+import { Artwork, Exhibition } from '../../../types';
+import { DataService } from '../../data.service';
+import { Pagination } from '../pagination/pagination.component';
 
 @Component({
   selector: 'exhibition-detail',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, Pagination],
   templateUrl: './exhibition.detail.component.html',
   styleUrl: './exhibition.detail.component.css',
 })
@@ -81,25 +82,17 @@ export class ExhibitionDetailComponent implements OnInit {
     });
   }
 
-  previousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.fetchPage();
-    }
-  }
-
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.fetchPage();
-    }
-  }
-
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.fetchPage();
     }
+  }
+
+  onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    sessionStorage['currentPage'] = this.currentPage;
+    this.getExhibitionReviews(this.exhibition!._id, newPage);
   }
 
   fetchPage(): void {

@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DimensionRange, dimensionRanges } from '../../types';
+import { DimensionRange, dimensionRanges } from '../../../types';
+import { Pagination } from '../pagination/pagination.component';
 
 @Component({
   selector: 'artworks',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule, FormsModule],
-  providers: [DataService],
+  imports: [RouterOutlet, RouterModule, CommonModule, FormsModule, Pagination],
+  providers: [DataService, Pagination],
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.css',
 })
@@ -106,22 +107,6 @@ export class ArtworksComponent {
     });
   }
 
-  previousPage() {
-    if (this.page > 1) {
-      this.page--;
-      sessionStorage['page'] = this.page;
-      this.loadArtworks();
-    }
-  }
-
-  nextPage() {
-    if (this.page < this.totalPages) {
-      this.page++;
-      sessionStorage['page'] = this.page;
-      this.loadArtworks();
-    }
-  }
-
   goToPage(page: number) {
     this.page = page;
     sessionStorage['page'] = this.page;
@@ -146,5 +131,11 @@ export class ArtworksComponent {
       { length: end - start + 1 },
       (_, i) => start + i
     );
+  }
+
+  onPageChange(newPage: number): void {
+    this.page = newPage;
+    sessionStorage['page'] = this.page;
+    this.loadArtworks();
   }
 }

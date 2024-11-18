@@ -1,8 +1,8 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Exhibition, TopExhibition } from '../../types';
-import { DataService } from '../data.service';
+import { Exhibition, TopExhibition } from '../../../types';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'home',

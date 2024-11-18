@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
+import { Pagination } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, Pagination],
   templateUrl: './artwork.detail.component.html',
   styleUrl: './artwork.detail.component.css',
 })
@@ -84,6 +85,12 @@ export class ArtworkDetailComponent implements OnInit {
       this.currentPage = page;
       this.fetchPage();
     }
+  }
+
+  onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    sessionStorage['currentPage'] = this.currentPage;
+    this.getArtworkReviews(this.artwork._id, newPage);
   }
 
   fetchPage(): void {

@@ -1,15 +1,16 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { forkJoin, map } from 'rxjs';
+import { Pagination } from '../pagination/pagination.component';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'exhibitions',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule],
+  imports: [RouterOutlet, RouterModule, CommonModule, Pagination],
   providers: [DataService],
   templateUrl: './exhibitions.component.html',
   styleUrl: './exhibitions.component.css',
@@ -147,5 +148,11 @@ export class ExhibitionsComponent implements AfterViewInit {
 
   trackById(index: number, exhibition: any): string {
     return exhibition._id;
+  }
+
+  onPageChange(newPage: number): void {
+    this.page = newPage;
+    sessionStorage['page'] = this.page;
+    this.loadExhibitions();
   }
 }
