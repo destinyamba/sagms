@@ -1,13 +1,13 @@
 <h1 class="text-center mb-4" style="margin-top: 88px">Artist Related Artworks</h1>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2" style="margin-top: 70px">
-    <div class="col" *ngFor="let artwork of artworks_data; trackBy: trackById">
+    <div class="col" *ngFor="let artwork of artworks_data; ">
         <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer">
             <div class="position-relative">
                 <!-- <img src="{{artwork.images}}" class="card-img-top" alt="Artwork Image"
                     style="height: 250px; object-fit: cover;" /> -->
                 <div class="card-img-overlay" style="padding-top: 8px; padding-left: 8px;">
-                    <button (click)="deleteArtwork()" type="button" class="btn btn-danger btn-sm">DELETE</button>
+                    <button (click)="deleteArtwork(artwork)" type="button" class="btn btn-danger btn-sm">DELETE</button>
                 </div>
                 <div class="card-img-overlay d-flex justify-content-end align-items-start p-2">
                     <span class="badge bg-secondary opacity-75">{{ artwork.category }}</span>

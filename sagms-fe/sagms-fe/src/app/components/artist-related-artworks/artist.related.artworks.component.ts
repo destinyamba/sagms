@@ -30,7 +30,6 @@ export class ArtistRelatedArtworksComponent {
   pageNumbers: number[] = [];
 
   constructor(
-    private router: Router,
     private dataService: DataService,
     private authService: AuthService
   ) {}
@@ -83,15 +82,16 @@ export class ArtistRelatedArtworksComponent {
     return item._id;
   }
 
-  deleteArtwork() {
-    this.dataService
-      .deleteArtwork(this.artwork.artist_id, this.artwork._id)
-      .subscribe({
-        next: () => this.router.navigate(['/related-artworks']),
-        error: (error) => {
-          console.error('Delete failed', error);
-          alert('Failed to delete artwork');
-        },
-      });
+  deleteArtwork(artwork: any) {
+    const artistId = this.authService.getUserId() ?? '';
+    this.dataService.deleteArtwork(artistId, artwork._id).subscribe({
+      next: () => {
+        this.getArtworks();
+      },
+      error: (error) => {
+        console.error('Delete failed', error);
+        alert('Failed to delete artwork');
+      },
+    });
   }
 }
