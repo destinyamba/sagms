@@ -343,8 +343,6 @@ def get_average_ratings():
                     },
                 }
             },
-            # {"$skip": (page_num - 1) * page_size},
-            # {"$limit": page_size},
         ]
         average_ratings = list(artworks.aggregate(pipeline))
         for artwork in average_ratings:
