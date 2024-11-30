@@ -21,4 +21,21 @@
             </li>
         </ul>
     </div>
+    <div class="form-inline ms-auto mx-4">
+        <!-- <auth0-button></auth0-button> -->
+        <ng-container *ngIf="!authService.isLoggedIn()">
+
+            <a routerLink="/login" class="btn btn-primary btn-md  btn-light">LOGIN</a>
+        </ng-container>
+
+        <ng-container *ngIf="authService.isLoggedIn()">
+            <div class="d-flex gap-4">
+                <button *ngIf="authService.isAdmin()" class="btn btn-logout btn-light">
+                    <a class="text-decoration-none text-black" routerLink="/register">REGISTER</a>
+                </button>
+                <button (click)="logout()" class="btn btn-logout btn-light">LOGOUT</button>
+            </div>
+        </ng-container>
+
+    </div>
 </div>

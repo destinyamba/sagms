@@ -1,4 +1,16 @@
 <h1 class="text-center mb-4" style="margin-top: 88px">Exhibitions</h1>
+<div class="d-flex justify-content-between">
+    <div class="dimension-filter filters-box">
+
+    </div>
+    <div class="mx-4">
+        <button class="btn btn-primary btn-md" (click)="openAddExhibitionModal()" data-bs-target="#addExhibitionModal">
+            ADD EXHIBITION
+        </button>
+    </div>
+</div>
+<!-- ADD EXHIBITION MODAL -->
+<add-item-modal></add-item-modal>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2">
     <div *ngFor="let exhibition of exhibitions_data; trackBy: trackById" class="col">
         <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer"

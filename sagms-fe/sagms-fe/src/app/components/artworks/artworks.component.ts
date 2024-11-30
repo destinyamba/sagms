@@ -1,20 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DimensionRange, dimensionRanges } from '../../../types';
 import { Pagination } from '../pagination/pagination.component';
+import { AddItemModalComponent } from '../modals/modal.component';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'artworks',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule, FormsModule, Pagination],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    CommonModule,
+    FormsModule,
+    Pagination,
+    FormsModule,
+    AddItemModalComponent,
+  ],
   providers: [DataService, Pagination],
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ArtworksComponent {
+  @ViewChild(AddItemModalComponent) modalComponent!: AddItemModalComponent;
   title = 'Artworks';
   artworks_data: any;
   page: number = 1;
@@ -25,7 +37,48 @@ export class ArtworksComponent {
   selectedDimensionRange: DimensionRange | null = null;
   dimensionRanges = dimensionRanges;
 
-  constructor(private dataService: DataService) {}
+  showModal: boolean = false;
+
+  artworkFields = [
+    { id: 'artworkTitle', label: 'Title', type: 'text', key: 'title' },
+    {
+      id: 'artworkDescription',
+      label: 'Description',
+      type: 'textarea',
+      key: 'description',
+    },
+    { id: 'artworkCategory', label: 'Category', type: 'text', key: 'category' },
+    {
+      id: 'artworkMaterials',
+      label: 'Materials',
+      type: 'text',
+      key: 'materials',
+    },
+    {
+      id: 'artworkHeight',
+      label: 'Height (cm)',
+      type: 'number',
+      key: 'height_cm',
+    },
+    {
+      id: 'artworkWidth',
+      label: 'Width (cm)',
+      type: 'number',
+      key: 'width_cm',
+    },
+    {
+      id: 'artworkProvenance',
+      label: 'Provenance',
+      type: 'text',
+      key: 'provenance',
+    },
+    { id: 'artworkImages', label: 'Image URLs', type: 'text', key: 'images' },
+  ];
+
+  constructor(
+    private dataService: DataService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     if (sessionStorage['page']) {
@@ -137,5 +190,17 @@ export class ArtworksComponent {
     this.page = newPage;
     sessionStorage['page'] = this.page;
     this.loadArtworks();
+  }
+
+  openAddArtworkModal() {
+    this.modalComponent.openModal('artwork');
+  }
+
+  onModalClose() {
+    this.showModal = false;
+  }
+
+  isArtist() {
+    return this.authService.getUserRole() === 'ARTIST';
   }
 }

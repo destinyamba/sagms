@@ -1,0 +1,46 @@
+<div class="modal fade" id="{{modalId}}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{modalId}}Label">{{modalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div *ngFor="let field of formFields">
+                        <div class="mb-3" *ngIf="field.type !== 'row'">
+                            <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                            <input *ngIf="field.type === 'text'" id="{{field.id}}" type="text"
+                                [(ngModel)]="formData[field.name]" name="{{field.name}}" class="form-control" />
+                            <textarea *ngIf="field.type === 'textarea'" id="{{field.id}}"
+                                [(ngModel)]="formData[field.name]" name="{{field.name}}"
+                                class="form-control"></textarea>
+                            <input *ngIf="field.type === 'number'" id="{{field.id}}" type="number"
+                                [(ngModel)]="formData[field.name]" name="{{field.name}}" class="form-control" />
+                        </div>
+                        <!-- Add this block for the 'materials' field -->
+                        <div *ngIf="field.name === 'materials'" class="mb-3">
+                            <label for="materials" class="form-label">Materials</label>
+                            <input id="materials" type="text" [(ngModel)]="formData.materials" name="materials"
+                                class="form-control" placeholder="Separate materials with commas" />
+                            <small class="form-text text-muted">Separate materials by commas (e.g., "Oil, Paint,
+                                Palette").</small>
+                        </div>
+                        <div *ngIf="field.type === 'row'" class="row">
+                            <div *ngFor="let subField of field.fields" class="col">
+                                <label for="{{subField.id}}" class="form-label">{{subField.label}}</label>
+                                <input *ngIf="subField.type === 'number'" id="{{subField.id}}" type="number"
+                                    [(ngModel)]="formData[subField.name]" name="{{subField.name}}"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="submitData()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

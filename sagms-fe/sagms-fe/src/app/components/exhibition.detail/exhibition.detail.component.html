@@ -54,6 +54,7 @@
     <h2>Reviews</h2>
     <div class="reviews">
         <div *ngFor="let review of reviews" class="review-card">
+            <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
             <p class="review-content">{{ review.content }}</p>
             <div class="review-meta">
                 <div class="review-rating">

@@ -8,15 +8,26 @@
     </button>
 </div>
 
-<div class="dimension-filter filters-box">
-    <select class="form-select" [(ngModel)]="selectedDimensionRange" (change)="onDimensionFilterChange()">
-        <option [ngValue]="null">Select Size</option>
-        <option *ngFor="let range of dimensionRanges" [ngValue]="range">
-            {{ range.label }}
-        </option>
-    </select>
+
+<div class="d-flex justify-content-between">
+    <div class="dimension-filter filters-box">
+        <select class="form-select" [(ngModel)]="selectedDimensionRange" (change)="onDimensionFilterChange()">
+            <option [ngValue]="null">Select Size</option>
+            <option *ngFor="let range of dimensionRanges" [ngValue]="range">
+                {{ range.label }}
+            </option>
+        </select>
+    </div>
+    <div class="mx-4">
+        <button *ngIf="isArtist()" class="btn btn-primary btn-md" (click)="openAddArtworkModal()"
+            data-bs-target="#addArtworkModal">
+            ADD ARTWORK
+        </button>
+    </div>
 </div>
 
+<!-- ADD ARTWORK MODAL -->
+<add-item-modal></add-item-modal>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2" style="margin-top: 70px">
     @for(artwork of artworks_data; track artwork._id) {

@@ -4,24 +4,34 @@ import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { forkJoin, map } from 'rxjs';
 import { Pagination } from '../pagination/pagination.component';
+import { AddItemModalComponent } from '../modals/modal.component';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'exhibitions',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule, Pagination],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    CommonModule,
+    Pagination,
+    AddItemModalComponent,
+  ],
   providers: [DataService],
   templateUrl: './exhibitions.component.html',
   styleUrl: './exhibitions.component.css',
 })
 export class ExhibitionsComponent implements AfterViewInit {
+  @ViewChild(AddItemModalComponent) modalComponent!: AddItemModalComponent;
   title = 'Exhibitions';
   exhibitions_list: any;
   exhibitions_data: any;
   page: number = 1;
   totalPages: number = 0;
   pageNumbers: number[] = [];
+
+  showModal: boolean = false;
 
   @ViewChild('carouselExhibition', { static: false })
   carouselElement!: ElementRef;
@@ -154,5 +164,13 @@ export class ExhibitionsComponent implements AfterViewInit {
     this.page = newPage;
     sessionStorage['page'] = this.page;
     this.loadExhibitions();
+  }
+
+  openAddExhibitionModal() {
+    this.modalComponent.openModal('exhibition');
+  }
+
+  onModalClose() {
+    this.showModal = false;
   }
 }

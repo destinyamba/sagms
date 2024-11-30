@@ -1,0 +1,45 @@
+<div class="register-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        <h2>Register New User</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" formControlName="role" class="form-control">
+                <option value="USER">User</option>
+                <option value="ARTIST">Artist</option>
+                <option value="ADMIN">Admin</option>
+            </select>
+        </div>
+
+        <div *ngIf="registerForm.get('role').value === 'ARTIST'" class="form-group">
+            <label for="biography">Biography</label>
+            <textarea id="biography" formControlName="biography" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || isLoading">
+            {{ isLoading ? 'Registering...' : 'Register' }}
+        </button>
+
+        <div *ngIf="successMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+        </div>
+    </form>
+</div>

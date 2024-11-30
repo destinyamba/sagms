@@ -9,7 +9,7 @@
   height: 60vh;
   min-height: 400px;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../../public/sagms_hero.jpeg");
+    url("../../../../public/sagms_hero.jpeg");
   background-size: cover;
   background-position: center;
   display: flex;

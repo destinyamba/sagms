@@ -37,6 +37,7 @@ export interface Review {
   created_at: string;
   rating: number;
   reviewer_id: string;
+  username: string;
 }
 
 export interface ReviewsResponse {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '../pagination/pagination.component';
@@ -23,6 +23,7 @@ export class ArtworkDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private dataService: DataService
   ) {}
 
@@ -98,5 +99,17 @@ export class ArtworkDetailComponent implements OnInit {
     if (artworkId) {
       this.getArtworkReviews(artworkId, this.currentPage);
     }
+  }
+
+  deleteArtwork() {
+    this.dataService
+      .deleteArtwork(this.artwork.artist_id, this.artwork._id)
+      .subscribe({
+        next: () => this.router.navigate(['/artworks']),
+        error: (error) => {
+          console.error('Delete failed', error);
+          alert('Failed to delete artwork');
+        },
+      });
   }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ReviewsResponse } from '../types';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class DataService {
   private apiUrl = 'http://127.0.0.1:5000/api/v1.0';
   pageSize = 12;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   // ARTWORKS
 
@@ -36,6 +37,33 @@ export class DataService {
   searchArtworks(title: string, page: number): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}/artworks/search?title=${title}&pn=${page}&ps=12`
+    );
+  }
+
+  // add an artwork
+  addArtwork(artistId: string, artworkData: any): Observable<any> {
+    const token = this.authService.getToken();
+
+    if (!token) {
+      throw new Error('Token is missing. User might not be authenticated.');
+    }
+    const headers = new HttpHeaders({
+      'x-access-token': token, // Send token in x-access-token header
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any>(
+      `${this.apiUrl}/artworks/${artistId}`,
+      artworkData,
+      { headers }
+    );
+  }
+
+  // edit an artwork
+
+  // delete an artwork
+  deleteArtwork(artistId: string, artworkId: string) {
+    return this.http.delete<any>(
+      `${this.apiUrl}/artworks/${artistId}/${artworkId}`
     );
   }
 

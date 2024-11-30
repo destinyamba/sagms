@@ -1,7 +1,18 @@
 <div class="container my-50" style="margin-top: 88px;" *ngIf="artwork">
     <!-- Title and Artist Information -->
-    <h1 class="text-center display-4">{{ artwork?.title }}</h1>
-    <p class="text-center text-muted mb-4"><strong>Category:</strong> {{ artwork?.category }}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                <h1 class="text-center display-4">{{ artwork?.title }}</h1>
+                <p class="text-center text-muted mb-4"><strong>Category:</strong> {{ artwork?.category }}</p>
+            </div>
+            <div class="col">
+                <button (click)="deleteArtwork()" type="button" class="btn btn-danger">DELETE</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Main Artwork Image -->
     <div class="text-center mb-5">
@@ -55,6 +66,7 @@
     <h2>Reviews</h2>
     <div class="reviews">
         <div *ngFor="let review of reviews" class="review-card">
+            <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
             <p class="review-content">{{ review.content }}</p>
             <div class="review-meta">
                 <div class="review-rating">
@@ -66,7 +78,8 @@
             </div>
         </div>
         <!-- Pagination Controls -->
-        <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="goToPage($event)">
+        <app-pagination *ngIf="reviews" [currentPage]="currentPage" [totalPages]="totalPages"
+            (pageChange)="goToPage($event)">
         </app-pagination>
     </div>
 
