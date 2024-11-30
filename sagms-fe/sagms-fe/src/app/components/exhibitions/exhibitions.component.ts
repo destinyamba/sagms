@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { forkJoin, map } from 'rxjs';
 import { Pagination } from '../pagination/pagination.component';
 import { AddItemModalComponent } from '../modals/modal.component';
-
+import { AuthService } from '../../auth.service';
 declare var bootstrap: any;
 
 @Component({
@@ -35,7 +35,10 @@ export class ExhibitionsComponent implements AfterViewInit {
 
   @ViewChild('carouselExhibition', { static: false })
   carouselElement!: ElementRef;
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     if (sessionStorage['page']) {
@@ -172,5 +175,9 @@ export class ExhibitionsComponent implements AfterViewInit {
 
   onModalClose() {
     this.showModal = false;
+  }
+
+  isCurator() {
+    return this.authService.getUserRole() === 'CURATOR';
   }
 }

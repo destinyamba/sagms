@@ -19,6 +19,12 @@
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/exhibitions']">Exhibitions</a>
             </li>
+            <li *ngIf="isArtist()" class="nav-item">
+                <a class="nav-link" [routerLink]="['/related-artworks']">Related Artworks</a>
+            </li>
+            <li *ngIf="isCurator()" class="nav-item">
+                <a class="nav-link" [routerLink]="['/related-exhibitions']">Related Exhibitions</a>
+            </li>
         </ul>
     </div>
     <div class="form-inline ms-auto mx-4">

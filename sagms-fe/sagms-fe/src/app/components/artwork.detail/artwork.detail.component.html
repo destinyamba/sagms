@@ -7,11 +7,13 @@
                 <h1 class="text-center display-4">{{ artwork?.title }}</h1>
                 <p class="text-center text-muted mb-4"><strong>Category:</strong> {{ artwork?.category }}</p>
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-center align-items-start" style="padding-top: 20px;">
                 <button (click)="deleteArtwork()" type="button" class="btn btn-danger">DELETE</button>
             </div>
         </div>
+
     </div>
+
 
 
     <!-- Main Artwork Image -->

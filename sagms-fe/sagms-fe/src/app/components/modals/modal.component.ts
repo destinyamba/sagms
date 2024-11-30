@@ -96,9 +96,9 @@ export class AddItemModalComponent {
           type: 'text',
         },
         {
-          id: 'exhibitionImages',
-          label: 'Image URLs',
-          name: 'images',
+          id: 'artworks',
+          label: 'Artworks',
+          name: 'artworks',
           type: 'text',
         },
       ];

@@ -16,6 +16,7 @@ export const routes: Routes = [
   { path: 'exhibitions/:id', component: ExhibitionDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'related-artworks', component: ArtworksComponent },
 ];
 
 @NgModule({

@@ -40,7 +40,6 @@ export class DataService {
     );
   }
 
-  // add an artwork
   addArtwork(artistId: string, artworkData: any): Observable<any> {
     const token = this.authService.getToken();
 
@@ -60,7 +59,6 @@ export class DataService {
 
   // edit an artwork
 
-  // delete an artwork
   deleteArtwork(artistId: string, artworkId: string) {
     const token = this.authService.getToken();
 

@@ -17,4 +17,12 @@ export class NavComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  isArtist() {
+    return this.authService.getUserRole() === 'ARTIST';
+  }
+
+  isCurator() {
+    return this.authService.getUserRole() === 'CURATOR';
+  }
 }
