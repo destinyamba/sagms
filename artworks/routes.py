@@ -104,7 +104,7 @@ def get_total_artworks():
 
 
 @artwork_blueprint.route("/api/v1.0/artworks/<string:artwork_id>", methods=["GET"])
-# @jwt_required
+@jwt_required
 def get_artwork(artwork_id):
     artwork = artworks.find_one({"_id": ObjectId(artwork_id)}, {"reviews": 0})
     if artwork is not None:
