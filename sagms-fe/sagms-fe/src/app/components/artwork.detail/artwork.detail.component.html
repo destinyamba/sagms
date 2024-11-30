@@ -2,19 +2,10 @@
     <!-- Title and Artist Information -->
     <div class="container">
         <div class="row">
-            <div class="col"></div>
-            <div class="col-6">
-                <h1 class="text-center display-4">{{ artwork?.title }}</h1>
-                <p class="text-center text-muted mb-4"><strong>Category:</strong> {{ artwork?.category }}</p>
-            </div>
-            <div class="col d-flex justify-content-center align-items-start" style="padding-top: 20px;">
-                <button (click)="deleteArtwork()" type="button" class="btn btn-danger">DELETE</button>
-            </div>
+            <h1 class="text-center display-4">{{ artwork?.title }}</h1>
+            <p class="text-center text-muted mb-4"><strong>Category:</strong> {{ artwork?.category }}</p>
         </div>
-
     </div>
-
-
 
     <!-- Main Artwork Image -->
     <div class="text-center mb-5">
@@ -65,8 +56,9 @@
         </div>
     </div>
 
-    <h2>Reviews</h2>
-    <div class="reviews">
+
+    <div class="reviews" *ngIf="reviews">
+        <h2>Reviews</h2>
         <div *ngFor="let review of reviews" class="review-card">
             <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
             <p class="review-content">{{ review.content }}</p>

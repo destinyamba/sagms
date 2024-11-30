@@ -20,7 +20,13 @@ export class DataService {
   }
 
   getArtworkById(id: string): Observable<any> {
-    const artwork = this.http.get<any>(`${this.apiUrl}/artworks/${id}`);
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    const artwork = this.http.get<any>(`${this.apiUrl}/artworks/${id}`, {
+      headers,
+    });
     return artwork ? artwork : throwError(() => new Error('Artwork not found'));
   }
 
@@ -92,6 +98,17 @@ export class DataService {
       `${this.apiUrl}/artworks/filter/dimensions?ps=12&pn=${page}`,
       { params }
     );
+  }
+
+  getArtistRelatedArtworks(artistId: string) {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/artworks/related/${artistId}`, {
+      headers,
+    });
   }
 
   // EXHIBITIONS

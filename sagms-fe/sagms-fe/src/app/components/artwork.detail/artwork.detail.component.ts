@@ -100,16 +100,4 @@ export class ArtworkDetailComponent implements OnInit {
       this.getArtworkReviews(artworkId, this.currentPage);
     }
   }
-
-  deleteArtwork() {
-    this.dataService
-      .deleteArtwork(this.artwork.artist_id, this.artwork._id)
-      .subscribe({
-        next: () => this.router.navigate(['/artworks']),
-        error: (error) => {
-          console.error('Delete failed', error);
-          alert('Failed to delete artwork');
-        },
-      });
-  }
 }
