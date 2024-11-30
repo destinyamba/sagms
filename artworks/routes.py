@@ -237,13 +237,13 @@ def update_artwork(artist_id, artwork_id):
 @artwork_blueprint.route(
     "/api/v1.0/artworks/<string:artist_id>/<string:artwork_id>", methods=["DELETE"]
 )
-# @jwt_required com
+@jwt_required
 def delete_artwork(artist_id, artwork_id):
     artwork = artworks.find_one({"_id": ObjectId(artwork_id)})
     if artwork is None:
         return make_response(jsonify({"error": "Artwork not found"}), 404)
-    # elif artist_id != artwork["artist_id"]:
-    #     return make_response(jsonify({"error": "Unauthorized to delete artwork"}), 401)
+    elif artist_id != artwork["artist_id"]:
+        return make_response(jsonify({"error": "Unauthorized to delete artwork"}), 401)
     else:
         artworks.delete_one({"_id": ObjectId(artwork_id)})
         return make_response(jsonify({}), 200)
