@@ -12,4 +12,6 @@ __pycache__/
 *.db
 *.sqlite3
 *.DS_Store
+sagms-fe/node_modules
+sagms-fe/package-lock.json
 ---

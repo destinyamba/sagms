@@ -57,8 +57,10 @@ def login():
 
                 token = jwt.encode(
                     {
+                        "user_id": str(user["_id"]),
                         "user": auth.username,
                         "admin": user["role"] == "ADMIN",
+                        "role": user["role"],
                         "exp": datetime.datetime.now(datetime.timezone.utc)
                         + datetime.timedelta(minutes=30),
                     },

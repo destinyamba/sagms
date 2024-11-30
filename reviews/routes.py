@@ -122,6 +122,13 @@ def get_reviews_for_artwork(artwork_id):
     data_to_return = []
     for review in paginated_reviews:
         review["_id"] = str(review["_id"])
+
+        if "username" not in review:
+            user = users.find_one({"_id": ObjectId(review["reviewer_id"])})
+            review["username"] = (
+                user.get("username", "Unknown User") if user else "Unknown User"
+            )
+
         data_to_return.append(review)
 
     response = {
@@ -238,6 +245,13 @@ def get_reviews_for_exhibition(exhibition_id):
 
     for review in paginated_reviews:
         review["_id"] = str(review["_id"])
+
+        if "username" not in review:
+            user = users.find_one({"_id": ObjectId(review["reviewer_id"])})
+            review["username"] = (
+                user.get("username", "Unknown User") if user else "Unknown User"
+            )
+
         data_to_return.append(review)
 
     response = {
