@@ -48,7 +48,7 @@ export class DataService {
       throw new Error('Token is missing. User might not be authenticated.');
     }
     const headers = new HttpHeaders({
-      'x-access-token': token, // Send token in x-access-token header
+      'x-access-token': token,
       'Content-Type': 'application/json',
     });
     return this.http.post<any>(
@@ -62,8 +62,18 @@ export class DataService {
 
   // delete an artwork
   deleteArtwork(artistId: string, artworkId: string) {
+    const token = this.authService.getToken();
+
+    if (!token) {
+      throw new Error('Token is missing. User might not be authenticated.');
+    }
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+      'Content-Type': 'application/json',
+    });
     return this.http.delete<any>(
-      `${this.apiUrl}/artworks/${artistId}/${artworkId}`
+      `${this.apiUrl}/artworks/${artistId}/${artworkId}`,
+      { headers }
     );
   }
 

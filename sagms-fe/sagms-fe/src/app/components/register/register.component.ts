@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
+  imports: [CommonModule, ReactiveFormsModule],
+  standalone: true,
 })
 export class RegisterComponent {
   isLoading = false;

@@ -26,7 +26,7 @@
             </select>
         </div>
 
-        <div *ngIf="registerForm.get('role').value === 'ARTIST'" class="form-group">
+        <div *ngIf="registerForm.get('role')?.value === 'ARTIST'" class="form-group">
             <label for="biography">Biography</label>
             <textarea id="biography" formControlName="biography" class="form-control"></textarea>
         </div>

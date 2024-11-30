@@ -27,7 +27,6 @@ export class AddItemModalComponent {
 
   // Open the modal and configure it
   openModal(type: string) {
-    console.log(this.authService.getUserId());
     if (type === 'artwork') {
       this.modalId = 'addArtworkModal';
       this.modalTitle = 'Add Artwork';
