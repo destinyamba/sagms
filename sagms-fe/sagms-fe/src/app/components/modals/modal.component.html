@@ -7,30 +7,34 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div *ngFor="let field of formFields">
-                        <div class="mb-3" *ngIf="field.type !== 'row'">
-                            <label for="{{field.id}}" class="form-label">{{field.label}}</label>
-                            <input *ngIf="field.type === 'text'" id="{{field.id}}" type="text"
-                                [(ngModel)]="formData[field.name]" name="{{field.name}}" class="form-control" />
-                            <textarea *ngIf="field.type === 'textarea'" id="{{field.id}}"
-                                [(ngModel)]="formData[field.name]" name="{{field.name}}"
-                                class="form-control"></textarea>
-                            <input *ngIf="field.type === 'number'" id="{{field.id}}" type="number"
-                                [(ngModel)]="formData[field.name]" name="{{field.name}}" class="form-control" />
+                    <div *ngFor="let field of formFields; let fieldIndex = index">
+                        <!-- Standard fields -->
+                        <div class="mb-3" *ngIf="field.type !== 'row' && field.type">
+                            <label [attr.for]="field.id + '_' + fieldIndex" class="form-label">{{field.label}}</label>
+                            <input *ngIf="field.type === 'text'" [id]="field.id + '_' + fieldIndex" type="text"
+                                [(ngModel)]="formData[field.name]" [name]="field.name" class="form-control" />
+                            <textarea *ngIf="field.type === 'textarea'" [id]="field.id + '_' + fieldIndex"
+                                [(ngModel)]="formData[field.name]" [name]="field.name" class="form-control"></textarea>
+                            <input *ngIf="field.type === 'number'" [id]="field.id + '_' + fieldIndex" type="number"
+                                [(ngModel)]="formData[field.name]" [name]="field.name" class="form-control" />
                         </div>
-                        <!-- Add this block for the 'materials' field -->
+
+                        <!-- Materials field -->
                         <div *ngIf="field.name === 'materials'" class="mb-3">
-                            <label for="materials" class="form-label">Materials</label>
-                            <input id="materials" type="text" [(ngModel)]="formData.materials" name="materials"
+                            <label for="materialsInput" class="form-label">Materials</label>
+                            <input id="materialsInput" type="text" [(ngModel)]="formData.materials" name="materials"
                                 class="form-control" placeholder="Separate materials with commas" />
                             <small class="form-text text-muted">Separate materials by commas (e.g., "Oil, Paint,
                                 Palette").</small>
                         </div>
+
+                        <!-- Row fields -->
                         <div *ngIf="field.type === 'row'" class="row">
-                            <div *ngFor="let subField of field.fields" class="col">
-                                <label for="{{subField.id}}" class="form-label">{{subField.label}}</label>
-                                <input *ngIf="subField.type === 'number'" id="{{subField.id}}" type="number"
-                                    [(ngModel)]="formData[subField.name]" name="{{subField.name}}"
+                            <div *ngFor="let subField of field.fields; let subFieldIndex = index" class="col">
+                                <label [attr.for]="subField.id + '_' + subFieldIndex"
+                                    class="form-label">{{subField.label}}</label>
+                                <input *ngIf="subField.type === 'number'" [id]="subField.id + '_' + subFieldIndex"
+                                    type="number" [(ngModel)]="formData[subField.name]" [name]="subField.name"
                                     class="form-control" />
                             </div>
                         </div>

@@ -64,6 +64,22 @@ export class DataService {
   }
 
   // edit an artwork
+  editArtwork(
+    artistId: string,
+    artworkId: string,
+    artworkData: any
+  ): Observable<any> {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+
+    return this.http.put<any>(
+      `${this.apiUrl}/artworks/${artistId}/${artworkId}`,
+      artworkData,
+      { headers }
+    );
+  }
 
   deleteArtwork(artistId: string, artworkId: string) {
     const token = this.authService.getToken();

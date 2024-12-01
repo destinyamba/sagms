@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Pagination } from '../pagination/pagination.component';
 import { AuthService } from '../../auth.service';
+import { AddItemModalComponent } from '../modals/modal.component';
+declare var bootstrap: any;
 
 @Component({
   selector: 'artist-related-artworks',
@@ -16,12 +18,14 @@ import { AuthService } from '../../auth.service';
     FormsModule,
     Pagination,
     FormsModule,
+    AddItemModalComponent,
   ],
   providers: [DataService, Pagination],
   templateUrl: './artist.related.artworks.component.html',
   styleUrl: './artist.related.artworks.component.css',
 })
 export class ArtistRelatedArtworksComponent {
+  @ViewChild(AddItemModalComponent) modalComponent!: AddItemModalComponent;
   artwork: any;
   page: number = 1;
   artworks_data: any;
@@ -78,8 +82,8 @@ export class ArtistRelatedArtworksComponent {
     this.getArtworks();
   }
 
-  trackById(item: any): string {
-    return item._id;
+  trackByArtworkId(artwork: any): string {
+    return artwork._id;
   }
 
   deleteArtwork(artwork: any) {
@@ -93,5 +97,37 @@ export class ArtistRelatedArtworksComponent {
         alert('Failed to delete artwork');
       },
     });
+  }
+
+  openEditArtworkModal(artwork: any) {
+    this.modalComponent.openModal('artwork', artwork);
+    this.getArtworks();
+  }
+
+  updateArtwork(data: any) {
+    const artistId = this.authService.getUserId() ?? '';
+    const updatedArtwork = {
+      ...data,
+      materials: data.materials
+        ? data.materials.split(',').map((m: string) => m.trim())
+        : [],
+    };
+
+    this.dataService
+      .editArtwork(artistId, updatedArtwork._id, updatedArtwork)
+      .subscribe({
+        next: () => {
+          this.getArtworks(); // Refresh artwork list
+          const modalElement = document.getElementById('editArtworkModal');
+          if (modalElement) {
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+          }
+        },
+        error: (err) => {
+          console.error('Failed to update artwork', err);
+          alert('Failed to update artwork');
+        },
+      });
   }
 }
