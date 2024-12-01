@@ -1,8 +1,11 @@
 import datetime
-import globals
+from math import ceil
+
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
+
+import globals
 from users.routes import jwt_required
 
 exhibition_blueprint = Blueprint("exhibition", __name__)
@@ -211,26 +214,35 @@ def delete_exhibition(curator_id, exhibition_id):
 )
 @jwt_required
 def get_related_exhibitions_by_curator(curator_id):
-    page_num, page_size = 1, 10
+    page_num, page_size = 1, 12
     if request.args.get("pn"):
         page_num = int(request.args.get("pn"))
     if request.args.get("ps"):
         page_size = int(request.args.get("ps"))
+
     page_start = page_size * (page_num - 1)
+    total_exhibitions = exhibitions.count_documents({})  # Get total count of artworks
+    total_pages = ceil(total_exhibitions / page_size)
 
     data_to_return = []
 
-    exhibitions_cursor = (
-        exhibitions.find({"curator_id": curator_id}).skip(page_start).limit(page_size)
-    )
-
-    for exhibition in exhibitions_cursor:
+    for exhibition in (
+        exhibitions.find({"curator_id": curator_id}, {"reviews": 0})
+        .sort("created_at", -1)
+        .skip(page_start)
+        .limit(page_size)
+    ):
         exhibition["_id"] = str(exhibition["_id"])
-        for review in exhibition.get("reviews", []):
-            review["_id"] = str(review["_id"])
         data_to_return.append(exhibition)
 
-    return make_response(jsonify(data_to_return), 200)
+    response = {
+        "exhibitions": data_to_return,
+        "page": page_num,
+        "pageSize": page_size,
+        "totalExhibitions": total_exhibitions,
+        "totalPages": total_pages,
+    }
+    return make_response(jsonify(response), 200)
 
 
 """
