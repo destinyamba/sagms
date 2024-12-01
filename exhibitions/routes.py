@@ -182,11 +182,11 @@ def update_exhibition(curator_id, exhibition_id):
 
 
 @exhibition_blueprint.route(
-    "/api/v1.0/exhibitions/<string:curator_id>/<string:exhibition_id>",
+    "/api/v1.0/exhibitions/<string:exhibition_id>",
     methods=["DELETE"],
 )
 @jwt_required
-def delete_exhibition(curator_id, exhibition_id):
+def delete_exhibition(exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)})
     if exhibition is None:
         return make_response(jsonify({"error": "Exhibition not found"}), 404)
