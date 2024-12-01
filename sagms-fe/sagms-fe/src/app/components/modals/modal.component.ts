@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../data.service';
 import { AuthService } from '../../auth.service';
@@ -19,6 +19,9 @@ export class AddItemModalComponent {
   modalTitle!: string;
   formFields!: any[];
   formData: any = {};
+  exhibitions_data: any;
+  pageSize: number = 12;
+  totalPages: number = 0;
   isEditMode: boolean = false;
   itemIdToEdit: string | null = null;
 
@@ -171,7 +174,7 @@ export class AddItemModalComponent {
     const artworkData = {
       ...data,
       materials: data.materials
-        ? data.materials.split(',').map((material: string) => material.trim())
+        ? data.materials.split(', ').map((material: string) => material.trim())
         : [],
     };
     this.dataService.addArtwork(artistId, artworkData).subscribe({
@@ -189,14 +192,24 @@ export class AddItemModalComponent {
   }
 
   submitExhibition(data: any) {
-    const exhibitionData = { ...data };
-    // this.dataService.addExhibition(exhibitionData).subscribe({
-    //   next: (response) => {
-    //     console.log('Exhibition created successfully:', response);
-    //   },
-    //   error: (err) => {
-    //     console.error('Error creating exhibition:', err);
-    //   },
-    // });
+    const curatorId = this.authService.getUserId() ?? '';
+    const exhibitionData = {
+      ...data,
+      artworks: data.artworks
+        ? data.artworks.split(', ').map((artworks: string) => artworks.trim())
+        : [],
+    };
+    this.dataService.createExhibition(exhibitionData, curatorId).subscribe({
+      next: () => {
+        const modalElement = document.getElementById(this.modalId);
+        if (modalElement) {
+          const modal = bootstrap.Modal.getInstance(modalElement);
+          modal.hide();
+        }
+      },
+      error: (err) => {
+        console.error('Error creating exhibition:', err);
+      },
+    });
   }
 }

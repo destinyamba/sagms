@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NgModule } from '@angular/core';
 import { ArtistRelatedArtworksComponent } from './components/artist-related-artworks/artist.related.artworks.component';
+import { CuratorRelatedExhibitionsComponent } from './components/curator-related-exhibitions/curator.related.exhibitions.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'related-artworks', component: ArtistRelatedArtworksComponent },
+  {
+    path: 'related-exhibitions',
+    component: CuratorRelatedExhibitionsComponent,
+  },
 ];
 
 @NgModule({

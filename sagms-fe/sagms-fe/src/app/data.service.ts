@@ -158,8 +158,43 @@ export class DataService {
     return this.http.get<any[]>(`${this.apiUrl}/exhibitions/top-rated`);
   }
 
-  // create exhibition
-  // delete exhibition
+  getCuratorRelatedExhibitions(curatorId: string) {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+
+    return this.http.get<any>(
+      `${this.apiUrl}/exhibitions/related/${curatorId}`,
+      {
+        headers,
+      }
+    );
+  }
+
+  createExhibition(exhibition: any, curatorId: string): Observable<any> {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    return this.http.post(
+      `${this.apiUrl}/exhibitions/${curatorId}`,
+      exhibition,
+      {
+        headers,
+      }
+    );
+  }
+
+  deleteExhibition(exhibitionId: string): Observable<any> {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    return this.http.delete(`${this.apiUrl}/exhibitions/${exhibitionId}`, {
+      headers,
+    });
+  }
   // update exhibition
 
   // ARTWORK REVIEWS

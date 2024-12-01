@@ -1,21 +1,29 @@
 <h1 class="text-center mb-4" style="margin-top: 88px">Exhibitions</h1>
 
-<!-- ADD EXHIBITION MODAL -->
+<div class="mx-4">
+    <button class="btn btn-primary btn-md" (click)="openAddExhibitionModal()" data-bs-target="#addExhibitionModal">
+        ADD EXHIBITION
+    </button>
+</div>
 <add-item-modal></add-item-modal>
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2">
-    <div *ngFor="let exhibition of exhibitions_data; trackBy: trackById" class="col">
-        <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer"
-            [routerLink]="['/exhibitions', exhibition._id]">
-            <!-- <div #carouselExhibition [id]="'carouselExhibition-' + exhibition._id" class="carousel slide"
-                data-bs-ride="carousel">
-                <div class="carousel-inner" style="height: 250px;">
-                    <div *ngFor="let image of exhibition.artworks_images; let i = index" class="carousel-item"
-                        [class.active]="i === activeSlideIndex">
-                        <img [src]="image" class="d-block w-100" alt="Exhibition Image" loading="lazy">
-                    </div>
-                </div>
 
-            </div> -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2">
+    <div *ngFor="let exhibition of exhibitions_data; trackBy: trackByExhibitionId" class="col">
+        <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer">
+            <!-- <div #carouselExhibition [id]="'carouselExhibition-' + exhibition._id" class="carousel slide"
+            data-bs-ride="carousel">
+            <div class="carousel-inner" style="height: 250px;">
+                <div *ngFor="let image of exhibition.artworks_images; let i = index" class="carousel-item"
+                    [class.active]="i === activeSlideIndex">
+                    <img [src]="image" class="d-block w-100" alt="Exhibition Image" loading="lazy">
+                </div>
+            </div>
+
+        </div> -->
+            <div class="card-img-overlay" style="padding-top: 8px; padding-left: 8px;">
+                <button (click)="deleteExhibition(exhibition)" type="button"
+                    class="btn btn-danger btn-sm">DELETE</button>
+            </div>
             <div class="card-body p-4">
                 <h5 class="card-title text-truncate">{{ exhibition.title }}</h5>
                 <p class="card-text text-muted" id="description-{{ exhibition._id }}">
