@@ -117,7 +117,7 @@ def get_total_exhibitions():
 @exhibition_blueprint.route(
     "/api/v1.0/exhibitions/<string:exhibition_id>", methods=["GET"]
 )
-# @jwt_required
+@jwt_required
 def get_exhibition(exhibition_id):
     exhibition = exhibitions.find_one({"_id": ObjectId(exhibition_id)}, {"reviews": 0})
     if exhibition is not None:

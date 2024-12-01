@@ -134,7 +134,13 @@ export class DataService {
   }
 
   getExhibitionById(id: string): Observable<any> {
-    const exhibition = this.http.get(`${this.apiUrl}/exhibitions/${id}`);
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    const exhibition = this.http.get(`${this.apiUrl}/exhibitions/${id}`, {
+      headers,
+    });
     return exhibition
       ? exhibition
       : throwError(() => new Error('Exhibition not found'));
@@ -151,6 +157,10 @@ export class DataService {
   getTopRatedtExhibitions(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/exhibitions/top-rated`);
   }
+
+  // create exhibition
+  // delete exhibition
+  // update exhibition
 
   // ARTWORK REVIEWS
 
