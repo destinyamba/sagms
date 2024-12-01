@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Pagination } from '../pagination/pagination.component';
 import { AuthService } from '../../auth.service';
 import { AddItemModalComponent } from '../modals/modal.component';
+import { forkJoin, map } from 'rxjs';
 declare var bootstrap: any;
 
 @Component({
@@ -32,7 +33,10 @@ export class CuratorRelatedExhibitionsComponent {
   pageSize: number = 12;
   totalPages: number = 0;
   pageNumbers: number[] = [];
+  activeSlideIndex: number = 0;
 
+  @ViewChild('carouselExhibition', { static: false })
+  carouselElement!: ElementRef;
   constructor(
     private dataService: DataService,
     private authService: AuthService
@@ -45,6 +49,41 @@ export class CuratorRelatedExhibitionsComponent {
     this.getExhibitions();
   }
 
+  ngAfterViewInit() {
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach((carousel: any) => {
+      new bootstrap.Carousel(carousel);
+    });
+  }
+
+  loadArtworksForExhibitions() {
+    const artworkRequests = this.exhibitions_data.map((exhibition: any) => {
+      // Fetch artwork data for each exhibition
+      return forkJoin(
+        exhibition.artworks.map((artworkId: string) =>
+          this.dataService.getArtworkById(artworkId).pipe(
+            map((artwork: any) => {
+              const imageUrl = artwork.images;
+              const cacheBustedImageUrl = `${imageUrl}?v=${Date.now()}`;
+              return cacheBustedImageUrl;
+            })
+          )
+        )
+      ).pipe(
+        map((images) => {
+          return {
+            ...exhibition,
+            artworks_images: images, // Add images to the exhibition data
+          };
+        })
+      );
+    });
+
+    forkJoin(artworkRequests).subscribe((exhibitionsWithImages) => {
+      this.exhibitions_data = exhibitionsWithImages; // Update exhibitions data with images
+    });
+  }
+
   getExhibitions() {
     const curatorId = this.authService.getUserId() ?? '';
 
@@ -52,6 +91,7 @@ export class CuratorRelatedExhibitionsComponent {
       .getCuratorRelatedExhibitions(curatorId)
       .subscribe((response) => {
         this.exhibitions_data = response.exhibitions;
+        this.loadArtworksForExhibitions();
         this.totalPages = response.totalPages;
         this.generatePageNumbers();
       });
@@ -100,11 +140,20 @@ export class CuratorRelatedExhibitionsComponent {
   }
 
   openEditExhibitionModal(exhibition: any) {
-    this.modalComponent.openModal('exhibition', exhibition);
-    this.getExhibitions();
+    const editableExhibition = {
+      ...exhibition,
+      _id: exhibition._id,
+      title: exhibition.title,
+      description: exhibition.description,
+      provenance: exhibition.provenance,
+      artworks: exhibition.artworks ? exhibition.artworks.join(', ') : '',
+    };
+
+    this.modalComponent.openModal('exhibition', editableExhibition);
   }
 
   openAddExhibitionModal() {
     this.modalComponent.openModal('exhibition');
+    console.log(this.getExhibitions());
   }
 }

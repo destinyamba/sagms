@@ -63,7 +63,6 @@ export class DataService {
     );
   }
 
-  // edit an artwork
   editArtwork(
     artistId: string,
     artworkId: string,
@@ -195,7 +194,23 @@ export class DataService {
       headers,
     });
   }
-  // update exhibition
+
+  editExhibition(
+    curatorId: string,
+    exhibitionId: string,
+    exhibitionData: any
+  ): Observable<any> {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+
+    return this.http.put<any>(
+      `${this.apiUrl}/exhibitions/${curatorId}/${exhibitionId}`,
+      exhibitionData,
+      { headers }
+    );
+  }
 
   // ARTWORK REVIEWS
 

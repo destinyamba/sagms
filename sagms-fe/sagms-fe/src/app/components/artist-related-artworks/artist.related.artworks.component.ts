@@ -117,7 +117,7 @@ export class ArtistRelatedArtworksComponent {
       .editArtwork(artistId, updatedArtwork._id, updatedArtwork)
       .subscribe({
         next: () => {
-          this.getArtworks(); // Refresh artwork list
+          this.getArtworks();
           const modalElement = document.getElementById('editArtworkModal');
           if (modalElement) {
             const modal = bootstrap.Modal.getInstance(modalElement);

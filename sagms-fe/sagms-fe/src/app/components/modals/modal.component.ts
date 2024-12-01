@@ -23,6 +23,7 @@ export class AddItemModalComponent {
   pageSize: number = 12;
   totalPages: number = 0;
   isEditMode: boolean = false;
+  isEditExhibition: boolean = false;
   itemIdToEdit: string | null = null;
 
   constructor(
@@ -30,11 +31,10 @@ export class AddItemModalComponent {
     private authService: AuthService
   ) {}
 
-  // Open the modal and configure it
   openModal(type: string, itemData?: any) {
-    this.isEditMode = !!itemData;
     const uniqueSuffix = '_' + Math.random().toString(36).substr(2, 9);
     if (type === 'artwork') {
+      this.isEditMode = !!itemData;
       this.modalId = 'addArtworkModal';
       this.modalTitle = this.isEditMode ? 'Edit Artwork' : 'Add Artwork';
       this.formFields = [
@@ -93,8 +93,11 @@ export class AddItemModalComponent {
       this.formData = this.isEditMode ? { ...itemData } : {};
       this.itemIdToEdit = this.isEditMode ? itemData.id : null;
     } else if (type === 'exhibition') {
+      this.isEditExhibition = !!itemData;
       this.modalId = 'addExhibitionModal';
-      this.modalTitle = 'Add Exhibition';
+      this.modalTitle = this.isEditExhibition
+        ? 'Edit Exhibition'
+        : 'Add Exhibition';
       this.formFields = [
         { id: 'exhibitionTitle', label: 'Title', name: 'title', type: 'text' },
         {
@@ -116,7 +119,8 @@ export class AddItemModalComponent {
           type: 'text',
         },
       ];
-      this.formData = {};
+      this.formData = this.isEditExhibition ? { ...itemData } : {};
+      this.itemIdToEdit = this.isEditExhibition ? itemData.id : null;
     }
 
     const modalElement = document.getElementById(this.modalId);
@@ -129,6 +133,8 @@ export class AddItemModalComponent {
   submitData() {
     if (this.isEditMode) {
       this.updateArtwork(this.formData);
+    } else if (this.isEditExhibition) {
+      this.updateExhibition(this.formData);
     } else {
       if (this.modalId === 'addArtworkModal') {
         this.submitArtwork(this.formData);
@@ -163,7 +169,6 @@ export class AddItemModalComponent {
           }
           modal.hide();
         }
-        console.log('Artwork updated successfully.');
       },
       error: (err) => console.error('Error updating artwork:', err),
     });
@@ -211,5 +216,33 @@ export class AddItemModalComponent {
         console.error('Error creating exhibition:', err);
       },
     });
+  }
+
+  updateExhibition(data: any) {
+    const curatorId = this.authService.getUserId() ?? '';
+    const updatedData = {
+      title: data.title,
+      description: data.description,
+      artworks: Array.isArray(data.artworks)
+        ? data.artworks.map((artwork: string) => artwork.trim())
+        : [],
+      provenance: data.provenance,
+    };
+
+    this.dataService
+      .editExhibition(curatorId, data._id, updatedData)
+      .subscribe({
+        next: () => {
+          const modalElement = document.getElementById(this.modalId);
+          if (modalElement) {
+            let modal = bootstrap.Modal.getInstance(modalElement);
+            if (!modal) {
+              modal = new bootstrap.Modal(modalElement);
+            }
+            modal.hide();
+          }
+        },
+        error: (err) => console.error('Error updating exhibition:', err),
+      });
   }
 }
