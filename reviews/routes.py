@@ -1,6 +1,6 @@
 import datetime
 from math import ceil
-
+from datetime import datetime
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -118,7 +118,7 @@ def get_reviews_for_artwork(artwork_id):
     total_reviews = len(reviews)
     total_pages = ceil(total_reviews / page_size)
 
-    paginated_reviews = reviews[page_start : page_start + page_size]
+    paginated_reviews = reviews[::-1][page_start : page_start + page_size]
     data_to_return = []
     for review in paginated_reviews:
         review["_id"] = str(review["_id"])
