@@ -68,7 +68,7 @@
                         <i class="star" [ngClass]="{'filled': i < review.rating}">★</i>
                     </ng-container>
                 </div>
-                <span class="review-date">{{ review.created_at | date: 'shortTime' }}</span>
+                <span class="review-date">{{ review.created_at | date: 'longDate' }}</span>
             </div>
         </div>
         <!-- Pagination Controls -->
