@@ -99,7 +99,7 @@ def create_exhibition_review(reviewer_id, exhibition_id):
 @review_blueprint.route(
     "/api/v1.0/reviews/artwork/<string:artwork_id>", methods=["GET"]
 )
-# @jwt_required
+@jwt_required
 def get_reviews_for_artwork(artwork_id):
     page_num, page_size = 1, 5
     if request.args.get("pn"):
