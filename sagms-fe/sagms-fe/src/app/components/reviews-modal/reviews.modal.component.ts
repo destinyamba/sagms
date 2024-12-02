@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pagination } from '../pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../data.service';
@@ -14,7 +14,10 @@ declare const bootstrap: any;
   styleUrl: './reviews.modal.component.css',
 })
 export class ReviewsModalComponent {
-  @Input() artworkId!: string;
+  @Input() artworkId?: string;
+  @Input() exhibitionId?: string;
+  @Output() reviewAdded = new EventEmitter<void>();
+
   modalId!: string;
 
   constructor(
@@ -39,8 +42,11 @@ export class ReviewsModalComponent {
       content: reviewContent,
       rating: reviewRating,
     };
-
-    this.addReview(reviewData);
+    if (this.artworkId) {
+      this.createArtworkReview(reviewData);
+    } else {
+      this.createExhibitionReview(reviewData);
+    }
   }
 
   openModal() {
@@ -52,13 +58,32 @@ export class ReviewsModalComponent {
     }
   }
 
-  addReview(data: any) {
+  createArtworkReview(data: any) {
     const reviewerId = this.authService.getUserId() ?? '';
     const reviewData = { ...data, artworkId: this.artworkId };
     this.dataService
-      .addArtworkReview(reviewerId, this.artworkId, reviewData)
+      .addArtworkReview(reviewerId, this.artworkId ?? '', reviewData)
       .subscribe({
-        next: () => this.closeModal(),
+        next: () => {
+          this.reviewAdded.emit();
+          this.closeModal();
+        },
+        error: (err) => {
+          console.error('Error submitting artwork review', err);
+        },
+      });
+  }
+
+  createExhibitionReview(data: any) {
+    const reviewerId = this.authService.getUserId() ?? '';
+    const reviewData = { ...data, exhibitionId: this.exhibitionId ?? '' };
+    this.dataService
+      .addExhibitionReview(reviewerId, this.exhibitionId ?? '', reviewData)
+      .subscribe({
+        next: () => {
+          this.closeModal();
+          this.reviewAdded.emit();
+        },
         error: (err) => {
           console.error('Error submitting artwork review', err);
         },

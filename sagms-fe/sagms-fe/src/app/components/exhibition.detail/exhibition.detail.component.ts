@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { forkJoin, map } from 'rxjs';
 import { Artwork, Exhibition } from '../../../types';
 import { DataService } from '../../data.service';
 import { Pagination } from '../pagination/pagination.component';
+import { ReviewsModalComponent } from '../reviews-modal/reviews.modal.component';
 
 @Component({
   selector: 'exhibition-detail',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, Pagination],
+  imports: [RouterOutlet, CommonModule, Pagination, ReviewsModalComponent],
   templateUrl: './exhibition.detail.component.html',
   styleUrl: './exhibition.detail.component.css',
 })
 export class ExhibitionDetailComponent implements OnInit {
+  @ViewChild(ReviewsModalComponent) modalComponent!: ReviewsModalComponent;
+
   exhibition: Exhibition | null = null;
   artworkImages: string[] = [];
   reviews: any[] = [];
@@ -22,6 +25,7 @@ export class ExhibitionDetailComponent implements OnInit {
   totalPages: number = 1;
   totalReviews: number = 0;
   pageNumbers: number[] = [];
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,8 +37,8 @@ export class ExhibitionDetailComponent implements OnInit {
     this.dataService.getExhibitionById(exhibitionId).subscribe({
       next: (exhibition) => {
         this.exhibition = exhibition;
-        this.loadArtworkImages();
         this.getExhibitionReviews(exhibitionId, this.currentPage);
+        this.loadArtworkImages();
       },
       error: (error) => {
         console.error('Error fetching exhibition details:', error);
@@ -65,6 +69,7 @@ export class ExhibitionDetailComponent implements OnInit {
   }
 
   getExhibitionReviews(exhibitionId: string, page: number): void {
+    this.isLoading = true;
     this.dataService.getExhibitionReviews(exhibitionId, page).subscribe({
       next: (data) => {
         this.reviews = data.reviews;
@@ -76,6 +81,7 @@ export class ExhibitionDetailComponent implements OnInit {
           { length: this.totalPages },
           (_, i) => i + 1
         );
+        this.isLoading = false;
       },
       error: (error) =>
         console.error('Error fetching exhibition reviews:', error),
@@ -99,6 +105,20 @@ export class ExhibitionDetailComponent implements OnInit {
     const exhibitionId = this.route.snapshot.paramMap.get('id');
     if (exhibitionId) {
       this.getExhibitionReviews(exhibitionId, this.currentPage);
+    }
+  }
+
+  isReviewsEmpty(): boolean {
+    return !this.isLoading && this.totalReviews === 0;
+  }
+
+  openExhibitionReviewModal() {
+    this.modalComponent.openModal();
+  }
+
+  reloadReviews(): void {
+    if (this.exhibition) {
+      this.getExhibitionReviews(this.exhibition._id, this.currentPage);
     }
   }
 }

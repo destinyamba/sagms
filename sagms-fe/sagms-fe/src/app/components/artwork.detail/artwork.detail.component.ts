@@ -115,4 +115,10 @@ export class ArtworkDetailComponent implements OnInit {
   openArtworkReviewModal() {
     this.modalComponent.openModal();
   }
+
+  reloadReviews(): void {
+    if (this.artwork) {
+      this.getArtworkReviews(this.artwork._id, this.currentPage);
+    }
+  }
 }

@@ -246,8 +246,29 @@ export class DataService {
     exhibition_id: string,
     page: number
   ): Observable<ReviewsResponse> {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
     return this.http.get<ReviewsResponse>(
-      `${this.apiUrl}/reviews/exhibition/${exhibition_id}?ps=5&pn=${page}`
+      `${this.apiUrl}/reviews/exhibition/${exhibition_id}?ps=5&pn=${page}`,
+      { headers }
+    );
+  }
+
+  addExhibitionReview(
+    reviewerId: string,
+    exhibitionId: string,
+    reviewData: any
+  ) {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    return this.http.post(
+      `${this.apiUrl}/reviews/exhibition/${reviewerId}/${exhibitionId}`,
+      reviewData,
+      { headers }
     );
   }
 }

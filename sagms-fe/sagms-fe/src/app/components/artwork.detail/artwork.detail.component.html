@@ -60,7 +60,7 @@
         <h2>Reviews</h2>
         <div>
             <button class="btn btn-primary btn-sm" (click)="openArtworkReviewModal()">ADD REVIEW</button>
-            <reviews-modal [artworkId]="artwork._id"></reviews-modal>
+            <reviews-modal [artworkId]="artwork._id" (reviewAdded)="reloadReviews()"></reviews-modal>
         </div>
 
     </div>
@@ -75,7 +75,7 @@
                         <i class="star" [ngClass]="{'filled': i < review.rating}">★</i>
                     </ng-container>
                 </div>
-                <span class="review-date">{{ review.created_at | date: 'longDate' }}</span>
+                <span class="review-date">{{ review.created_at | date: 'medium' }}</span>
             </div>
         </div>
         <!-- Pagination Controls -->
