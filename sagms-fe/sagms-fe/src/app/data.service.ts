@@ -228,6 +228,18 @@ export class DataService {
     );
   }
 
+  addArtworkReview(reviewerId: string, artworkId: string, reviewData: any) {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    return this.http.post(
+      `${this.apiUrl}/reviews/artwork/${reviewerId}/${artworkId}`,
+      reviewData,
+      { headers }
+    );
+  }
+
   // EXHIBITION REVIEWS
 
   getExhibitionReviews(

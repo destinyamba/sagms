@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '../pagination/pagination.component';
+import { ReviewsModalComponent } from '../reviews-modal/reviews.modal.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, Pagination],
+  imports: [RouterOutlet, CommonModule, Pagination, ReviewsModalComponent],
   templateUrl: './artwork.detail.component.html',
   styleUrl: './artwork.detail.component.css',
 })
 export class ArtworkDetailComponent implements OnInit {
+  @ViewChild(ReviewsModalComponent) modalComponent!: ReviewsModalComponent;
   artwork: any;
   artworkImageUrl: string = '';
   reviews: any[] = [];
@@ -108,5 +110,9 @@ export class ArtworkDetailComponent implements OnInit {
 
   isReviewsEmpty(): boolean {
     return !this.isLoading && this.totalReviews === 0;
+  }
+
+  openArtworkReviewModal() {
+    this.modalComponent.openModal();
   }
 }
