@@ -20,18 +20,18 @@ export class ArtworkDetailComponent implements OnInit {
   totalPages: number = 1;
   totalReviews: number = 0;
   pageNumbers: number[] = [];
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private dataService: DataService
   ) {}
 
   ngOnInit(): void {
     const artworkId = this.route.snapshot.paramMap.get('id');
     if (artworkId) {
-      this.getArtwork(artworkId!);
       this.getArtworkReviews(artworkId, this.currentPage);
+      this.getArtwork(artworkId!);
     }
   }
 
@@ -51,6 +51,7 @@ export class ArtworkDetailComponent implements OnInit {
   }
 
   getArtworkReviews(artworkId: string, page: number): void {
+    this.isLoading = true;
     this.dataService.getArtworkReviews(artworkId, page).subscribe({
       next: (data) => {
         this.reviews = data.reviews;
@@ -62,8 +63,12 @@ export class ArtworkDetailComponent implements OnInit {
           { length: this.totalPages },
           (_, i) => i + 1
         );
+        this.isLoading = false;
       },
-      error: (error) => console.error('Error fetching artwork reviews:', error),
+      error: (error) => {
+        console.error('Error fetching artwork reviews:', error),
+          (this.isLoading = false);
+      },
     });
   }
 
@@ -99,5 +104,9 @@ export class ArtworkDetailComponent implements OnInit {
     if (artworkId) {
       this.getArtworkReviews(artworkId, this.currentPage);
     }
+  }
+
+  isReviewsEmpty(): boolean {
+    return !this.isLoading && this.totalReviews === 0;
   }
 }

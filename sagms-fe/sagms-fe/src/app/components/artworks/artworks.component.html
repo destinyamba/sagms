@@ -30,7 +30,6 @@
 <add-item-modal></add-item-modal>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2" style="margin-top: 70px">
-    <!-- @for(artwork of artworks_data; track artwork._`id) { -->
     <div class="col" *ngFor="let artwork of artworks_data">
         <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer"
             [routerLink]="['/artworks', artwork._id]">
@@ -64,7 +63,6 @@
             </div>
         </div>
     </div>
-    <!-- } -->
 </div>
 
 <app-pagination [currentPage]="page" [totalPages]="totalPages" (pageChange)="goToPage($event)">

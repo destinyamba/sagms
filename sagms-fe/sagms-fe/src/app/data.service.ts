@@ -218,8 +218,13 @@ export class DataService {
     artwork_id: string,
     page: number
   ): Observable<ReviewsResponse> {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
     return this.http.get<ReviewsResponse>(
-      `${this.apiUrl}/reviews/artwork/${artwork_id}?ps=5&pn=${page}`
+      `${this.apiUrl}/reviews/artwork/${artwork_id}?ps=5&pn=${page}`,
+      { headers }
     );
   }
 

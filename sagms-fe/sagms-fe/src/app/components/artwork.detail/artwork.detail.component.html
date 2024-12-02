@@ -57,7 +57,7 @@
     </div>
 
 
-    <div class="reviews" *ngIf="reviews">
+    <div class="reviews" *ngIf="!isLoading && !isReviewsEmpty()">
         <h2>Reviews</h2>
         <div *ngFor="let review of reviews" class="review-card">
             <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
