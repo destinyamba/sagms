@@ -4,6 +4,7 @@ import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '../pagination/pagination.component';
 import { ReviewsModalComponent } from '../reviews-modal/reviews.modal.component';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ export class ArtworkDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -120,5 +122,23 @@ export class ArtworkDetailComponent implements OnInit {
     if (this.artwork) {
       this.getArtworkReviews(this.artwork._id, this.currentPage);
     }
+  }
+
+  isAdminUser() {
+    return this.authService.getUserRole() === 'ADMIN';
+  }
+
+  deleteReview(review: any) {
+    this.dataService
+      .deleteArtworkReview(this.artwork._id, review._id)
+      .subscribe({
+        next: () => {
+          this.getArtworkReviews(this.artwork._id, this.currentPage);
+        },
+        error: (error) => {
+          console.error('Delete failed', error);
+          alert('Failed to delete artwork');
+        },
+      });
   }
 }

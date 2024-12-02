@@ -240,6 +240,17 @@ export class DataService {
     );
   }
 
+  deleteArtworkReview(artworkId: string, reviewId: string) {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    return this.http.delete(
+      `${this.apiUrl}/reviews/artwork/${artworkId}/${reviewId}`,
+      { headers }
+    );
+  }
+
   // EXHIBITION REVIEWS
 
   getExhibitionReviews(
@@ -268,6 +279,17 @@ export class DataService {
     return this.http.post(
       `${this.apiUrl}/reviews/exhibition/${reviewerId}/${exhibitionId}`,
       reviewData,
+      { headers }
+    );
+  }
+
+  deleteExhibitionReview(exhibitionId: string, reviewId: string) {
+    const token = this.authService.getToken() ?? '';
+    const headers = new HttpHeaders({
+      'x-access-token': token,
+    });
+    return this.http.delete(
+      `${this.apiUrl}/reviews/exhibition/${exhibitionId}/${reviewId}`,
       { headers }
     );
   }

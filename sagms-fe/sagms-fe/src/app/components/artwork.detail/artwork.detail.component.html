@@ -62,12 +62,14 @@
             <button class="btn btn-primary btn-sm" (click)="openArtworkReviewModal()">ADD REVIEW</button>
             <reviews-modal [artworkId]="artwork._id" (reviewAdded)="reloadReviews()"></reviews-modal>
         </div>
-
     </div>
     <div class=" reviews" *ngIf="!isLoading && !isReviewsEmpty()">
-
         <div *ngFor="let review of reviews" class="review-card">
-            <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
+            <div class="review-header">
+                <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
+                <button *ngIf="isAdminUser()" type="button" class="btn btn-danger btn-sm"
+                    style="font-size: 10px; padding: 2px 4px;" (click)="deleteReview(review)">DELETE</button>
+            </div>
             <p class="review-content">{{ review.content }}</p>
             <div class="review-meta">
                 <div class="review-rating">
@@ -83,6 +85,4 @@
             (pageChange)="goToPage($event)">
         </app-pagination>
     </div>
-
-
 </div>

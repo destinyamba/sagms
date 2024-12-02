@@ -6,6 +6,7 @@ import { Artwork, Exhibition } from '../../../types';
 import { DataService } from '../../data.service';
 import { Pagination } from '../pagination/pagination.component';
 import { ReviewsModalComponent } from '../reviews-modal/reviews.modal.component';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'exhibition-detail',
@@ -29,7 +30,8 @@ export class ExhibitionDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -120,5 +122,26 @@ export class ExhibitionDetailComponent implements OnInit {
     if (this.exhibition) {
       this.getExhibitionReviews(this.exhibition._id, this.currentPage);
     }
+  }
+
+  isAdminUser() {
+    return this.authService.getUserRole() === 'ADMIN';
+  }
+
+  deleteReview(review: any) {
+    this.dataService
+      .deleteExhibitionReview(this.exhibition?._id ?? '', review._id)
+      .subscribe({
+        next: () => {
+          this.getExhibitionReviews(
+            this.exhibition?._id ?? '',
+            this.currentPage
+          );
+        },
+        error: (error) => {
+          console.error('Delete failed', error);
+          alert('Failed to delete exhibition');
+        },
+      });
   }
 }
