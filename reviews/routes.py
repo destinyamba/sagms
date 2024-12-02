@@ -1,6 +1,5 @@
 import datetime
 from math import ceil
-from datetime import datetime
 from bson import ObjectId
 from flask import Blueprint, jsonify, make_response, request
 from pymongo import MongoClient
@@ -222,7 +221,7 @@ def delete_exhibition_review(exhibition_id, exhibition_review_id):
 @review_blueprint.route(
     "/api/v1.0/reviews/exhibition/<string:exhibition_id>", methods=["GET"]
 )
-# @jwt_required
+@jwt_required
 def get_reviews_for_exhibition(exhibition_id):
     page_num, page_size = 1, 5
     if request.args.get("pn"):
@@ -240,7 +239,7 @@ def get_reviews_for_exhibition(exhibition_id):
     total_reviews = len(reviews)
     total_pages = ceil(total_reviews / page_size)
 
-    paginated_reviews = reviews[page_start : page_start + page_size]
+    paginated_reviews = reviews[::-1][page_start : page_start + page_size]
     data_to_return = []
 
     for review in paginated_reviews:
