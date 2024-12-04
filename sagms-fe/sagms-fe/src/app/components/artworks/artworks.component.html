@@ -41,7 +41,11 @@
                 </div>
                 <!-- rating -->
                 <div class="card-img-overlay d-flex justify-content-start align-items-start p-2" id="avg_rating">
-                    <span class="badge bg-success opacity-75">{{ artwork.average_rating }}</span>
+                    <span class="badge opacity-75 m-0 p-1" [ngClass]="{
+                        'bg-danger': artwork.average_rating >= 0 && artwork.average_rating <= 2,
+                        'bg-warning': artwork.average_rating > 2 && artwork.average_rating < 4,
+                        'bg-success': artwork.average_rating > 4 && artwork.average_rating <= 5
+                      }">{{ artwork.average_rating | number: '1.1-1' }}</span>
                 </div>
                 <!-- rating -->
             </div>
