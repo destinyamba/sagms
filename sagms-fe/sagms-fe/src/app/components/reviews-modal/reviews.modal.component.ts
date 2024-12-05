@@ -19,6 +19,7 @@ export class ReviewsModalComponent {
   @Output() reviewAdded = new EventEmitter<void>();
 
   modalId!: string;
+  isLoading: boolean = true;
 
   constructor(
     private dataService: DataService,
@@ -59,6 +60,7 @@ export class ReviewsModalComponent {
   }
 
   createArtworkReview(data: any) {
+    this.isLoading = false;
     const reviewerId = this.authService.getUserId() ?? '';
     const reviewData = { ...data, artworkId: this.artworkId };
     this.dataService
@@ -67,6 +69,7 @@ export class ReviewsModalComponent {
         next: () => {
           this.reviewAdded.emit();
           this.closeModal();
+          this.isLoading = true;
         },
         error: (err) => {
           console.error('Error submitting artwork review', err);
@@ -75,6 +78,7 @@ export class ReviewsModalComponent {
   }
 
   createExhibitionReview(data: any) {
+    this.isLoading = false;
     const reviewerId = this.authService.getUserId() ?? '';
     const reviewData = { ...data, exhibitionId: this.exhibitionId ?? '' };
     this.dataService
@@ -83,6 +87,7 @@ export class ReviewsModalComponent {
         next: () => {
           this.closeModal();
           this.reviewAdded.emit();
+          this.isLoading = true;
         },
         error: (err) => {
           console.error('Error submitting artwork review', err);
