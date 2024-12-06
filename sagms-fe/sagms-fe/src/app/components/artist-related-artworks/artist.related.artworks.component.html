@@ -5,11 +5,9 @@
     <div *ngFor="let artwork of artworks_data; trackBy: trackByArtworkId" class="col">
         <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer">
             <div class="position-relative">
-                <!-- <img src="{{artwork.images}}" class="card-img-top" alt="Artwork Image"
-                    style="height: 250px; object-fit: cover;" /> -->
-                <div class="card-img-overlay" style="padding-top: 8px; padding-left: 8px;">
-                    <button (click)="deleteArtwork(artwork)" type="button" class="btn btn-danger btn-sm">DELETE</button>
-                </div>
+                <img src="{{artwork.images}}" class="card-img-top" alt="Artwork Image"
+                    style="height: 250px; object-fit: cover;" />
+
                 <div class="card-img-overlay d-flex justify-content-end align-items-start p-2">
                     <span class="badge bg-secondary opacity-75">{{ artwork.category }}</span>
                 </div>
@@ -20,21 +18,16 @@
                 </div>
                 <!-- rating -->
             </div>
-            <!-- <div class="" style="padding-top: 8px; padding-left: 8px;">
-                <button (click)="editArtwork(artwork)" type="button" class="btn btn-sm"
-                    style="background-color: purple;">EDIT</button>
-            </div> -->
+
+            <div class="d-flex justify-content-between align-items-start p-2">
+                <button (click)="deleteArtwork(artwork)" type="button" class="btn btn-danger btn-sm">DELETE</button>
+                <button (click)="openEditArtworkModal(artwork)" type="button" class="btn btn-sm"
+                    style="background-color: purple;color: white;" data-bs-target="#addArtworkModal">EDIT
+                </button>
+            </div>
+            <add-item-modal></add-item-modal>
 
             <div class="card-body p-4">
-                <!-- Remove button later only for development -->
-                <div style="padding-top: 18px; padding-left: 8px;">
-                    <button (click)="openEditArtworkModal(artwork)" type="button" class="btn btn-sm"
-                        style="background-color: purple;color: white;" data-bs-target="#addArtworkModal">EDIT
-                    </button>
-                </div>
-                <add-item-modal></add-item-modal>
-
-
                 <h5 class="card-title text-truncate">{{ artwork.title }}</h5>
                 <p class="card-text text-muted" id="description-{{ artwork._id }}">
                     {{ artwork.description.split(' ').slice(0, 20).join(' ') }}...
