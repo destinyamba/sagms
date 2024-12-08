@@ -24,6 +24,8 @@ export class TestDataServiceComponent {
     this.testPagesOfExhibitions();
     this.testGetArtworkReviews();
     this.testGetExhibitionReviews();
+    this.testGetArtwork();
+    this.testGetExhibition();
   }
 
   private testArtworksFetched() {
@@ -96,7 +98,6 @@ export class TestDataServiceComponent {
   private testPagesOfExhibitions() {
     this.dataService.getExhibitions(1).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.firstExhibitionList = response;
         this.dataService.getExhibitions(2).subscribe({
           next: (response: any) => {
@@ -157,5 +158,28 @@ export class TestDataServiceComponent {
           console.error('Error fetching exhibition reviews:', error);
         },
       });
+  }
+
+  private testGetArtwork() {
+    this.dataService.getArtworkById('67112847eaf172ac8eb0f952').subscribe({
+      next: (response: any) => {
+        if (response.title === 'Luminescence of Solitude') {
+          this.testOutput.push('Fetch artwork by ID... PASS');
+        } else {
+          this.testOutput.push('Fetch artwork by ID... FAIL');
+        }
+      },
+    });
+  }
+  private testGetExhibition() {
+    this.dataService.getExhibitionById('6720086a4614f216533d0532').subscribe({
+      next: (response: any) => {
+        if (response.title === 'The Power of Color') {
+          this.testOutput.push('Fetch exhibition by ID... PASS');
+        } else {
+          this.testOutput.push('Fetch exhibition by ID... FAIL');
+        }
+      },
+    });
   }
 }
