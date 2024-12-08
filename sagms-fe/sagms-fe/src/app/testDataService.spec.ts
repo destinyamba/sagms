@@ -11,16 +11,19 @@ import { CommonModule } from '@angular/common';
 })
 export class TestDataServiceComponent {
   testOutput: string[] = [];
-  firstBusinessList: any[] = [];
-  secondBusinessList: any[] = [];
-  constructor(
-    private dataService: DataService,
-  ) {}
+  firstArtworkList: any[] = [];
+  secondArtworkList: any[] = [];
+  firstExhibitionList: any[] = [];
+  secondExhibitionList: any[] = [];
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.testArtworksFetched();
-    this.testPagesOfBusinesses();
+    this.testExhibitionsFetched();
+    this.testPagesOfArtworks();
+    this.testPagesOfExhibitions();
     this.testGetArtworkReviews();
+    this.testGetExhibitionReviews();
   }
 
   private testArtworksFetched() {
@@ -31,9 +34,9 @@ export class TestDataServiceComponent {
           Array.isArray(artworks) &&
           artworks.length === this.dataService.pageSize
         ) {
-          this.testOutput.push('Page of businesses fetched... PASS');
+          this.testOutput.push('Page of artworks fetched... PASS');
         } else {
-          this.testOutput.push('Page of businesses fetched... FAIL');
+          this.testOutput.push('Page of artworks fetched... FAIL');
         }
       },
       error: (error: any) =>
@@ -41,23 +44,41 @@ export class TestDataServiceComponent {
     });
   }
 
-  private testPagesOfBusinesses() {
+  private testExhibitionsFetched() {
+    this.dataService.getExhibitions(1).subscribe({
+      next: (response: any) => {
+        const exhibitions = response.exhibitions || response;
+        if (
+          Array.isArray(exhibitions) &&
+          exhibitions.length === this.dataService.pageSize
+        ) {
+          this.testOutput.push('Page of exhibitions fetched... PASS');
+        } else {
+          this.testOutput.push('Page of exhibitions fetched... FAIL');
+        }
+      },
+      error: (error: any) =>
+        console.error('Error fetching exhibitions for test', error),
+    });
+  }
+
+  private testPagesOfArtworks() {
     this.dataService.getArtworks(1).subscribe({
       next: (response: any) => {
-        this.firstBusinessList = response.artworks;
+        this.firstArtworkList = response.artworks;
         this.dataService.getArtworks(2).subscribe({
           next: (response: any) => {
-            this.secondBusinessList = response.artworks;
+            this.secondArtworkList = response.artworks;
             if (
-              this.firstBusinessList[0]['_id'] !=
-              this.secondBusinessList[0]['_id']
+              this.firstArtworkList[0]['_id'] !=
+              this.secondArtworkList[0]['_id']
             ) {
               this.testOutput.push(
-                'Different pages of businesses fetched... PASS'
+                'Different pages of artworks fetched... PASS'
               );
             } else {
               this.testOutput.push(
-                'Different pages of businesses fetched... FAIL'
+                'Different pages of artworks fetched... FAIL'
               );
             }
           },
@@ -67,7 +88,39 @@ export class TestDataServiceComponent {
       },
       error: (error: any) => {
         console.error('API error:', error);
-        this.testOutput.push('Page of businesses fetched... FAIL');
+        this.testOutput.push('Page of artworks fetched... FAIL');
+      },
+    });
+  }
+
+  private testPagesOfExhibitions() {
+    this.dataService.getExhibitions(1).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.firstExhibitionList = response;
+        this.dataService.getExhibitions(2).subscribe({
+          next: (response: any) => {
+            this.secondExhibitionList = response;
+            if (
+              this.firstExhibitionList[0]['_id'] !=
+              this.secondExhibitionList[0]['_id']
+            ) {
+              this.testOutput.push(
+                'Different pages of exhibitions fetched... PASS'
+              );
+            } else {
+              this.testOutput.push(
+                'Different pages of exhibitions fetched... FAIL'
+              );
+            }
+          },
+          error: (error: any) =>
+            console.error('Error fetching exhibitions for test', error),
+        });
+      },
+      error: (error: any) => {
+        console.error('API error:', error);
+        this.testOutput.push('Page of exhibitions fetched... FAIL');
       },
     });
   }
@@ -85,6 +138,23 @@ export class TestDataServiceComponent {
         },
         error: (error: any) => {
           console.error('Error fetching artwork reviews:', error);
+        },
+      });
+  }
+
+  private testGetExhibitionReviews() {
+    this.dataService
+      .getExhibitionReviews('6720086a4614f216533d0532', 1)
+      .subscribe({
+        next: (response: any) => {
+          if (Array.isArray(response.reviews)) {
+            this.testOutput.push('Fetch reviews of Exhibition... PASS');
+          } else {
+            this.testOutput.push('Fetch reviews of Exhibition... FAIL');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error fetching exhibition reviews:', error);
         },
       });
   }
