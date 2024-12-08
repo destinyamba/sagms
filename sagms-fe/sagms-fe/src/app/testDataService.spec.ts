@@ -26,6 +26,7 @@ export class TestDataServiceComponent {
     this.testGetExhibitionReviews();
     this.testGetArtwork();
     this.testGetExhibition();
+    this.testAddReview();
   }
 
   private testArtworksFetched() {
@@ -171,6 +172,7 @@ export class TestDataServiceComponent {
       },
     });
   }
+
   private testGetExhibition() {
     this.dataService.getExhibitionById('6720086a4614f216533d0532').subscribe({
       next: (response: any) => {
@@ -181,5 +183,41 @@ export class TestDataServiceComponent {
         }
       },
     });
+  }
+
+  private testAddReview() {
+    let test_review = {
+      username: 'Test user',
+      rating: 5,
+      content: 'This is a test review',
+    };
+    this.dataService
+      .getArtworkReviews('67112847eaf172ac8eb0f952', 1)
+      .subscribe({
+        next: (response: any) => {
+          let num_reviews = response.totalReviews;
+          this.dataService
+            .addArtworkReview(
+              '671126abeaf172ac8eb0f945',
+              '67112847eaf172ac8eb0f952',
+              test_review
+            )
+            .subscribe({
+              next: (response: any) => {
+                this.dataService
+                  .getArtworkReviews('67112847eaf172ac8eb0f952', 1)
+                  .subscribe({
+                    next: (response: any) => {
+                      if (response.totalReviews === num_reviews + 1) {
+                        this.testOutput.push('Add review... PASS');
+                      } else {
+                        this.testOutput.push('Add review... FAIL');
+                      }
+                    },
+                  });
+              },
+            });
+        },
+      });
   }
 }
