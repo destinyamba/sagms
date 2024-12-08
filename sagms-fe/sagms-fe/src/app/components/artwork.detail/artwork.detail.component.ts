@@ -129,11 +129,13 @@ export class ArtworkDetailComponent implements OnInit {
   }
 
   deleteReview(review: any) {
+    this.isLoading = true;
     this.dataService
       .deleteArtworkReview(this.artwork._id, review._id)
       .subscribe({
         next: () => {
           this.getArtworkReviews(this.artwork._id, this.currentPage);
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Delete failed', error);

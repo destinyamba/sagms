@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  EventEmitter,
+  NgZone,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../../data.service';
 import { AuthService } from '../../auth.service';
@@ -25,6 +31,8 @@ export class AddItemModalComponent {
   isEditMode: boolean = false;
   isEditExhibition: boolean = false;
   itemIdToEdit: string | null = null;
+  isLoading: boolean = true;
+  @Output() exhibitionAdded = new EventEmitter<void>();
 
   constructor(
     private dataService: DataService,
@@ -175,6 +183,7 @@ export class AddItemModalComponent {
   }
 
   submitArtwork(data: any) {
+    this.isLoading = true;
     const artistId = this.authService.getUserId() ?? '';
     const artworkData = {
       ...data,
@@ -188,6 +197,7 @@ export class AddItemModalComponent {
         if (modalElement) {
           const modal = bootstrap.Modal.getInstance(modalElement);
           modal.hide();
+          this.isLoading = false;
         }
       },
       error: (err) => {
@@ -197,6 +207,7 @@ export class AddItemModalComponent {
   }
 
   submitExhibition(data: any) {
+    this.isLoading = false;
     const curatorId = this.authService.getUserId() ?? '';
     const exhibitionData = {
       ...data,
@@ -206,6 +217,8 @@ export class AddItemModalComponent {
     };
     this.dataService.createExhibition(exhibitionData, curatorId).subscribe({
       next: () => {
+        this.exhibitionAdded.emit();
+        this.isLoading = true;
         const modalElement = document.getElementById(this.modalId);
         if (modalElement) {
           const modal = bootstrap.Modal.getInstance(modalElement);
@@ -233,6 +246,7 @@ export class AddItemModalComponent {
       .editExhibition(curatorId, data._id, updatedData)
       .subscribe({
         next: () => {
+          this.exhibitionAdded.emit();
           const modalElement = document.getElementById(this.modalId);
           if (modalElement) {
             let modal = bootstrap.Modal.getInstance(modalElement);

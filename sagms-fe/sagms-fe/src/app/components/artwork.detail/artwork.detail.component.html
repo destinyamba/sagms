@@ -68,9 +68,12 @@
             <div class="review-header">
                 <p class="reviewer-username text-muted my-0"><small>{{ review.username }}</small></p>
                 <button *ngIf="isAdminUser()" type="button" class="btn btn-danger btn-sm"
-                    style="font-size: 10px; padding: 2px 4px;" (click)="deleteReview(review)">DELETE</button>
+                    style="font-size: 10px; padding: 2px 4px;" (click)="deleteReview(review)"
+                    [disabled]="isLoading">{{isLoading ?
+                    'DELETING...'
+                    : 'DELETE'}}</button>
             </div>
-            <p class="review-content">{{ review.content }}</p>
+            <p class=" review-content">{{ review.content }}</p>
             <div class="review-meta">
                 <div class="review-rating">
                     <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">

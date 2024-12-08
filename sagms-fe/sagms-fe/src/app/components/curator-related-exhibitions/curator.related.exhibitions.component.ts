@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
@@ -25,7 +25,7 @@ declare var bootstrap: any;
   templateUrl: './curator.related.exhibitions.component.html',
   styleUrl: './curator.related.exhibitions.component.css',
 })
-export class CuratorRelatedExhibitionsComponent {
+export class CuratorRelatedExhibitionsComponent implements OnInit {
   @ViewChild(AddItemModalComponent) modalComponent!: AddItemModalComponent;
   exhibition: any;
   page: number = 1;
@@ -154,6 +154,9 @@ export class CuratorRelatedExhibitionsComponent {
 
   openAddExhibitionModal() {
     this.modalComponent.openModal('exhibition');
-    console.log(this.getExhibitions());
+  }
+
+  reloadExhibitions(): void {
+    this.getExhibitions();
   }
 }
