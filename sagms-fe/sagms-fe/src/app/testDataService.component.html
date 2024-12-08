@@ -1,0 +1,29 @@
+<div style="margin-top: 88px; padding: 16px">
+    <h1>Test Report</h1>
+    <table border="2" style="width: 100%; border-collapse: collapse; text-align: left">
+        <thead>
+            <tr>
+                <th style="padding: 8px;">Test Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let report of testOutput" [class.pass]="report.includes('PASS')"
+                [class.fail]="report.includes('FAIL')">
+                <td style="padding: 8px;">{{ report }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Add some basic styles for pass and fail rowsß -->
+<style>
+    .pass {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .fail {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style>

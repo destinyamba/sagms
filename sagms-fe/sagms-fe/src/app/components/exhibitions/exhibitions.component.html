@@ -6,7 +6,7 @@
     <div *ngFor="let exhibition of exhibitions_data; trackBy: trackById" class="col">
         <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer"
             [routerLink]="['/exhibitions', exhibition._id]">
-            <!-- <div #carouselExhibition [id]="'carouselExhibition-' + exhibition._id" class="carousel slide"
+            <div #carouselExhibition [id]="'carouselExhibition-' + exhibition._id" class="carousel slide"
                 data-bs-ride="carousel">
                 <div class="carousel-inner" style="height: 250px;">
                     <div *ngFor="let image of exhibition.artworks_images; let i = index" class="carousel-item"
@@ -14,7 +14,7 @@
                         <img [src]="image" class="d-block w-100" alt="Exhibition Image" loading="lazy">
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="card-body p-4">
                 <h5 class="card-title text-truncate">{{ exhibition.title }}</h5>
                 <p class="card-text text-muted" id="description-{{ exhibition._id }}">

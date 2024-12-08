@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { NgModule } from '@angular/core';
 import { ArtistRelatedArtworksComponent } from './components/artist-related-artworks/artist.related.artworks.component';
 import { CuratorRelatedExhibitionsComponent } from './components/curator-related-exhibitions/curator.related.exhibitions.component';
+import { TestDataServiceComponent } from './testDataService.spec';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,10 @@ export const routes: Routes = [
   {
     path: 'related-exhibitions',
     component: CuratorRelatedExhibitionsComponent,
+  },
+  {
+    path: 'test-report',
+    component: TestDataServiceComponent,
   },
 ];
 

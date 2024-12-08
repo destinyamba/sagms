@@ -11,17 +11,43 @@ export class AuthService {
   private tokenKey = 'app_token';
   private apiUrl = 'http://127.0.0.1:5000/api/v1.0';
   private loggedIn = false;
+  private logoutTimer: any;
 
   /**
    * This function initialises when the component loads.
    * @param http 
    */
   constructor(private http: HttpClient) {
-    // Check if token exists on service initialization
     const token = this.getToken();
-    if (token) {
+    if (token && !this.isTokenExpired(token)) {
       this.currentUserSubject.next(this.decodeToken(token));
       this.loggedIn = true;
+      this.scheduleLogout(token);
+    } else if (token) {
+      this.logout();
+    }
+  }
+
+  isTokenExpired(token: string): boolean {
+    const decoded = this.decodeToken(token);
+    if (!decoded || !decoded.exp) {
+      return true;
+    }
+    const expirationTime = decoded.exp * 1000;
+    return Date.now() > expirationTime;
+  }
+
+  // Schedule automatic logout when token expires
+  scheduleLogout(token: string): void {
+    const decoded = this.decodeToken(token);
+    if (!decoded || !decoded.exp) {
+      return;
+    }
+    const expirationTime = decoded.exp * 1000;
+    const timeUntilExpiry = expirationTime - Date.now();
+
+    if (timeUntilExpiry > 0) {
+      this.logoutTimer = setTimeout(() => this.logout(), timeUntilExpiry);
     }
   }
 
@@ -44,6 +70,7 @@ export class AuthService {
             this.setToken(response.token);
             this.currentUserSubject.next(this.decodeToken(response.token));
             this.loggedIn = true;
+            this.scheduleLogout(response.token);
           }
         })
       );
@@ -70,6 +97,9 @@ export class AuthService {
     this.loggedIn = false;
     localStorage.removeItem('token');
     this.currentUserSubject.next(null);
+    if (this.logoutTimer) {
+      clearTimeout(this.logoutTimer);
+    }
   }
 
   /**

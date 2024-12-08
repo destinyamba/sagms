@@ -1,5 +1,5 @@
 <h1 class="text-center mb-4" style="margin-top: 88px">Artworks</h1>
-`
+
 <div class="search-container">
     <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="loadArtworks()"
         placeholder="Search artworks by title..." class="search-input" />
@@ -34,8 +34,8 @@
         <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden" style="cursor: pointer"
             [routerLink]="['/artworks', artwork._id]">
             <div class="position-relative">
-                <!-- <img src="{{artwork.images}}" class="card-img-top" alt="Artwork Image"
-                    style="height: 250px; object-fit: cover;" /> -->
+                <img src="{{artwork.images}}" class="card-img-top" alt="Artwork Image"
+                    style="height: 250px; object-fit: cover;" />
                 <div class="card-img-overlay d-flex justify-content-end align-items-start p-2">
                     <span class="badge bg-secondary opacity-75">{{ artwork.category }}</span>
                 </div>

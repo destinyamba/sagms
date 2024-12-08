@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Exhibition, TopExhibition } from '../../../types';
 import { DataService } from '../../data.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
    * @param datePipe
    * @param dataService
    */
-  constructor(private datePipe: DatePipe, private dataService: DataService) {}
+  constructor(private datePipe: DatePipe, private dataService: DataService, private authService, AuthService) {}
 
   /**
    * This function is called when the component is initialized.
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit {
           // Map each exhibition to include its image by fetching additional details
           this.topExhibitions = data.map((exhibition) => ({
             ...exhibition,
-            image: '', // Placeholder for the artwork image
+            image: '',
           }));
 
           // Fetch detailed data for each exhibition to get the artwork image
@@ -120,5 +121,9 @@ export class HomeComponent implements OnInit {
    */
   formatDate(date: string): string {
     return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

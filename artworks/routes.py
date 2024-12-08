@@ -61,7 +61,6 @@ def get_artworks():
         page_num = int(request.args.get("pn"))
     if request.args.get("ps"):
         page_size = int(request.args.get("ps"))
-    page_start = page_size * (page_num - 1)
 
     page_start = page_size * (page_num - 1)
     total_artworks = artworks.count_documents({})  # Get total count of artworks
@@ -80,15 +79,6 @@ def get_artworks():
         "totalPages": total_pages,
     }
     return make_response(jsonify(response), 200)
-
-
-@artwork_blueprint.route("/api/v1.0/totalArtworks", methods=["GET"])
-def get_total_artworks():
-    data_to_return = []
-    for artwork in artworks.find({}, {"reviews": 0}):
-        artwork["_id"] = str(artwork["_id"])
-        data_to_return.append(artwork)
-    return make_response(jsonify(len(data_to_return)), 200)
 
 
 """
@@ -270,26 +260,30 @@ def delete_artwork(artist_id, artwork_id):
 )
 @jwt_required
 def get_related_artworks(artist_id):
-    page_num, page_size = 1, 10
+    page_num, page_size = 1, 12
     if request.args.get("pn"):
         page_num = int(request.args.get("pn"))
     if request.args.get("ps"):
         page_size = int(request.args.get("ps"))
     page_start = page_size * (page_num - 1)
 
+    total_artworks = artworks.count_documents({})
+    total_pages = ceil(total_artworks / page_size)
+
     data_to_return = []
 
-    artworks_cursor = (
-        artworks.find({"artist_id": artist_id}).skip(page_start).limit(page_size)
-    )
-
-    for artwork in artworks_cursor:
+    for artwork in artworks.find({}, {"reviews": 0}).sort("created_at", -1).skip(page_start).limit(page_size):
         artwork["_id"] = str(artwork["_id"])
-        for review in artwork.get("reviews", []):
-            review["_id"] = str(review["_id"])
         data_to_return.append(artwork)
 
-    return make_response(jsonify(data_to_return), 200)
+    response = {
+        "artworks": data_to_return,
+        "page": page_num,
+        "pageSize": page_size,
+        "totalArtworks": total_artworks,
+        "totalPages": total_pages,
+    }
+    return make_response(jsonify(response), 200)
 
 
 """

@@ -8,7 +8,7 @@
     </section>
 
     <!-- Recent Exhibitions -->
-    <!-- <section class="exhibitions-section">
+    <section class="exhibitions-section" *ngIf="isLoggedIn()">
         <h2>Recent Exhibitions</h2>
         <div class="exhibition-grid">
             <div *ngFor="let exhibition of recentExhibitions" class="exhibition-card">
@@ -19,10 +19,10 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <!-- Top Exhibitions -->
-    <!-- <section class="top-exhibitions-section">
+    <section class="top-exhibitions-section" *ngIf="isLoggedIn()">
         <h2>Top Rated Exhibitions</h2>
         <div class="top-exhibitions-grid">
             <div *ngFor="let exhibition of topExhibitions" class="top-exhibition-card">
@@ -33,6 +33,6 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
 </div>

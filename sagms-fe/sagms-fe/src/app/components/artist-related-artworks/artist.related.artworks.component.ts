@@ -54,7 +54,8 @@ export class ArtistRelatedArtworksComponent {
     this.dataService
       .getArtistRelatedArtworks(artistId)
       .subscribe((response) => {
-        this.artworks_data = response;
+        this.artworks_data = response.artworks;
+        this.totalPages = response.totalPages;
         this.generatePageNumbers();
       });
   }
