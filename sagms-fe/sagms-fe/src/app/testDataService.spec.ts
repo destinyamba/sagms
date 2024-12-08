@@ -28,6 +28,7 @@ export class TestDataServiceComponent {
     this.testGetExhibition();
     this.testAddArtworkReview();
     this.testAddExhibitionReview();
+    this.testAddArtwork();
   }
 
   private testArtworksFetched() {
@@ -256,5 +257,38 @@ export class TestDataServiceComponent {
             });
         },
       });
+  }
+
+  private testAddArtwork() {
+    let test_artwork = {
+      description: 'Test artwork',
+      category: 'Realism',
+      materials: ['Wood', 'Paint'],
+      provenance: 'Test provenance',
+      images: 'test.jpg',
+      height_cm: 100,
+      width_cm: 100,
+      title: 'Test artwork',
+    };
+    this.dataService.getArtworks(1).subscribe({
+      next: (response: any) => {
+        let num_artworks = response.totalArtworks;
+        this.dataService
+          .addArtwork('671126abeaf172ac8eb0f94d', test_artwork)
+          .subscribe({
+            next: (response: any) => {
+              this.dataService.getArtworks(1).subscribe({
+                next: (response: any) => {
+                  if (response.totalArtworks === num_artworks + 1) {
+                    this.testOutput.push('Add Artwork... PASS');
+                  } else {
+                    this.testOutput.push('Add Artwork review... FAIL');
+                  }
+                },
+              });
+            },
+          });
+      },
+    });
   }
 }
