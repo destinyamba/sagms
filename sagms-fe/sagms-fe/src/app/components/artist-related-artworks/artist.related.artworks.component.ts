@@ -45,6 +45,9 @@ export class ArtistRelatedArtworksComponent {
     this.getArtworks();
   }
 
+  /**
+   * This is to load all artworks related to the artist.
+   */
   private getArtworks() {
     const artistId = this.authService.getUserId() ?? '';
 
@@ -57,6 +60,9 @@ export class ArtistRelatedArtworksComponent {
       });
   }
 
+  /**
+   * This is to generate page numbers for pagination.
+   */
   generatePageNumbers() {
     const maxPagesToShow = 5;
     const halfRange = Math.floor(maxPagesToShow / 2);
@@ -77,16 +83,30 @@ export class ArtistRelatedArtworksComponent {
     );
   }
 
+  /**
+   * This is to handle page change.
+   * @param page
+   */
   goToPage(page: number) {
     this.page = page;
     sessionStorage['page'] = this.page;
     this.getArtworks();
   }
 
+  /**
+   * This is to track artwork by ID.
+   * @param artwork
+   * @returns
+   */
   trackByArtworkId(artwork: any): string {
     return artwork._id;
   }
 
+  /**
+   * This is to delete an artwork.
+   * Only the artist can delete their own artworks.
+   * @param artwork
+   */
   deleteArtwork(artwork: any) {
     const artistId = this.authService.getUserId() ?? '';
     this.dataService.deleteArtwork(artistId, artwork._id).subscribe({
@@ -100,11 +120,20 @@ export class ArtistRelatedArtworksComponent {
     });
   }
 
+  /**
+   * This is to open the edit artwork modal.
+   * @param artwork
+   */
   openEditArtworkModal(artwork: any) {
     this.modalComponent.openModal('artwork', artwork);
     this.getArtworks();
   }
 
+  /**
+   * This is to update an artwork.
+   * Only the artist can update their own artworks.
+   * @param data
+   */
   updateArtwork(data: any) {
     const artistId = this.authService.getUserId() ?? '';
     const updatedArtwork = {

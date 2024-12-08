@@ -13,6 +13,10 @@ export class AuthService {
   private loggedIn = false;
   private logoutTimer: any;
 
+  /**
+   * This function initialises when the component loads.
+   * @param http 
+   */
   constructor(private http: HttpClient) {
     const token = this.getToken();
     if (token && !this.isTokenExpired(token)) {
@@ -47,7 +51,12 @@ export class AuthService {
     }
   }
 
-  // Login method
+  /**
+   * This function is used to set the token from local storage.
+   * @param username 
+   * @param password 
+   * @returns 
+   */
   login(username: string, password: string): Observable<any> {
     return this.http
       .get<any>(`${this.apiUrl}/login`, {
@@ -67,7 +76,12 @@ export class AuthService {
       );
   }
 
-  // Register method (for admin to create users)
+  /**
+   * This creates a user.
+   * Only an admin can create a user.
+   * @param userData 
+   * @returns 
+   */
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData, {
       headers: {
@@ -76,7 +90,9 @@ export class AuthService {
     });
   }
 
-  // Logout method
+  /**
+   * This removes the token from local storage.
+   */
   logout(): void {
     this.loggedIn = false;
     localStorage.removeItem('token');
@@ -86,20 +102,34 @@ export class AuthService {
     }
   }
 
-  // Token management methods
+  /**
+   * This function is used to set the token from local storage.
+   * @param token 
+   */
   setToken(token: string) {
     localStorage.setItem(this.tokenKey, token);
   }
 
+  /**
+   * This function is used to get the token from local storage.
+   * @returns 
+   */
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
+  /**
+   * This function is used to remove the token.
+   */
   removeToken() {
     localStorage.removeItem(this.tokenKey);
   }
 
-  // Decode JWT token to get user info
+  /**
+   * This is used to decode the token.
+   * @param token 
+   * @returns 
+   */
   decodeToken(token: string): any {
     try {
       return JSON.parse(atob(token.split('.')[1]));
@@ -108,6 +138,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * This function is used to get the user ID.
+   * @returns 
+   */
   getUserId(): string | null {
     const token = this.getToken();
     if (token) {
@@ -117,6 +151,10 @@ export class AuthService {
     return null;
   }
 
+  /**
+   * This is used to get user role.
+   * @returns 
+   */
   getUserRole(): string | null {
     const token = this.getToken();
     if (token) {
@@ -126,17 +164,26 @@ export class AuthService {
     return null;
   }
 
-  // Check if user is logged in
+  /**
+   * This is used to check if the user is authenticated.
+   * @returns 
+   */
   isLoggedIn(): boolean {
     return this.loggedIn;
   }
 
-  // Get current user
+  /**
+   * This is used to get the current user.
+   * @returns 
+   */
   getCurrentUser(): Observable<any> {
     return this.currentUserSubject.asObservable();
   }
 
-  // Check if user is admin
+  /**
+   * This is used to check if the user is an admin.
+   * @returns 
+   */
   isAdmin(): boolean {
     return this.loggedIn && this.getUserRole() === 'ADMIN';
   }

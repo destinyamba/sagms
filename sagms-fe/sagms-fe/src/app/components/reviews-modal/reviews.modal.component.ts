@@ -19,12 +19,22 @@ export class ReviewsModalComponent {
   @Output() reviewAdded = new EventEmitter<void>();
 
   modalId!: string;
+  isLoading: boolean = true;
 
+  /**
+   * This function is initialized when the component is created.
+   * @param dataService
+   * @param authService
+   */
   constructor(
     private dataService: DataService,
     private authService: AuthService
   ) {}
 
+  /**
+   * This handles the submission of various review forms.
+   * @returns
+   */
   handleSubmit() {
     const reviewContent = (
       document.getElementById('reviewContent') as HTMLTextAreaElement
@@ -49,6 +59,9 @@ export class ReviewsModalComponent {
     }
   }
 
+  /**
+   * This function opens the modal.
+   */
   openModal() {
     this.modalId = 'reviewModal';
     const modalElement = document.getElementById(this.modalId);
@@ -58,7 +71,12 @@ export class ReviewsModalComponent {
     }
   }
 
+  /**
+   * This function creates a new artwork review.
+   * @param data
+   */
   createArtworkReview(data: any) {
+    this.isLoading = false;
     const reviewerId = this.authService.getUserId() ?? '';
     const reviewData = { ...data, artworkId: this.artworkId };
     this.dataService
@@ -67,6 +85,7 @@ export class ReviewsModalComponent {
         next: () => {
           this.reviewAdded.emit();
           this.closeModal();
+          this.isLoading = true;
         },
         error: (err) => {
           console.error('Error submitting artwork review', err);
@@ -74,7 +93,12 @@ export class ReviewsModalComponent {
       });
   }
 
+  /**
+   * This function creates a new exhibition review.
+   * @param data
+   */
   createExhibitionReview(data: any) {
+    this.isLoading = false;
     const reviewerId = this.authService.getUserId() ?? '';
     const reviewData = { ...data, exhibitionId: this.exhibitionId ?? '' };
     this.dataService
@@ -83,6 +107,7 @@ export class ReviewsModalComponent {
         next: () => {
           this.closeModal();
           this.reviewAdded.emit();
+          this.isLoading = true;
         },
         error: (err) => {
           console.error('Error submitting artwork review', err);
@@ -90,6 +115,9 @@ export class ReviewsModalComponent {
       });
   }
 
+  /**
+   * This function closes the modal.
+   */
   closeModal() {
     const modalElement = document.getElementById(this.modalId);
     if (modalElement) {

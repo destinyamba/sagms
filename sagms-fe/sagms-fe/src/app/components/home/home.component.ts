@@ -21,17 +21,28 @@ export class HomeComponent implements OnInit {
   activeArtists: number = 0;
   artworkImage: string = '';
 
+  /**
+   * This function is called when the component is initialized.
+   * @param datePipe
+   * @param dataService
+   */
   constructor(
     private datePipe: DatePipe,
     private dataService: DataService,
     private authService: AuthService
   ) {}
 
+  /**
+   * This function is called when the component is initialized.
+   */
   ngOnInit() {
     this.loadTopExhibitions();
     this.loadMostRecentExhibitions();
   }
 
+  /**
+   * This loads the top 5 exhibitions.
+   */
   private loadTopExhibitions() {
     this.dataService.getTopRatedtExhibitions().subscribe({
       next: (data: any[]) => {
@@ -74,6 +85,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * This loads the most reecent exhibitions.
+   */
   private loadMostRecentExhibitions() {
     this.dataService.getMostRecentExhibitions().subscribe({
       next: (exhibitions: any) => {
@@ -104,6 +118,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Format the exhibition date for display.
+   * @param date
+   * @returns
+   */
   formatDate(date: string): string {
     return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
   }

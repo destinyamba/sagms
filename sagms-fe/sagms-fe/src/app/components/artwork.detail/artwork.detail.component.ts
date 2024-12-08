@@ -39,6 +39,10 @@ export class ArtworkDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is used to get the artwork details from the API.
+   * @param id
+   */
   getArtwork(id: string): void {
     this.dataService.getArtworkById(id).subscribe({
       next: (data) => {
@@ -54,6 +58,11 @@ export class ArtworkDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * This function is used to get the reviews for the artwork from the API.
+   * @param artworkId
+   * @param page
+   */
   getArtworkReviews(artworkId: string, page: number): void {
     this.isLoading = true;
     this.dataService.getArtworkReviews(artworkId, page).subscribe({
@@ -76,6 +85,9 @@ export class ArtworkDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * This function is used to navigate to the previous page of artworks or reviews.
+   */
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -83,6 +95,9 @@ export class ArtworkDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is used to navigate to the next page of artworks or reviews.
+   */
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
@@ -90,6 +105,10 @@ export class ArtworkDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function navigates to a specific page.
+   * @param page
+   */
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
@@ -97,12 +116,19 @@ export class ArtworkDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is used to fetch the reviews for the current page.
+   * @param newPage
+   */
   onPageChange(newPage: number): void {
     this.currentPage = newPage;
     sessionStorage['currentPage'] = this.currentPage;
     this.getArtworkReviews(this.artwork._id, newPage);
   }
 
+  /**
+   * This function is used to fetch the reviews for the current artwork.
+   */
   fetchPage(): void {
     const artworkId = this.route.snapshot.paramMap.get('id');
     if (artworkId) {
@@ -110,30 +136,50 @@ export class ArtworkDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is to check if there are any reviews for the artwork.
+   * @returns
+   */
   isReviewsEmpty(): boolean {
     return !this.isLoading && this.totalReviews === 0;
   }
 
+  /**
+   * This function is to open the review form.
+   */
   openArtworkReviewModal() {
     this.modalComponent.openModal();
   }
 
+  /**
+   * This reloads the reviews for the artwork after being added.
+   */
   reloadReviews(): void {
     if (this.artwork) {
       this.getArtworkReviews(this.artwork._id, this.currentPage);
     }
   }
 
+  /**
+   * This is to check if a user is an admin.
+   * @returns
+   */
   isAdminUser() {
     return this.authService.getUserRole() === 'ADMIN';
   }
 
+  /**
+   * This deletes a review.
+   * @param review
+   */
   deleteReview(review: any) {
+    this.isLoading = true;
     this.dataService
       .deleteArtworkReview(this.artwork._id, review._id)
       .subscribe({
         next: () => {
           this.getArtworkReviews(this.artwork._id, this.currentPage);
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Delete failed', error);

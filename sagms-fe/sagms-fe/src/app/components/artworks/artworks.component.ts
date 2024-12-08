@@ -36,7 +36,6 @@ export class ArtworksComponent {
   searchTerm: string = '';
   selectedDimensionRange: DimensionRange | null = null;
   dimensionRanges = dimensionRanges;
-
   showModal: boolean = false;
 
   artworkFields = [
@@ -87,6 +86,9 @@ export class ArtworksComponent {
     this.loadArtworks();
   }
 
+  /**
+   * This loads artworks from the data service and assigns them to the artworks array.
+   */
   loadArtworks() {
     const trimmedSearchTerm = this.searchTerm.trim();
 
@@ -99,11 +101,18 @@ export class ArtworksComponent {
     }
   }
 
+  /**
+   * This is called to change the dimension filter.
+   */
   onDimensionFilterChange() {
     this.page = 1;
     this.loadArtworks();
   }
 
+  /**
+   * This is called to change the dimension filter.
+   * @returns
+   */
   private handleDimensionFilter() {
     if (!this.selectedDimensionRange) return;
 
@@ -128,6 +137,10 @@ export class ArtworksComponent {
       });
   }
 
+  /**
+   * This is called to change the search term.
+   * @param searchTerm
+   */
   private handleSearchArtworks(searchTerm: string) {
     this.dataService
       .searchArtworks(searchTerm, this.page)
@@ -139,6 +152,9 @@ export class ArtworksComponent {
       });
   }
 
+  /**
+   * This is called to load the artworks from the API.
+   */
   private handleLoadAllArtworks() {
     this.dataService.getArtworks(this.page).subscribe((response) => {
       this.artworks_data = response.artworks;
@@ -148,6 +164,9 @@ export class ArtworksComponent {
     });
   }
 
+  /**
+   * This is called to update the artworks data with ratings.
+   */
   private updateWithRatings() {
     this.dataService.getAvgArtworksRating(this.page).subscribe((ratings) => {
       this.artworks_data = this.artworks_data.map(
@@ -160,12 +179,19 @@ export class ArtworksComponent {
     });
   }
 
+  /**
+   * This function generates the page numbers for the pagination.
+   * @param page
+   */
   goToPage(page: number) {
     this.page = page;
     sessionStorage['page'] = this.page;
     this.loadArtworks();
   }
 
+  /**
+   * This function is used to generate the page numbers for the pagination.
+   */
   generatePageNumbers() {
     const maxPagesToShow = 5;
     const halfRange = Math.floor(maxPagesToShow / 2);
@@ -186,14 +212,34 @@ export class ArtworksComponent {
     );
   }
 
+  /**
+   * This function is called when the user clicks on a page number.
+   * @param newPage
+   */
+  onPageChange(newPage: number): void {
+    this.page = newPage;
+    sessionStorage['page'] = this.page;
+    this.loadArtworks();
+  }
+
+  /**
+   * This opens the form to create a new artwork.
+   */
   openAddArtworkModal() {
     this.modalComponent.openModal('artwork');
   }
 
+  /**
+   * This opens the form to edit an artwork.
+   */
   onModalClose() {
     this.showModal = false;
   }
 
+  /**
+   * This checks if a user is an artist.
+   * @returns
+   */
   isArtist() {
     return this.authService.getUserRole() === 'ARTIST';
   }

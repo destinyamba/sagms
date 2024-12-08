@@ -28,12 +28,21 @@ export class ExhibitionDetailComponent implements OnInit {
   pageNumbers: number[] = [];
   isLoading: boolean = true;
 
+  /**
+   * This function is called when the component is initialized.
+   * @param route
+   * @param dataService
+   * @param authService
+   */
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
     private authService: AuthService
   ) {}
 
+  /**
+   * This function is called when the component is initialized.
+   */
   ngOnInit(): void {
     const exhibitionId = this.route.snapshot.paramMap.get('id') || '';
     this.dataService.getExhibitionById(exhibitionId).subscribe({
@@ -48,6 +57,9 @@ export class ExhibitionDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * This function loads the artwork images for the exhibition.
+   */
   loadArtworkImages(): void {
     // Use forkJoin to fetch all artwork images for this exhibition
     if (this.exhibition?.artworks) {
@@ -70,6 +82,11 @@ export class ExhibitionDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function gets the reviews for the exhibition.
+   * @param exhibitionId
+   * @param page
+   */
   getExhibitionReviews(exhibitionId: string, page: number): void {
     this.isLoading = true;
     this.dataService.getExhibitionReviews(exhibitionId, page).subscribe({
@@ -90,6 +107,10 @@ export class ExhibitionDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * This navigates to a specific page.
+   * @param page
+   */
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
@@ -97,12 +118,19 @@ export class ExhibitionDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This function fetches the reviews for the current page.
+   * @param newPage
+   */
   onPageChange(newPage: number): void {
     this.currentPage = newPage;
     sessionStorage['currentPage'] = this.currentPage;
     this.getExhibitionReviews(this.exhibition!._id, newPage);
   }
 
+  /**
+   * This function fetches the reviews for the current page.
+   */
   fetchPage(): void {
     const exhibitionId = this.route.snapshot.paramMap.get('id');
     if (exhibitionId) {
@@ -110,24 +138,42 @@ export class ExhibitionDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * This checks if an exhibition has any reviews.
+   * @returns
+   */
   isReviewsEmpty(): boolean {
     return !this.isLoading && this.totalReviews === 0;
   }
 
+  /**
+   * This opens the review form.
+   */
   openExhibitionReviewModal() {
     this.modalComponent.openModal();
   }
 
+  /**
+   * This function is called when the exhibition review form is submitted.
+   */
   reloadReviews(): void {
     if (this.exhibition) {
       this.getExhibitionReviews(this.exhibition._id, this.currentPage);
     }
   }
 
+  /**
+   * This checks if a user is an admin.
+   * @returns
+   */
   isAdminUser() {
     return this.authService.getUserRole() === 'ADMIN';
   }
 
+  /**
+   * This deletes a review.
+   * @param review
+   */
   deleteReview(review: any) {
     this.dataService
       .deleteExhibitionReview(this.exhibition?._id ?? '', review._id)

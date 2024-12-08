@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
@@ -25,7 +25,7 @@ declare var bootstrap: any;
   templateUrl: './curator.related.exhibitions.component.html',
   styleUrl: './curator.related.exhibitions.component.css',
 })
-export class CuratorRelatedExhibitionsComponent {
+export class CuratorRelatedExhibitionsComponent implements OnInit {
   @ViewChild(AddItemModalComponent) modalComponent!: AddItemModalComponent;
   exhibition: any;
   page: number = 1;
@@ -37,11 +37,19 @@ export class CuratorRelatedExhibitionsComponent {
 
   @ViewChild('carouselExhibition', { static: false })
   carouselElement!: ElementRef;
+  /**
+   * This function is called when the component is initialized.
+   * @param dataService
+   * @param authService
+   */
   constructor(
     private dataService: DataService,
     private authService: AuthService
   ) {}
 
+  /**
+   * This function is called when the component is initialized.
+   */
   ngOnInit() {
     if (sessionStorage['page']) {
       this.page = Number(sessionStorage['page']);
@@ -49,6 +57,9 @@ export class CuratorRelatedExhibitionsComponent {
     this.getExhibitions();
   }
 
+  /**
+   * This function is called to enable the arworks carousel work.
+   */
   ngAfterViewInit() {
     const carousels = document.querySelectorAll('.carousel');
     carousels.forEach((carousel: any) => {
@@ -56,6 +67,9 @@ export class CuratorRelatedExhibitionsComponent {
     });
   }
 
+  /**
+   * This function is called to load all artwork images for exhibitions data.
+   */
   loadArtworksForExhibitions() {
     const artworkRequests = this.exhibitions_data.map((exhibition: any) => {
       // Fetch artwork data for each exhibition
@@ -84,6 +98,9 @@ export class CuratorRelatedExhibitionsComponent {
     });
   }
 
+  /**
+   * This function is called to get all exhibitions data.
+   */
   getExhibitions() {
     const curatorId = this.authService.getUserId() ?? '';
 
@@ -97,6 +114,9 @@ export class CuratorRelatedExhibitionsComponent {
       });
   }
 
+  /**
+   * This is used to generate page numbers for exhibitions data.
+   */
   generatePageNumbers() {
     const maxPagesToShow = 5;
     const halfRange = Math.floor(maxPagesToShow / 2);
@@ -117,16 +137,29 @@ export class CuratorRelatedExhibitionsComponent {
     );
   }
 
+  /**
+   * This function is used to go to a specific page.
+   * @param page
+   */
   goToPage(page: number) {
     this.page = page;
     sessionStorage['page'] = this.page;
     this.getExhibitions();
   }
 
+  /**
+   * This is used to track exhibition by ID.
+   * @param exhibition
+   * @returns
+   */
   trackByExhibitionId(exhibition: any): string {
     return exhibition._id;
   }
 
+  /**
+   * This is used to delete an exhibition.
+   * @param exhibition
+   */
   deleteExhibition(exhibition: any) {
     this.dataService.deleteExhibition(exhibition._id).subscribe({
       next: () => {
@@ -139,6 +172,10 @@ export class CuratorRelatedExhibitionsComponent {
     });
   }
 
+  /**
+   * This is used to get the exhibition details.
+   * @param exhibition
+   */
   openEditExhibitionModal(exhibition: any) {
     const editableExhibition = {
       ...exhibition,
@@ -152,8 +189,17 @@ export class CuratorRelatedExhibitionsComponent {
     this.modalComponent.openModal('exhibition', editableExhibition);
   }
 
+  /**
+   * This opens to add a new exhibition.
+   */
   openAddExhibitionModal() {
     this.modalComponent.openModal('exhibition');
-    console.log(this.getExhibitions());
+  }
+
+  /**
+   * This loads exhibitions after adding an exhibition.
+   */
+  reloadExhibitions(): void {
+    this.getExhibitions();
   }
 }

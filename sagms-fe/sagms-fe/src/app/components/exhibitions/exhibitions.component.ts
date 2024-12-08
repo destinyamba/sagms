@@ -30,16 +30,23 @@ export class ExhibitionsComponent implements AfterViewInit {
   page: number = 1;
   totalPages: number = 0;
   pageNumbers: number[] = [];
-
   showModal: boolean = false;
 
   @ViewChild('carouselExhibition', { static: false })
   carouselElement!: ElementRef;
+  /**
+   * This function is called after the component has been initialized.
+   * @param dataService
+   * @param authService
+   */
   constructor(
     private dataService: DataService,
     private authService: AuthService
   ) {}
 
+  /**
+   * This function is called after the component has been initialized.
+   */
   ngOnInit() {
     if (sessionStorage['page']) {
       this.page = Number(sessionStorage['page']);
@@ -47,6 +54,9 @@ export class ExhibitionsComponent implements AfterViewInit {
     this.loadExhibitions();
   }
 
+  /**
+   * This function is called after the component has been initialized.
+   */
   ngAfterViewInit() {
     const carousels = document.querySelectorAll('.carousel');
     carousels.forEach((carousel: any) => {
@@ -54,6 +64,9 @@ export class ExhibitionsComponent implements AfterViewInit {
     });
   }
 
+  /**
+   * This loads the exhibitions data from the server.
+   */
   loadExhibitions() {
     this.dataService.getExhibitions(this.page).subscribe({
       next: (response) => {
@@ -71,6 +84,9 @@ export class ExhibitionsComponent implements AfterViewInit {
     });
   }
 
+  /**
+   * This loads the images for the artworks in the exhibitions.
+   */
   loadArtworksForExhibitions() {
     const artworkRequests = this.exhibitions_data.map((exhibition: any) => {
       // Fetch artwork data for each exhibition
@@ -99,6 +115,9 @@ export class ExhibitionsComponent implements AfterViewInit {
     });
   }
 
+  /**
+   * This navigates to the previous page.
+   */
   previousPage() {
     if (this.page > 1) {
       this.page--;
@@ -107,6 +126,9 @@ export class ExhibitionsComponent implements AfterViewInit {
     }
   }
 
+  /**
+   * This navigates to the next page.
+   */
   nextPage() {
     if (this.page < this.totalPages) {
       this.page++;
@@ -115,11 +137,18 @@ export class ExhibitionsComponent implements AfterViewInit {
     }
   }
 
+  /**
+   * This navigates to a specific page.
+   * @param page
+   */
   goToPage(page: number) {
     this.page = page;
     this.loadExhibitions();
   }
 
+  /**
+   * This generates page numbers.
+   */
   generatePageNumbers() {
     const maxPagesToShow = 5; // Show max 5 page numbers (adjust as needed)
     const halfRange = Math.floor(maxPagesToShow / 2);
@@ -141,42 +170,78 @@ export class ExhibitionsComponent implements AfterViewInit {
     );
   }
 
+  /**
+   * This tracks the current page.
+   * @param index
+   * @param page
+   * @returns
+   */
   trackByPage(index: number, page: number): number {
     return page;
   }
 
   activeSlideIndex: number = 0;
 
+  /**
+   * This navigates the carousel.
+   */
   prevSlide() {
     this.carouselElement.nativeElement.previousElementSibling.click();
   }
 
+  /**
+   * This navigates the carousel.
+   */
   nextSlide() {
     this.carouselElement.nativeElement.nextElementSibling.click();
   }
 
+  /**
+   * This navigates the carousel.
+   * @param event
+   */
   onSlideChange(event: any) {
     this.activeSlideIndex = event.activeId;
   }
 
+  /**
+   * This tracks the exhibittion by ID.
+   * @param index
+   * @param exhibition
+   * @returns
+   */
   trackById(index: number, exhibition: any): string {
     return exhibition._id;
   }
 
+  /**
+   * This navigates to a page.
+   * @param newPage
+   */
   onPageChange(newPage: number): void {
     this.page = newPage;
     sessionStorage['page'] = this.page;
     this.loadExhibitions();
   }
 
+  /**
+   * This opens the form to add a new exhibition.
+   */
   openAddExhibitionModal() {
     this.modalComponent.openModal('exhibition');
   }
 
+  /**
+   * This closes the form.
+   */
   onModalClose() {
     this.showModal = false;
   }
 
+  /**
+   * This checks if a user is a curator.
+   * @returns
+   */
   isCurator() {
     return this.authService.getUserRole() === 'CURATOR';
   }

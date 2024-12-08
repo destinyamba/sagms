@@ -11,17 +11,33 @@ import { CommonModule } from '@angular/common';
   templateUrl: './nav.component.html',
 })
 export class NavComponent {
+  /**
+   * This is a placeholder for the navigation component.
+   * @param authService
+   * @param router
+   */
   constructor(public authService: AuthService, private router: Router) {}
 
+  /**
+   * This function is called when the user clicks on the logout button.
+   */
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
+  /**
+   * This function is called to check if a user is an artist user.
+   * @returns
+   */
   isArtist() {
     return this.authService.getUserRole() === 'ARTIST';
   }
 
+  /**
+   * This function is called to check if a user is an curator user.
+   * @returns
+   */
   isCurator() {
     return this.authService.getUserRole() === 'CURATOR';
   }
