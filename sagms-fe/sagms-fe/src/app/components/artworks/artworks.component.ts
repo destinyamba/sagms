@@ -186,12 +186,6 @@ export class ArtworksComponent {
     );
   }
 
-  onPageChange(newPage: number): void {
-    this.page = newPage;
-    sessionStorage['page'] = this.page;
-    this.loadArtworks();
-  }
-
   openAddArtworkModal() {
     this.modalComponent.openModal('artwork');
   }
