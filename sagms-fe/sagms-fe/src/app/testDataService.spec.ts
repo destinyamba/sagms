@@ -26,7 +26,8 @@ export class TestDataServiceComponent {
     this.testGetExhibitionReviews();
     this.testGetArtwork();
     this.testGetExhibition();
-    this.testAddReview();
+    this.testAddArtworkReview();
+    this.testAddExhibitionReview();
   }
 
   private testArtworksFetched() {
@@ -185,7 +186,7 @@ export class TestDataServiceComponent {
     });
   }
 
-  private testAddReview() {
+  private testAddArtworkReview() {
     let test_review = {
       username: 'Test user',
       rating: 5,
@@ -209,9 +210,45 @@ export class TestDataServiceComponent {
                   .subscribe({
                     next: (response: any) => {
                       if (response.totalReviews === num_reviews + 1) {
-                        this.testOutput.push('Add review... PASS');
+                        this.testOutput.push('Add Artwork review... PASS');
                       } else {
-                        this.testOutput.push('Add review... FAIL');
+                        this.testOutput.push('Add Artwork review... FAIL');
+                      }
+                    },
+                  });
+              },
+            });
+        },
+      });
+  }
+
+  private testAddExhibitionReview() {
+    let test_review = {
+      username: 'Test user',
+      rating: 5,
+      content: 'This is a test review',
+    };
+    this.dataService
+      .getExhibitionReviews('6720086a4614f216533d0532', 1)
+      .subscribe({
+        next: (response: any) => {
+          let num_reviews = response.totalReviews;
+          this.dataService
+            .addExhibitionReview(
+              '671126abeaf172ac8eb0f945',
+              '6720086a4614f216533d0532',
+              test_review
+            )
+            .subscribe({
+              next: (response: any) => {
+                this.dataService
+                  .getExhibitionReviews('6720086a4614f216533d0532', 1)
+                  .subscribe({
+                    next: (response: any) => {
+                      if (response.totalReviews === num_reviews + 1) {
+                        this.testOutput.push('Add Exhibition review... PASS');
+                      } else {
+                        this.testOutput.push('Add Exhibition review... FAIL');
                       }
                     },
                   });
