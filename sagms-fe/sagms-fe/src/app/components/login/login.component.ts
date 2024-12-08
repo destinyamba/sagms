@@ -21,6 +21,12 @@ export class LoginComponent {
   isLoading = false;
   errorMessage = '';
 
+  /**
+   * This function is called when the component is initialized.
+   * @param fb
+   * @param authService
+   * @param router
+   */
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -32,14 +38,23 @@ export class LoginComponent {
     });
   }
 
-  // Getters for easy form control access
+  /**
+   * Getters to access form controls.
+   */
   get username() {
     return this.loginForm.get('username');
   }
+  /**
+   * Getters to access form controls.
+   */
   get password() {
     return this.loginForm.get('password');
   }
 
+  /**
+   * This function is called when the login form is submitted.
+   * @returns
+   */
   onSubmit() {
     if (this.loginForm.invalid) return;
 

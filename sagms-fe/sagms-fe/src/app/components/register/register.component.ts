@@ -21,6 +21,9 @@ export class RegisterComponent {
   successMessage = '';
   errorMessage = '';
 
+  /**
+   * This is the form group for the registration form.
+   */
   registerForm: FormGroup<{
     username: FormControl<string | null>;
     email: FormControl<string | null>;
@@ -29,6 +32,11 @@ export class RegisterComponent {
     biography: FormControl<string | null>;
   }>;
 
+  /**
+   * This is the constructor for the RegisterComponent.
+   * @param fb
+   * @param authService
+   */
   constructor(private fb: FormBuilder, private authService: AuthService) {
     // Initialize form
     this.registerForm = this.fb.group({
@@ -51,6 +59,10 @@ export class RegisterComponent {
     });
   }
 
+  /**
+   * This is the submit function for the registration form.
+   * @returns
+   */
   onSubmit() {
     if (this.registerForm.invalid) return;
 

@@ -14,6 +14,9 @@ export class Pagination {
   @Output() pageChange = new EventEmitter<number>();
   private readonly maxPagesToShow = 5;
 
+  /**
+   * This function is used to get the pages to be shown in the pagination component.
+   */
   get pages(): number[] {
     if (this.totalPages <= this.maxPagesToShow) {
       // Show all pages if the total is less than or equal to maxPagesToShow
@@ -36,18 +39,28 @@ export class Pagination {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }
 
+  /**
+   * This function is used to handle the page change event.
+   */
   goToPreviousPage(): void {
     if (this.currentPage > 1) {
       this.changePage(this.currentPage - 1);
     }
   }
 
+  /**
+   * This function is used to handle the page change event.
+   */
   goToNextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.changePage(this.currentPage + 1);
     }
   }
 
+  /**
+   * This function is used to handle the page change event.
+   * @param page
+   */
   changePage(page: number): void {
     if (page !== this.currentPage) {
       this.pageChange.emit(page);

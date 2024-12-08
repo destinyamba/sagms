@@ -11,6 +11,12 @@ import { AuthService } from '@auth0/auth0-angular';
   providers: [Router],
 })
 export class Auth0ButtonComponent {
+  /**
+   * This component is used to render the Auth0 button.
+   * @param document
+   * @param auth
+   * @param router
+   */
   constructor(
     @Inject(DOCUMENT) public document: Document,
     public auth: AuthService,

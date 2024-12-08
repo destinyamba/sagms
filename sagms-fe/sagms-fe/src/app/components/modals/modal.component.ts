@@ -34,11 +34,21 @@ export class AddItemModalComponent {
   isLoading: boolean = true;
   @Output() exhibitionAdded = new EventEmitter<void>();
 
+  /**
+   * This function is called when the component is initialized.
+   * @param dataService
+   * @param authService
+   */
   constructor(
     private dataService: DataService,
     private authService: AuthService
   ) {}
 
+  /**
+   * This function opens the modal to add and update artworks and exhibitions.
+   * @param type
+   * @param itemData
+   */
   openModal(type: string, itemData?: any) {
     const uniqueSuffix = '_' + Math.random().toString(36).substr(2, 9);
     if (type === 'artwork') {
@@ -138,6 +148,9 @@ export class AddItemModalComponent {
     }
   }
 
+  /**
+   * This function is called when the user clicks the "Save" button.
+   */
   submitData() {
     if (this.isEditMode) {
       this.updateArtwork(this.formData);
@@ -152,6 +165,10 @@ export class AddItemModalComponent {
     }
   }
 
+  /**
+   * This function is called to update an artwork.
+   * @param data
+   */
   updateArtwork(data: any) {
     const artistId = this.authService.getUserId() ?? '';
     const updatedData = {
@@ -182,6 +199,10 @@ export class AddItemModalComponent {
     });
   }
 
+  /**
+   * This function is called to edit an artwork.
+   * @param data
+   */
   submitArtwork(data: any) {
     this.isLoading = true;
     const artistId = this.authService.getUserId() ?? '';
@@ -206,6 +227,10 @@ export class AddItemModalComponent {
     });
   }
 
+  /**
+   * This function is called to create an exhibition.
+   * @param data
+   */
   submitExhibition(data: any) {
     this.isLoading = false;
     const curatorId = this.authService.getUserId() ?? '';
@@ -231,6 +256,10 @@ export class AddItemModalComponent {
     });
   }
 
+  /**
+   * This function is called to edit an exhibition.
+   * @param data
+   */
   updateExhibition(data: any) {
     const curatorId = this.authService.getUserId() ?? '';
     const updatedData = {
