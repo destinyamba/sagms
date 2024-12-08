@@ -26,7 +26,11 @@ export class HomeComponent implements OnInit {
    * @param datePipe
    * @param dataService
    */
-  constructor(private datePipe: DatePipe, private dataService: DataService, private authService, AuthService) {}
+  constructor(
+    private datePipe: DatePipe,
+    private dataService: DataService,
+    private authService: AuthService
+  ) {}
 
   /**
    * This function is called when the component is initialized.
