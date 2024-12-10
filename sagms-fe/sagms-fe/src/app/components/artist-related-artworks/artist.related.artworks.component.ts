@@ -48,7 +48,7 @@ export class ArtistRelatedArtworksComponent {
   /**
    * This is to load all artworks related to the artist.
    */
-  private getArtworks() {
+  getArtworks() {
     const artistId = this.authService.getUserId() ?? '';
 
     this.dataService
